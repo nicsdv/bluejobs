@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Landing Page{% endblock %} 
+
+{% block content %}
+
+    {# the links to other html files #}
+    <div class = links>
+        <l> <b>BlueJobs </b> </l>
+        <a href="../about/">About </a>
+        <a href="../help/">Help </a>
+        <a href="../developers/">Developers </a>
+    </div>
+    
+    <h1>BlueJobs</h1>
+    <p> Crafting Your Student Success, <br>
+        One Schedule at a Time! </p>
+
+    <a href="login-student.html"><button>Student</button></a>
+    <a href="login-dept.html"><button>Department</button></a>
+
+{% endblock %}

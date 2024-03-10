@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Department Login{% endblock %} 
+{% block content %}
+
+    {# the links to other html files #}
+    <div class = links>
+        <l> <b>BlueJobs </b> </l>
+        <a href="../about/">About </a>
+        <a href="../help/">Help </a>
+        <a href="../developers/">Developers </a>
+    </div>
+
+    <h2>Log in to BlueJobs</h2>
+        <form method="post" action="{% url 'login-dept' %}">
+            {% csrf_token %}
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Log In</button>
+        </form>
+
+    <a href="signup-dept.html"><button>Sign Up</button></a>
+
+    <br>
+
+    <a href="login-dept.html"><button> &#8592; </button></a>
+
+{% endblock %}
+
