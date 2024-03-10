@@ -1,6 +1,6 @@
 from django.contrib import admin
 from professor_select.models import ( Professor, SectionSchedule, Course, CourseSection, 
-CourseSectionStudent, ProfessorRating)
+CourseSectionStudent, ProfessorRating, ProfessorFavorite)
 
 '''
 The following code initializes the admin panel for the models needed in the professor select app.  
@@ -45,12 +45,26 @@ class ProfessorRatingAdmin (admin.ModelAdmin):
     list_display = ('student','professor', 'course',)
     list_filter = ('student','professor', 'course',)
 
+class ProfessorRatingAdmin (admin.ModelAdmin):
+    model = ProfessorRating
+    search_fields = ('student','professor', 'course',)
+    list_display = ('student','professor', 'course',)
+    list_filter = ('student','professor', 'course',)
+
+class ProfessorFavoriteAdmin (admin.ModelAdmin):
+    model = ProfessorFavorite
+    search_fields = ('student','professor', 'course',)
+    list_display = ('student','professor', 'course',)
+    list_filter = ('student','professor', 'course',)
+
 
 admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(SectionSchedule, SectionScheduleAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseSection, CourseSectionAdmin)
 admin.site.register(CourseSectionStudent, CourseSectionStudentAdmin)
+admin.site.register(ProfessorRating,ProfessorRatingAdmin)
+admin.site.register(ProfessorFavorite,ProfessorFavoriteAdmin)
 
 
 

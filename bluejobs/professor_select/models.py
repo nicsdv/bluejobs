@@ -95,3 +95,17 @@ class ProfessorRating (models.Model):
 
     def __str__(self):
         return 'Rating for {} in {} '.format(self.professor, self.course)
+
+class ProfessorFavorite(models.Model):
+    professor = models.ForeignKey (Professor, on_delete = models.CASCADE)
+    course = models.ForeignKey (Course, on_delete = models.CASCADE)
+    student = models.ForeignKey (Student, related_name = "favorites",
+                                 on_delete = models.CASCADE)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['student', 'professor', 'course'], name='student_favorite')
+        ]
+
+    def __str__(self):
+        return '{} for {} marked Favorite by {} '.format(self.professor, self.course, self.student)
