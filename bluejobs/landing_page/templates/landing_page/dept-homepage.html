@@ -4,24 +4,8 @@
 {% block title %}Student Home{% endblock %} 
 {% block content %}
 
-    {# the links to other html files #}
-    <div class = links>
-        <l> <b>BlueJobs </b> </l>
-        <a href="../about/">About </a>
-        <a href="../help/">Help </a>
-        <a href="../developers/">Developers </a>
-    </div>
-
-    <a href="index.html">Sign Out</a>
-
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
-
-
-    <h1>Welcome, <br> {{ department_name }} Dept!</h1>
-    <p>Attach your schedules to each course: </p>
+{% comment %}
+    This page is currently under construction & will not be used until Iteration 3.
+{% endcomment %}
 
 {% endblock %}
