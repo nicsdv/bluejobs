@@ -14,7 +14,7 @@ Code written by: Nics
 # PROFESSOR (Professor_ID, Name, Email)
 class Professor (models.Model):
     professor_name = models.CharField(max_length = 255)
-    email = models.EmailField(max_length = 255)
+    email = models.EmailField(max_length = 255, unique = True)
 
     def __str__(self):
         return '{}'.format(self.professor_name)
@@ -24,13 +24,13 @@ class SectionSchedule (models.Model):
     section_code = models.CharField(max_length = 10)
     day_schedule = models.CharField(max_length = 20)
     time_schedule = models.CharField(max_length = 20)
-
+    
     def __str__(self):
         return '{}: {} at {}'.format(self.section_code, self.day_schedule, self.time_schedule)
 
 # COURSE (Course_Code, Course_Title)
 class Course (models.Model):
-    course_code = models.CharField(max_length = 20)
+    course_code = models.CharField(max_length = 20, unique = True)
     course_title = models.CharField(max_length = 255)
 
     def __str__(self):
@@ -48,6 +48,11 @@ class CourseSection (models.Model):
                                 on_delete = models.CASCADE)
     slots = models.PositiveIntegerField()
     venue = models.CharField(max_length = 255)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['course', 'section'], name='course_section')
+        ]
 
     def __str__(self):
         return '{} {}: {} '.format(self.course, self.section.section_code, self.professor)
@@ -82,6 +87,11 @@ class ProfessorRating (models.Model):
     approachability = models.PositiveIntegerField()
     friendliness = models.PositiveIntegerField()
     comment = models.TextField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['student', 'professor', 'course'], name='student_rating')
+        ]
 
     def __str__(self):
         return 'Rating for {} in {} '.format(self.professor, self.course)

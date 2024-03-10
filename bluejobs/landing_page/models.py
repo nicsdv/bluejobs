@@ -15,7 +15,7 @@ Code written by: Nics
 class Student (models.Model):
     student_ID = models.IntegerField(unique = True)
     student_name = models.CharField(max_length = 255)
-    email = models.EmailField(max_length = 255)
+    email = models.EmailField(max_length = 255, unique = True)
     degree_program = models.CharField(max_length = 255)
 
     def __str__(self):
@@ -33,7 +33,7 @@ class StudentLogin (models.Model):
 # DEPARTMENT (Department_ID, Department_Name, Email)
 class Department(models.Model):
     department_name = models.CharField(max_length = 255)
-    email = models.EmailField(max_length = 255)
+    email = models.EmailField(max_length = 255, unique = True)
 
     def __str__(self):
         return '{} Department'.format(self.department_name)
