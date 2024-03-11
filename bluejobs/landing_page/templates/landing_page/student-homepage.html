@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Student Home{% endblock %} 
+{% block content %}
+
+    {# the links to other html files #}
+    <div class = links>
+        <l> <b>BlueJobs </b> </l>
+        <a href="../about/">About </a>
+        <a href="../help/">Help </a>
+        <a href="../developers/">Developers </a>
+    </div>
+
+    <a href="index.html">Sign Out</a>
+
+    {# placeholder for the user images #}
+    {% if user_image_url %}
+        <img src="{{ user_image_url }}" alt="User Image">
+    {% else %}
+        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
+
+
+    <h1>Welcome, {{ student_name }}!</h1>
+    <p>Select among the BlueJobs services to get started </p>
+
+    {# to add images for buttons #}
+    <a href="{% url 'professor_select:course-select' %}">
+        <img src="{% static 'images/button_image.jpg' %}" alt="Professor Select">
+    </a>
+
+    {# using placeholder urls for future apps #}
+    <a href="{% url 'schedule_maker:professor-preference' %}">
+        <img src="{% static 'images/button_image.jpg' %}" alt="Schedule Maker">
+    </a>
+
+    <a href="{% url 'rate_professor:professor-select' %}">
+        <img src="{% static 'images/button_image.jpg' %}" alt="Rate a Professor">
+    </a>
+
+{% endblock %}
