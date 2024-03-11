@@ -7,12 +7,12 @@
     {# the links to other html files #}
     <div class = links>
         <l> <b>BlueJobs </b> </l>
-        <a href="../about/">About </a>
-        <a href="../help/">Help </a>
-        <a href="../developers/">Developers </a>
+        <a href="{% url 'landing_page:about' %}">About </a>
+        <a href="{% url 'landing_page:help' %}">Help </a>
+        <a href="{% url 'landing_page:developers' %}">Developers </a>
     </div>
 
-    <a href="index.html">Sign Out</a>
+    <a href="{% url 'landing_page:index' %}">Sign Out</a>
 
     {# placeholder for the user images #}
     {% if user_image_url %}
