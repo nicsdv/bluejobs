@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<h1>Home</h1>
+<br>
+{% if request.user.is_authenticated %}
+The current user is : {{request.user.email}}
+<br>
+<br>
+The type of user is : {{request.user.role}}
+{% endif %}
+<br />
+<br />
+<a href = "{% url 'login' %}">Log In</a>
+{% endblock %}
