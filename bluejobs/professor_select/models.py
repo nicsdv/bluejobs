@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from landing_page.models import Student, Department
 
 '''
@@ -38,7 +39,7 @@ class Course (models.Model):
 
 # COURSE_SECTION (Course_Code, Section, Professor_ID, Department_ID, Slots, Venue)
 class CourseSection (models.Model):
-    course = models.ForeignKey(SectionSchedule, related_name = "course_sections",
+    course = models.ForeignKey(Course, related_name = "course_sections",
                                 on_delete = models.CASCADE)
     section = models.ForeignKey(SectionSchedule, related_name = "course_schedule",
                                 on_delete = models.CASCADE)
@@ -65,7 +66,7 @@ class CourseSectionStudent (models.Model):
                                 on_delete = models.CASCADE)
     
     def __str__(self):
-        return '{} Available Slots: {} '.format(self.course_section, self.section.section_code, self.professor)
+        return '{} Available Slots: {} '.format(self.course_section, self.course_section.slots)
 
 '''
 PROFESSOR_RATING(Student_ID, Professor_ID, Course_Code, Subject_Matter_Expertise, 
@@ -81,11 +82,11 @@ class ProfessorRating (models.Model):
                                  on_delete = models.CASCADE)
     course = models.ForeignKey (Course, related_name = "student_reviews",
                                  on_delete = models.CASCADE)
-    subject_matter_expertise = models.PositiveIntegerField()
-    workload_management = models.PositiveIntegerField()
-    grading_leniency = models.PositiveIntegerField()
-    approachability = models.PositiveIntegerField()
-    friendliness = models.PositiveIntegerField()
+    subject_matter_expertise = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
+    workload_management = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
+    grading_leniency = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
+    approachability = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
+    friendliness = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
     comment = models.TextField()
 
     class Meta:
