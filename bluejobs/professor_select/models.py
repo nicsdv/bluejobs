@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from landing_page.models import Student, Department
 
@@ -57,6 +58,9 @@ class CourseSection (models.Model):
 
     def __str__(self):
         return '{} {}: {} '.format(self.course, self.section.section_code, self.professor)
+    
+    def get_professor(self):
+        return self.professor
 
 # COURSE_SECTION_STUDENT (Course_Code,Section, Student_ID)
 class CourseSectionStudent (models.Model):
@@ -96,6 +100,10 @@ class ProfessorRating (models.Model):
 
     def __str__(self):
         return 'Rating for {} in {} '.format(self.professor, self.course)
+    
+    def get_average(self):
+        average = (self.subject_matter_expertise + self.workload_management + self.grading_leniency + self.approachability + self.friendliness)/4
+        return average
 
 class ProfessorFavorite(models.Model):
     professor = models.ForeignKey (Professor, on_delete = models.CASCADE)
