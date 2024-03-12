@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from .forms import ProfessorForm
 from .forms import SectionForm
 from .forms import CourseForm
+from .forms import CourseSelectForm
 
 from .models import Course, CourseSection, ProfessorRating
 
@@ -26,17 +27,22 @@ def course_form_view(request):
     return render(request, 'index.html', {'form': form})
 
 def course_select_view(request):
-    course_selected = None
-    courses = Course.objects.all()
-
-    if request.method == "POST":
-        course_selected = request.POST.get('courseSelected')
-        courses = Course.objects.filter(course_code__exact=course_selected)
+    current_user = request.user
 
     context = {
-        'course_selected': course_selected,
-        'courses': courses
+        'current_user': current_user,
     }
+
+    if request.method == "POST":
+        select_course_form = CourseSelectForm(request.POST)
+
+        if select_course_form.is_valid():
+            selected_course = select_course_form.save(False)
+            selected_course.student = current_user
+            selected_course.save()
+        
+        courses = current_user.student_courses.all()
+        context['courses'] = courses
 
     return render(request, 'professor_select/course-select.html', context)
 

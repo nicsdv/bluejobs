@@ -12,7 +12,7 @@
         <a href="#"> Rate a Professor </a>
     </div>
 
-    <a href="{% url 'landing_page:index' %}">Sign Out</a>
+    <a href="{% url 'landing_page:home' %}">Sign Out</a>
 
     {# placeholder for the user images #}
     {% if user_image_url %}
@@ -27,6 +27,6 @@
 
 
 
-    <a href="{% url 'landing_page:homepage-student' %}"><button> &#8592; </button></a>
+    <a href="#"><button> &#8592; </button></a>
 
 {% endblock %}
