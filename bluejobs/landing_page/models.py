@@ -10,28 +10,28 @@ development, libraries may be imported and/or removed as needed.
 
 (Note: django automatically designates primary keys as 'pk' so it need not be explicitly declared)
 
-Code written by: Nics
+Code written by: Nics and Eldon
 '''
 
-# STUDENT (Student_ID, Name, Email, degree_program)
-class Student (models.Model):
-    student_ID = models.IntegerField(unique = True)
-    student_name = models.CharField(max_length = 255)
-    email = models.EmailField(max_length = 255, unique = True)
-    degree_program = models.CharField(max_length = 255)
+class User(AbstractUser):
 
-    def __str__(self):
-        return '{}: {}'.format(self.student_ID, self.student_name)
+    class Role(models.TextChoices):
+        STUDENT = 'STUDENT', 'Student'
+        DEPARTMENT = 'DEPARTMENT', 'Department'
 
-# DEPARTMENT (Department_ID, Department_Name, Email)
-class Department(models.Model):
-    department_name = models.CharField(max_length = 255)
-    email = models.EmailField(max_length = 255, unique = True)
+    base_role = Role.STUDENT
+    role = models.CharField(
+        ('Role'), max_length=50, choices=Role.choices, default=base_role
+    )
 
-    def __str__(self):
-        return '{} Department'.format(self.department_name)
+    def get_absolute_url(self):
+        return reverse('users:detail', kwargs={'username':self.username})
     
-
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.role = self.base_role
+        return super().save(*args, **kwargs)
+    
 # The following models are created for the user accounts of the departments and students
 
 class UserManager(BaseUserManager):
@@ -58,41 +58,33 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.save(using = self._db)
         return user
-    
-class User(AbstractUser):
-
-    class Role(models.TextChoices):
-        STUDENT = 'STUDENT', 'Student'
-        DEPARTMENT = 'DEPARTMENT', 'Department'
-
-    base_role = Role.STUDENT
-    role = models.CharField(
-        ('Role'), max_length=50, choices=Role.choices, default=base_role
-    )
-
-    def get_absolute_url(self):
-        return reverse('users:detail', kwargs={'username':self.username})
-    
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.role = self.base_role
-        return super().save(*args, **kwargs)
 
 class StudentManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(role=User.Role.STUDENT)
     
-class StudentUser(User):
-    base_role = User.Role.STUDENT
-    class Meta:
-        proxy = True
 
 class DepartmentManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(role=User.Role.DEPARTMENT)
-        
-class DepartmentUser(User):
+
+
+# STUDENT (Student_ID, Name, Email, degree_program)
+class Student(User):
+    student_name = models.CharField(max_length = 255)   
+    degree_program = models.CharField(max_length = 255)
+    base_role = User.Role.STUDENT
+
+    def __str__(self):
+        return '{}'.format(self.student_name)
+    
+# DEPARTMENT (Department_ID, Department_Name, Email)
+class Department(User):
+    department_name = models.CharField(max_length = 255)
     base_role = User.Role.DEPARTMENT
     objects = DepartmentManager()
-    class Meta:
-        proxy = True
+
+    def __str__(self):
+        return '{} Department'.format(self.department_name)
+
+        

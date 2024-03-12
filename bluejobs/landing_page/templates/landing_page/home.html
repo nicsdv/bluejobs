@@ -1,15 +1,27 @@
-{% extends 'landing_page/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Landing Page{% endblock %} 
 
 {% block content %}
-<h1>Home</h1>
-<br>
-{% if request.user.is_authenticated %}
-The current user is : {{request.user.email}}
-<br>
-<br>
-The type of user is : {{request.user.role}}
-{% endif %}
-<br />
-<br />
-<a href = "{% url 'landing_page:login' %}">Log In</a>
+
+    {# the links to other html files #}
+    <div class = links>
+        <l> <b>BlueJobs </b> </l>
+        <a href="{% url 'landing_page:about' %}">About </a>
+        <a href="{% url 'landing_page:help' %}">Help </a>
+        <a href="{% url 'landing_page:developers' %}">Developers </a>
+    </div>
+    
+    <h1>BlueJobs</h1>
+    <p> Crafting Your Student Success, <br>
+        One Schedule at a Time! </p>
+    
+
+    <h1>Home</h1>
+    <br>
+    <br />
+    <br />
+    <a href = "{% url 'landing_page:login' %}">Log In</a>
+    <a href="{% url 'landing_page:signup' %}"><button>Sign Up</button></a>
 {% endblock %}
