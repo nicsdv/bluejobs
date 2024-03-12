@@ -130,7 +130,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = 'home' 
+LOGIN_REDIRECT_URL = 'landing_page/homepage-student.html' 
 # currently this leads to landing page after login
 # modify to direct to professor/student page depending on credentials
 

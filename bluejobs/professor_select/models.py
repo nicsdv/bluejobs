@@ -62,15 +62,18 @@ class CourseSection (models.Model):
     def get_professor(self):
         return self.professor
 
-# COURSE_SECTION_STUDENT (Course_Code,Section, Student_ID)
-class CourseSectionStudent (models.Model):
-    course_section = models.ForeignKey(CourseSection, related_name = "class_students",
-                                on_delete = models.CASCADE)
+# COURSE_STUDENT (Course_Code, Student_ID)
+class CourseStudent (models.Model):
+    course = models.ForeignKey(Course, on_delete = models.CASCADE)
     student = models.ForeignKey(Student, related_name = "student_courses",
                                 on_delete = models.CASCADE)
-    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['course', 'student'], name='course_student')
+        ]
+
     def __str__(self):
-        return '{} Available Slots: {} '.format(self.course_section, self.course_section.slots)
+        return '{} Selected: {} '.format(self.student, self.course)
 
 '''
 PROFESSOR_RATING(Student_ID, Professor_ID, Course_Code, Subject_Matter_Expertise, 
