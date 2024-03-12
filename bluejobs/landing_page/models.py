@@ -35,14 +35,14 @@ class Department(models.Model):
 # The following models are created for the user accounts of the departments and students
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password = None):
+    def create_user(self, email, password, **extra_fields):
         if not email or len(email) <= 0:
             raise ValueError("Email is required!")
         if not password:
             raise ValueError("Password is required!")
         
         user = self.model(
-            email = self.normalize_email(email),
+            email = self.normalize_email(email), **extra_fields
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -60,6 +60,7 @@ class UserManager(BaseUserManager):
         return user
     
 class User(AbstractUser):
+
     class Role(models.TextChoices):
         STUDENT = 'STUDENT', 'Student'
         DEPARTMENT = 'DEPARTMENT', 'Department'
@@ -83,7 +84,6 @@ class StudentManager(models.Manager):
     
 class StudentUser(User):
     base_role = User.Role.STUDENT
-    objects = StudentManager()
     class Meta:
         proxy = True
 

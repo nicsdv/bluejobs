@@ -11,6 +11,7 @@ urlpatterns = [
     path('department/', views.department),
     path('login/', LoginView.as_view(
         template_name='landing_page/login.html'), name='login'),
+    path('signup/', views.signup, name = 'signup'),
 ]
 
 app_name = "landing_page"
