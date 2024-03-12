@@ -73,7 +73,9 @@ class DepartmentManager(models.Manager):
 class Student(User):
     student_name = models.CharField(max_length = 255)   
     degree_program = models.CharField(max_length = 255)
+    objects = StudentManager()
     base_role = User.Role.STUDENT
+    student_ID = models.IntegerField()
 
     def __str__(self):
         return '{}'.format(self.student_name)
