@@ -7,12 +7,13 @@
     {# the links to other html files #}
     <div class = links>
         <l> <b>BlueJobs </b> </l>
-        <a href="../about/">About </a>
-        <a href="../help/">Help </a>
-        <a href="../developers/">Developers </a>
+        <a href="{% url 'landing_page:about' %}">About </a>
+        <a href="{% url 'landing_page:help' %}">Help </a>
+        <a href="{% url 'landing_page:developers' %}">Developers </a>
     </div>
 
     <h2>Create an Account</h2>
+
     <form method="post" action="{% url 'signup-dept' %}">
         {% csrf_token %}
         <label for="email">Email:</label><br>
@@ -24,6 +25,6 @@
         <button type="submit">Sign Up</button>
     </form>
 
-    <a href="login-dept.html"><button> &#8592; </button></a>
+    <a href="{% url 'landing_page:login-dept' %}"><button> &#8592; </button></a>
 
 {% endblock %}

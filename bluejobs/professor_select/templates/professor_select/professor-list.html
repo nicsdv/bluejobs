@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Department Login{% endblock %} 
+{% block content %}
+
+    {# the links to other html files #}
+    <div class = links>
+        <l> <b>BlueJobs </b> </l>
+        <a href="{% url 'professor_select:course-select' %}">Professor Select </a>
+        <a href="{% url 'schedule_maker:professor-preference' %}"> Schedule Maker </a>
+        <a href="{% url 'rate_professor:professor-select' %}"> Rate a Professor </a>
+    </div>
+
+    <a href="index.html">Sign Out</a>
+
+    {# placeholder for the user images #}
+    {% if user_image_url %}
+        <img src="{{ user_image_url }}" alt="User Image">
+    {% else %}
+        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
+
+        
