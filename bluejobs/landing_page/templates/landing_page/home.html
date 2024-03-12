@@ -1,4 +1,4 @@
-{% extends 'accounts/base.html' %}
+{% extends 'landing_page/base.html' %}
 
 {% block content %}
 <h1>Home</h1>
@@ -11,5 +11,5 @@ The type of user is : {{request.user.role}}
 {% endif %}
 <br />
 <br />
-<a href = "{% url 'login' %}">Log In</a>
+<a href = "{% url 'landing_page:login' %}">Log In</a>
 {% endblock %}

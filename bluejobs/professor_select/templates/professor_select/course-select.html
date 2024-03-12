@@ -7,9 +7,9 @@
     {# the links to other html files #}
     <div class = links>
         <l> <b>BlueJobs </b> </l>
-        <a href="{% url 'professor_select:course-select' %}">Professor Select </a>
-        <a href="{% url 'schedule_maker:professor-preference' %}"> Schedule Maker </a>
-        <a href="{% url 'rate_professor:professor-select' %}"> Rate a Professor </a>
+        <a href="{% url 'professor_select:course_select' %}">Professor Select </a>
+        <a href="#"> Schedule Maker </a>
+        <a href="#"> Rate a Professor </a>
     </div>
 
     <a href="{% url 'landing_page:index' %}">Sign Out</a>
@@ -19,6 +19,7 @@
         <img src="{{ user_image_url }}" alt="User Image">
     {% else %}
         <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
+    {% endif %}
 
 
     <h1>Professor Select </h1>

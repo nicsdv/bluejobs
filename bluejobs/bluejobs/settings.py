@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     'professor_select',
     'landing_page',
-    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'bluejobs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,4 +134,4 @@ LOGIN_REDIRECT_URL = 'home'
 # currently this leads to landing page after login
 # modify to direct to professor/student page depending on credentials
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'landing_page.User'

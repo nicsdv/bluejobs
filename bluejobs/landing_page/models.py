@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.urls import reverse
 
 
 '''
@@ -21,15 +23,6 @@ class Student (models.Model):
     def __str__(self):
         return '{}: {}'.format(self.student_ID, self.student_name)
 
-# STUDENT_LOGIN (Student_ID, password)
-class StudentLogin (models.Model):
-    student = models.OneToOneField(Student, on_delete = models.CASCADE, primary_key = True)
-    password = models.CharField(max_length = 255) 
-    # stored password will be hashed for encryption
-
-    def __str__(self):
-        return '{}'.format(self.student.student_ID)
-
 # DEPARTMENT (Department_ID, Department_Name, Email)
 class Department(models.Model):
     department_name = models.CharField(max_length = 255)
@@ -37,13 +30,69 @@ class Department(models.Model):
 
     def __str__(self):
         return '{} Department'.format(self.department_name)
+    
 
-# DEPARTMENT_LOGIN (Department_Username, Department_ID, password)
-class DepartmentLogin (models.Model):
-    department_username = models.CharField(max_length = 15)
-    department = models.OneToOneField(Department, on_delete = models.CASCADE, primary_key = True)
-    password = models.CharField(max_length = 255) 
-    # stored password will be hashed for encryption
+# The following models are created for the user accounts of the departments and students
 
-    def __str__(self):
-        return '{}'.format(self.department.username)
+class UserManager(BaseUserManager):
+    def create_user(self, email, password = None):
+        if not email or len(email) <= 0:
+            raise ValueError("Email is required!")
+        if not password:
+            raise ValueError("Password is required!")
+        
+        user = self.model(
+            email = self.normalize_email(email),
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self, email, password):
+        user = self.create_user(
+            email = self.normalize_email(email),
+            password = password
+        )
+        user.is_admin = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using = self._db)
+        return user
+    
+class User(AbstractUser):
+    class Role(models.TextChoices):
+        STUDENT = 'STUDENT', 'Student'
+        DEPARTMENT = 'DEPARTMENT', 'Department'
+
+    base_role = Role.STUDENT
+    role = models.CharField(
+        ('Role'), max_length=50, choices=Role.choices, default=base_role
+    )
+
+    def get_absolute_url(self):
+        return reverse('users:detail', kwargs={'username':self.username})
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.role = self.base_role
+        return super().save(*args, **kwargs)
+
+class StudentManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(role=User.Role.STUDENT)
+    
+class StudentUser(User):
+    base_role = User.Role.STUDENT
+    objects = StudentManager()
+    class Meta:
+        proxy = True
+
+class DepartmentManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(role=User.Role.DEPARTMENT)
+        
+class DepartmentUser(User):
+    base_role = User.Role.DEPARTMENT
+    objects = DepartmentManager()
+    class Meta:
+        proxy = True
