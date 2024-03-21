@@ -12,8 +12,9 @@
         <a href="{% url 'landing_page:developers' %}">Developers </a>
     </div>
 
-    <a href="{% url 'landing_page:index' %}">Sign Out</a>
+    <a href="{% url 'landing_page:login' %}">Sign Out</a>
 
+    <!-- remove to uncomment {% comment %}
     {# placeholder for the user images #}
     {% if user_image_url %}
         <img src="{{ user_image_url }}" alt="User Image">
@@ -37,5 +38,8 @@
     <a href="{% url 'rate_professor:professor-select' %}">
         <img src="{% static 'images/button_image.jpg' %}" alt="Rate a Professor">
     </a>
+    {% endif %}
+
+    {% endcomment %} -->
 
 {% endblock %}

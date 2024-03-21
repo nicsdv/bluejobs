@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.urls import reverse
+from django.utils import timezone
 
 
 '''
@@ -13,80 +14,59 @@ development, libraries may be imported and/or removed as needed.
 Code written by: Nics and Eldon
 '''
 
-class User(AbstractUser):
-
-    class Role(models.TextChoices):
-        STUDENT = 'STUDENT', 'Student'
-        DEPARTMENT = 'DEPARTMENT', 'Department'
-
-    base_role = Role.STUDENT
-    role = models.CharField(
-        ('Role'), max_length=50, choices=Role.choices, default=base_role
-    )
-
-    def get_absolute_url(self):
-        return reverse('users:detail', kwargs={'username':self.username})
-    
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.role = self.base_role
-        return super().save(*args, **kwargs)
-    
-# The following models are created for the user accounts of the departments and students
-
 class UserManager(BaseUserManager):
-    def create_user(self, email, password, **extra_fields):
-        if not email or len(email) <= 0:
-            raise ValueError("Email is required!")
-        if not password:
-            raise ValueError("Password is required!")
-        
-        user = self.model(
-            email = self.normalize_email(email), **extra_fields
-        )
+    def create_user(self, email, password=None, **extra_fields):
+        # Creates and saves a User with the given email and password.
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
-    def create_superuser(self, email, password):
-        user = self.create_user(
-            email = self.normalize_email(email),
-            password = password
-        )
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using = self._db)
-        return user
 
-class StudentManager(models.Manager):
-    def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(role=User.Role.STUDENT)
-    
+    def create_superuser(self, email, password=None, **extra_fields):
+        # Creates and saves a Superuser with the given email and password.
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-class DepartmentManager(models.Manager):
-    def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(role=User.Role.DEPARTMENT)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
 
+        return self.create_user(email, password, **extra_fields)
+
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    is_student = models.BooleanField(default=False)
+    is_department = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
 
 # STUDENT (Student_ID, Name, Email, degree_program)
 class Student(User):
-    student_name = models.CharField(max_length = 255)   
-    degree_program = models.CharField(max_length = 255)
-    objects = StudentManager()
-    base_role = User.Role.STUDENT
-    student_ID = models.IntegerField()
+    student_ID = models.IntegerField(default=1000, null=False)
+    student_name = models.CharField(max_length=255, null=False)
+    degree_program = models.CharField(max_length=255, null=False)
 
-    def __str__(self):
-        return '{}'.format(self.student_name)
-    
+    def save(self, *args, **kwargs):
+        self.is_student = True
+        self.student_ID = self.student_ID
+        return super().save(*args, **kwargs)
+
 # DEPARTMENT (Department_ID, Department_Name, Email)
 class Department(User):
-    department_name = models.CharField(max_length = 255)
-    base_role = User.Role.DEPARTMENT
-    objects = DepartmentManager()
+    department_ID = models.IntegerField(default=9000,null=False)
+    department_name = models.CharField(max_length=255, null=False)
 
-    def __str__(self):
-        return '{} Department'.format(self.department_name)
-
-        
+    def save(self, *args, **kwargs):
+        self.is_department = True
+        return super().save(*args, **kwargs)

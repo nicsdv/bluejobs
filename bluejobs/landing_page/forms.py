@@ -1,25 +1,17 @@
-from django.forms import ModelForm
 from django import forms
-from .models import Student
+from .models import Student, Department
 from django.contrib.auth.forms import UserCreationForm
 
 class StudentSignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=200, help_text='Required')
-
-    class Meta:
+    class Meta(UserCreationForm.Meta):
         model = Student
-        fields = ('email', 'username', 'student_ID')
+        fields = ('email','student_ID', 'student_name', 'degree_program')
 
+class DepartmentSignUpForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Department
+        fields = ('email','department_ID', 'department_name')
 
-
-    # class Meta(UserCreationForm.Meta):
-    #     model = User
-
-    # @transaction.atomic
-    # def save(self):
-    #     user = super().save(commit=False)
-    #     user.is_student = True
-    #     user.save()
-    #     student = Student.objects.create(user=user)
-    #     student.interests.add(*self.cleaned_data.get('interests'))
-    #     return user
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

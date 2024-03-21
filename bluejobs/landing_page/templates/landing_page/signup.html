@@ -4,11 +4,5 @@
 <h2>Sign up for a free account</h2>
   <p class="lead">Select below the type of account you want to create</p>
   <a href="{% url 'landing_page:signup-student' %}" class="btn btn-student btn-lg" role="button">Student</a>
-  <a href="{% url 'landing_page:signup' %}" class="btn btn-teacher btn-lg" role="button">Department</a>
-
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
+  <a href="{% url 'landing_page:signup-department' %}" class="btn btn-teacher btn-lg" role="button">Department</a>
 {% endblock %}
