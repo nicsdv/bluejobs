@@ -10,7 +10,7 @@ class StudentSignUpForm(UserCreationForm):
 class DepartmentSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Department
-        fields = ('email','department_ID', 'department_name')
+        fields = ('email', 'department_name')
 
 class LoginForm(forms.Form):
     email = forms.EmailField()

@@ -1,17 +1,25 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views import View
 from .forms import StudentSignUpForm, DepartmentSignUpForm, LoginForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.urls import reverse_lazy
+from .models import Student, Department
 
 class StudentHomepage(View):
     def get(self, request):
-        return render(request, 'landing_page/homepage-student.html', {'name': 'Home'})
+        if request.user.is_authenticated and request.user.is_student:
+            student = Student.objects.get(pk = request.user.pk)
+            return render(request, 'landing_page/homepage-student.html', { 'user' : student})
+        else:
+            return redirect('landing_page:home')
     
 class DepartmentHomepage(View):
     def get(self, request):
-        return render(request, 'landing_page/homepage-department.html', {'name': 'Home'})
+        if request.user.is_authenticated and request.user.is_department:
+            department = Department.objects.get(pk = request.user.pk)
+            return render(request, 'landing_page/homepage-department.html', { 'user' : department})
+        else:
+            return redirect('landing_page:home')
     
 def about(request):
     return render(request, 'landing_page/about.html')
@@ -23,13 +31,8 @@ def developers(request):
     return render(request, 'landing_page/developers.html')
 
 def home(request):
+    logout(request)
     return render(request, 'landing_page/home.html')
-
-def student(request):
-    return render(request, 'landing_page/student.html')
-
-def department(request):
-    return render(request, 'landing_page/department.html')
 
 def signup(request):
     return render(request, 'landing_page/signup.html')
@@ -72,6 +75,8 @@ def user_login(request):
                     return redirect('landing_page:homepage-student')
                 elif user.is_department:
                     return redirect('landing_page:homepage-department')
+                else:
+                    return redirect('landing_page:home')
     else:
         form = LoginForm()
     return render(request, 'landing_page/login.html', {'form': form})

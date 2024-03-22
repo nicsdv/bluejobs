@@ -53,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # STUDENT (Student_ID, Name, Email, degree_program)
 class Student(User):
-    student_ID = models.IntegerField(default=1000, null=False)
+    student_ID = models.IntegerField(default=200000, null=False)
     student_name = models.CharField(max_length=255, null=False)
     degree_program = models.CharField(max_length=255, null=False)
 
@@ -64,7 +64,6 @@ class Student(User):
 
 # DEPARTMENT (Department_ID, Department_Name, Email)
 class Department(User):
-    department_ID = models.IntegerField(default=9000,null=False)
     department_name = models.CharField(max_length=255, null=False)
 
     def save(self, *args, **kwargs):

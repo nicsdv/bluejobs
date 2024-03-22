@@ -12,7 +12,11 @@
         <a href="{% url 'landing_page:developers' %}">Developers </a>
     </div>
 
+    hello, {{ user.student_name }}!
+
     <a href="{% url 'landing_page:login' %}">Sign Out</a>
+    
+    <a href="{% url 'professor_select:course_select' %}">Professor Select</a>
 
     <!-- remove to uncomment {% comment %}
     {# placeholder for the user images #}

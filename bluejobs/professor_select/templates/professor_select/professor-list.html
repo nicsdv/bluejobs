@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Department Login{% endblock %} 
+{% block title %}Professor List{% endblock %} 
 {% block content %}
 
     {# the links to other html files #}
@@ -12,7 +12,7 @@
         <a href="#"> Rate a Professor </a>
     </div>
 
-    <a href="index.html">Sign Out</a>
+    <a href="{% url 'landing_page:home'%}">Sign Out</a>
 
     {# placeholder for the user images #}
     {% if user_image_url %}
@@ -21,6 +21,9 @@
         <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
 
     {% endif%}
+
+    
+    hello, {{ user.student_name }}!
 
     {% endblock %}
 
