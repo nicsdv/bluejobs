@@ -69,25 +69,30 @@ def professor_detail_view(request, course, **kwarg) :
         current_user = request.user
         student = Student.objects.get(pk = current_user.pk)
 
-
         professor = Professor.objects.get(pk=kwarg['pk'])
-        scores = professor.professor_ratings.aggregate(Avg('subject_matter_expertise'), 
-                Avg('workload_management'), Avg('grading_leniency'),
-                Avg('approachability'), Avg('friendliness'))
-        comment = professor.professor_ratings.all()[0].comment
-            
+
         args = {
             'professor': professor,
             'user': student,
-            'comment': comment,            
-            'expertise': round(scores['subject_matter_expertise__avg'], 2),
-            'workload': round(scores['workload_management__avg'], 2),
-            'grading': round(scores['grading_leniency__avg'], 2),
-            'approachability': round(scores['approachability__avg'], 2),
-            'friendliness': round(scores['friendliness__avg'], 2),
             'course_selected': Course.objects.get(pk=course)
-            
         }
+
+        if len(professor.professor_ratings.all()) > 0:
+            comment = professor.professor_ratings.all()[0].comment
+            scores = professor.professor_ratings.aggregate(Avg('subject_matter_expertise'), 
+                    Avg('workload_management'), Avg('grading_leniency'),
+                    Avg('approachability'), Avg('friendliness'))
+            
+            args['comment'] = comment,            
+            args['expertise'] =  round(scores['subject_matter_expertise__avg'], 2),
+            args['workload'] = round(scores['workload_management__avg'], 2),
+            args['grading'] = round(scores['grading_leniency__avg'], 2),
+            args['approachability'] = round(scores['approachability__avg'], 2),
+            args['friendliness'] = round(scores['friendliness__avg'], 2)
+
+        else:
+            args['comment'] = "No Ratings for this professor."
+            
         return render(request,'professor_select/professor-details.html', args)
     else:
         return redirect('landing_page:home')
