@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Department Login{% endblock %} 
+{% block title %} {{ professor }} {% endblock %} 
 {% block content %}
 
     {# the links to other html files #}
@@ -12,12 +11,24 @@
         <a href="#"> Rate a Professor </a>
     </div>
 
-    <a href="index.html">Sign Out</a>
+    
+    hello, {{ user.student_name }}! <br><br>
 
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
+    {{ professor }} <br>
+    {{ expertise }} <br>
+    {{ workload }} <br>
+    {{ grading }} <br>
+    {{ approachability }} <br>
+    {{ friendliness }} <br>
+    {{ comment }} <br>
+    
+    <br>
+    <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add to Favorites </a><br>
+    <br>
+    <a href="{% url 'landing_page:home' %}">Sign Out</a>
+
+    
+
 
         
+{% endblock %}

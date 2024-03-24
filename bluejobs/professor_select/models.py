@@ -63,7 +63,6 @@ def get_department():
     query = Department.objects.all()
     return query[0].pk
 
-
 # COURSE (Course_Code, Course_Title, Department_ID)
 class Course (models.Model):
     course_code = models.CharField(max_length = 20, unique = True)
@@ -76,7 +75,7 @@ class Course (models.Model):
 
 # COURSE_SECTION (Course_Code, Section, Professor_ID, Slots, Venue)
 class CourseSection (models.Model):
-    course = models.ForeignKey(Course, related_name = "course_sections",
+    course = models.ForeignKey(Course, related_name = "classes",
                                 on_delete = models.CASCADE)
     section = models.ForeignKey(SectionSchedule, related_name = "course_schedule",
                                 on_delete = models.CASCADE)
@@ -99,7 +98,7 @@ class CourseSection (models.Model):
 # COURSE_STUDENT (Course_Code, Student_ID)
 class CourseStudent (models.Model):
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
-    student = models.ForeignKey(Student, related_name = "student_courses",
+    student = models.ForeignKey(Student, related_name = "courses",
                                 on_delete = models.CASCADE)
     class Meta:
         constraints = [
@@ -110,7 +109,7 @@ class CourseStudent (models.Model):
         return '{} Selected: {} '.format(self.student, self.course)
 
 '''
-PROFESSOR_RATING(Student_ID, Professor_ID, Course_Code, Subject_Matter_Expertise, 
+PROFESSOR_RATING(Student_ID, Professor_ID, Subject_Matter_Expertise, 
     Workload_Management, Grading_Leniency, Approachability, Friendliness, Comment)
 
     Note: the integer fields will have a corresponding dropdown for scoring 1-10

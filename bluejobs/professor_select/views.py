@@ -1,77 +1,113 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from django.views.generic.list import ListView 
-from django.views.generic.detail import DetailView
+from landing_page.models import Student
+from django.db.models import Avg
 
-from django.contrib.auth import login, authenticate, logout
+from .forms import CourseSelectForm, ProfessorFavoriteForm
 
-from .forms import CourseSelectForm
-
-from .models import Course, CourseSection, ProfessorRating
+from .models import Course, Professor, ProfessorRating
 
 def course_select_view(request):
     if request.user.is_authenticated and request.user.is_student:
-        current_user = request.user
 
-        context = {
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+
+        if request.method  == "POST":
+            course = request.POST['course_list_select']
+            
+            course_form = CourseSelectForm()
+            
+            course_selected = course_form.save(False)
+            course_selected.course = Course.objects.get(course_code=course)
+            course_selected.student = student
+            course_selected.save()
+        
+
+        args = {
             'current_user': current_user,
+            'form': CourseSelectForm
         }
 
-        if request.method == "POST":
-            select_course_form = CourseSelectForm(request.POST)
+        added_courses = [course.course for course in student.courses.all()] 
+        args['added_courses'] = added_courses
 
-            if select_course_form.is_valid():
-                selected_course = select_course_form.save(False)
-                selected_course.student = current_user
-                selected_course.save()
-            
-            courses = current_user.student_courses.all()
-            context['courses'] = courses
+        course_selection = []
+        for course in Course.objects.all():
+            if course not in added_courses:
+                course_selection.append(course)
+        
+        args['course_selection'] = course_selection
 
-        return render(request, 'professor_select/course-select.html', context)
+        return render(request, 'professor_select/course-select.html', args)
     else:
         return redirect('landing_page:home')
 
-def professor_list_view(request):
+def professor_list_view(request, **kwarg):
     if request.user.is_authenticated and request.user.is_student:
         current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
 
-        course_selected = None
-        professors = CourseSection.objects.all()
-        professor_rating = ProfessorRating.objects.all()
-
-        if request.method == 'POST':
-            course_selected = request.POST.get('courseSelected')
-            professors = CourseSection.professor_classes.filter(course__exact=course_selected)
-            professor_rating = ProfessorRating.professor_ratings.get_average().filter(course__exact=course_selected)
-        
-        context = {
+        course_selected = Course.objects.get(pk=kwarg['pk'])
+        professors = course_selected.classes.all()
+        print(professors)
+    
+        args = {
             'course_selected': course_selected,
             'professors': professors,
-            'professor_rating': professor_rating
+            'user': student
         }
 
-        return render(request, 'professor_select/professor-list.html', context)
+        return render(request, 'professor_select/professor-list.html', args)
     else:
         return redirect('landing_page:home')
 
-def professor_detail_view(request):
+def professor_detail_view(request, course, **kwarg) :
     
     if request.user.is_authenticated and request.user.is_student:
         current_user = request.user
-        professor_selected = None
-        detail = ProfessorRating.objects.all()
+        student = Student.objects.get(pk = current_user.pk)
 
-        if request.method == 'POST':
-            professor_selected = request.POST.get('professorSelected')
-            detail = ProfessorRating.objects.filter(professor__exact=professor_selected)
+
+        professor = Professor.objects.get(pk=kwarg['pk'])
+        scores = professor.professor_ratings.aggregate(Avg('subject_matter_expertise'), 
+                Avg('workload_management'), Avg('grading_leniency'),
+                Avg('approachability'), Avg('friendliness'))
+        comment = professor.professor_ratings.all()[0].comment
             
-        context = {
-            'professor_selected': professor_selected,
-            'detail': detail
+        args = {
+            'professor': professor,
+            'user': student,
+            'comment': comment,            
+            'expertise': round(scores['subject_matter_expertise__avg'], 2),
+            'workload': round(scores['workload_management__avg'], 2),
+            'grading': round(scores['grading_leniency__avg'], 2),
+            'approachability': round(scores['approachability__avg'], 2),
+            'friendliness': round(scores['friendliness__avg'], 2),
+            'course_selected': Course.objects.get(pk=course)
+            
         }
-
-        return render(request,'professor_select/professor-details.html', context)
+        return render(request,'professor_select/professor-details.html', args)
     else:
         return redirect('landing_page:home')
+    
+def add_professor (request, course, **kwarg):
+    
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+
+        course = Course.objects.get(pk=course)
+        professor = Professor.objects.get(pk=kwarg['pk'])
+ 
+        favorite = ProfessorFavoriteForm().save(False)
+        favorite.student = student
+        favorite.course = course
+        favorite.professor = professor
+        favorite.save()
+        
+        return redirect('professor_select:course_select')
+    else:
+        return redirect('landing_page:home')
+    

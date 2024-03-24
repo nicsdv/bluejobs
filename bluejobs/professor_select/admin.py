@@ -29,7 +29,7 @@ class CourseAdmin (admin.ModelAdmin):
 
 class CourseSectionAdmin (admin.ModelAdmin):
     model = CourseSection
-    search_fields = ('course', 'section', 'professor','slots', 'venue',)
+    search_fields = ('course', 'section', 'professor', 'slots', 'venue',)
     list_display = ('course', 'section', 'professor', 'slots', 'venue',)
     list_filter = ('course', 'section', 'professor', 'slots', 'venue',)
 
@@ -38,12 +38,6 @@ class CourseStudentAdmin (admin.ModelAdmin):
     search_fields = ('course', 'student',)
     list_display = ('course', 'student',)
     list_filter =('course', 'student',)
-
-class ProfessorRatingAdmin (admin.ModelAdmin):
-    model = ProfessorRating
-    search_fields = ('student','professor', 'course',)
-    list_display = ('student','professor', 'course',)
-    list_filter = ('student','professor', 'course',)
 
 class ProfessorRatingAdmin (admin.ModelAdmin):
     model = ProfessorRating

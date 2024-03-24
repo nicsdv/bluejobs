@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <br />
+
+        <!-- form fields -->
+        <div class="fieldWrapper">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+          </div>
+
+          <div class="fieldWrapper">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+          </div>
+
+        <!-- error messages -->
+        {% for error in form.password.errors %}
+            {{ error }} <br> {% endfor %}
+        
+        <br>
         <button type="submit">Login</button>
+        
     </form>
+
+    <a href="{% url 'landing_page:home' %}"><button> &#8592; </button></a>
+
 {% endblock %}

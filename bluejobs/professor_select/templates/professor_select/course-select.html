@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Department Login{% endblock %} 
+{% block title %}Course Select{% endblock %} 
 {% block content %}
 
     {# the links to other html files #}
@@ -14,19 +13,30 @@
 
     <a href="{% url 'landing_page:home' %}">Sign Out</a>
 
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
-    {% endif %}
-
 
     <h1>Professor Select </h1>
     <p>Choose a course to select a professor for </p>
+    
+    <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add an Item
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for course in added_courses %}
 
-
-
+          <li>{{course}} <a href = "{% url 'professor_select:professor_list' course.pk %} ">Add Professor</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+    
+    <form method="POST">
+      {% csrf_token %}
+      <select name = "course_list_select">
+        {% for course in course_selection%}
+          <option value ="{{course}}"> {{course.course_code}} </option>
+        {% endfor %}
+      </select> 
+      <button type="submit">Add Course</button>
+    </form> 
     <a href="#"><button> &#8592; </button></a>
 
 {% endblock %}

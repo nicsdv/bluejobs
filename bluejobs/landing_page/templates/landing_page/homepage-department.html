@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Department Home{% endblock %} 
 {% block content %}
 
-hello, {{ user.department_name }}!
+Welcome, {{ user.department_name }}!
 
 
 <a href="{% url 'landing_page:login' %}">Sign Out</a>

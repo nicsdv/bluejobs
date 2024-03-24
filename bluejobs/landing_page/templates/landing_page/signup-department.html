@@ -2,8 +2,41 @@
 
 {% block content %}
   <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Sign Up</button>
-    </form>
+    {% csrf_token %}
+
+    <!-- form fields -->
+    <div class="fieldWrapper">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.department_name.label_tag }}
+        {{ form.department_name }}
+    </div>
+
+    <div class="fieldWrapper">
+      {{ form.password1.label_tag }}
+      {{ form.password1 }}
+    </div>
+
+    <div class="fieldWrapper">
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+    </div>
+
+    <!-- error messages -->
+    {% for error in form.password1.errors %}
+    {{ error }} <br> {% endfor %}
+
+    {% for error in form.password2.errors %}
+      {{ error }} <br> {% endfor %}
+
+    <br>
+    <button type="submit">Sign Up</button>
+
+  </form> 
+
+  <a href="{% url 'landing_page:signup' %}"><button> &#8592; </button></a>
+
 {% endblock %}
