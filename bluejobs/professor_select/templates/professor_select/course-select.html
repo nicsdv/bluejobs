@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Department Login{% endblock %} 
 {% block content %}
@@ -14,18 +13,20 @@
 
     <a href="{% url 'landing_page:home' %}">Sign Out</a>
 
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
-    {% endif %}
-
 
     <h1>Professor Select </h1>
     <p>Choose a course to select a professor for </p>
+    
+    <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add an Item
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for course_code in course %}
 
-
+          <li><a href="{{ course.get_absolute_url }}">{{course.course.name}}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
 
     <a href="#"><button> &#8592; </button></a>
 

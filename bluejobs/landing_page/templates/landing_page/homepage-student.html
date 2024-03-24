@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Student Home{% endblock %} 
 {% block content %}
@@ -12,38 +11,27 @@
         <a href="{% url 'landing_page:developers' %}">Developers </a>
     </div>
 
-    hello, {{ user.student_name }}!
-
     <a href="{% url 'landing_page:login' %}">Sign Out</a>
     
-    <a href="{% url 'professor_select:course_select' %}">Professor Select</a>
-
-    <!-- remove to uncomment {% comment %}
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
-
-
-    <h1>Welcome, {{ student_name }}!</h1>
+    <h1>Welcome, {{ user.student_name }}!</h1>
     <p>Select among the BlueJobs services to get started </p>
 
-    {# to add images for buttons #}
-    <a href="{% url 'professor_select:course-select' %}">
-        <img src="{% static 'images/button_image.jpg' %}" alt="Professor Select">
-    </a>
+    <a href="{% url 'professor_select:course_select' %}" class="box-cell box1">
+        <img src="https://i.postimg.cc/PCXbmQhK/Untitled-design-2.png" alt="Professor Select">
+        <br>
+        Professor Select
+    </a> <br>
 
-    {# using placeholder urls for future apps #}
-    <a href="{% url 'schedule_maker:professor-preference' %}">
-        <img src="{% static 'images/button_image.jpg' %}" alt="Schedule Maker">
+    <a href="{% url 'professor_select:course_select' %}" class="box-cell box2">
+        <img src="https://i.postimg.cc/z37bF4jh/Untitled-design-3.png" alt="Schedule Maker">
+        <br>
+        Schedule Maker
+    </a> <br>
+    
+    <a href="{% url 'professor_select:course_select' %}" class="box-cell box3">
+        <img src="https://i.postimg.cc/ppNW8CNj/Untitled-design-4.png" alt="Rate a Professor">
+        <br>
+        Rate a Professor
     </a>
-
-    <a href="{% url 'rate_professor:professor-select' %}">
-        <img src="{% static 'images/button_image.jpg' %}" alt="Rate a Professor">
-    </a>
-    {% endif %}
-
-    {% endcomment %} -->
 
 {% endblock %}

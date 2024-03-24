@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Department Login{% endblock %} 
 {% block content %}
@@ -14,10 +13,8 @@
 
     <a href="index.html">Sign Out</a>
 
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
+    
+
 
         
+{% endblock %}

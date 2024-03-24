@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Professor List{% endblock %} 
 {% block content %}
@@ -13,14 +12,6 @@
     </div>
 
     <a href="{% url 'landing_page:home'%}">Sign Out</a>
-
-    {# placeholder for the user images #}
-    {% if user_image_url %}
-        <img src="{{ user_image_url }}" alt="User Image">
-    {% else %}
-        <img src="{% static 'images/default_user_image.jpg' %}" alt="User Image">
-
-    {% endif%}
 
     
     hello, {{ user.student_name }}!

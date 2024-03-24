@@ -5,4 +5,6 @@
   <p class="lead">Select below the type of account you want to create</p>
   <a href="{% url 'landing_page:signup-student' %}" class="btn btn-student btn-lg" role="button">Student</a>
   <a href="{% url 'landing_page:signup-department' %}" class="btn btn-teacher btn-lg" role="button">Department</a>
-{% endblock %}
+  <a href="{% url 'landing_page:home' %}"><button> &#8592; </button></a>
+
+  {% endblock %}
