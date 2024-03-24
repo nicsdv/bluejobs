@@ -23,15 +23,15 @@ class SectionScheduleAdmin(admin.ModelAdmin):
 
 class CourseAdmin (admin.ModelAdmin):
     model = Course
-    search_fields = ('course_code', 'course_title',)
-    list_display = ('course_code', 'course_title',)
-    list_filter = ('course_code', 'course_title',)
+    search_fields = ('course_code', 'course_title',  'department', )
+    list_display = ('course_code', 'course_title',  'department', )
+    list_filter = ('course_code', 'course_title',  'department', )
 
 class CourseSectionAdmin (admin.ModelAdmin):
     model = CourseSection
-    search_fields = ('course', 'section', 'professor', 'department', 'slots', 'venue',)
-    list_display = ('course', 'section', 'professor', 'department', 'slots', 'venue',)
-    list_filter = ('course', 'section', 'professor', 'department', 'slots', 'venue',)
+    search_fields = ('course', 'section', 'professor','slots', 'venue',)
+    list_display = ('course', 'section', 'professor', 'slots', 'venue',)
+    list_filter = ('course', 'section', 'professor', 'slots', 'venue',)
 
 class CourseStudentAdmin (admin.ModelAdmin):
     model = CourseStudent

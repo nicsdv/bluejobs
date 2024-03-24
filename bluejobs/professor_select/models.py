@@ -20,25 +20,61 @@ class Professor (models.Model):
 
     def __str__(self):
         return '{}'.format(self.professor_name)
+    
+    def get_absolute_url(self):
+        return reverse("professor-select:professor-details",kwargs={'pk':self.pk})
 
 # SECTION_SCHEDULE (Section, Day_Schedule, Time_Schedule)
 class SectionSchedule (models.Model):
+    day_choices = (
+        ('Monday - Thursday', 'Monday - Thursday'),
+        ('Tuesday - Friday', 'Tuesday - Friday'),
+        ('Wednesday', ' Wednesday'),
+        ('Saturday', 'Saturday')
+    )
+    timeslots = (
+        ('8:00 - 9:30', '8:00 - 9:30'),
+        ('9:30 - 11:00', '9:30 - 11:00'),
+        ('11:00 - 12:30', '11:00 - 12:30'),
+        ('12:30 - 14:00', '12:30 - 14:00'),
+        ('14:00 - 15:30', '14:00 - 15:30'),
+        ('15:30 - 17:00', '15:30 - 17:00'),
+        ('17:00 - 18:30', '17:00 - 18:30'),
+        ('18:30 - 20:00', '18:30 - 20:00'),
+        ('9:00 - 12:00', '9:00 - 12:00'),
+        ('12:00 - 15:00', '12:00 - 15:00'),
+        ('15:00 - 18:00', '15:00 - 18:00'),
+        ('18:00 - 21:00', '18:00 - 21:00')
+    )
     section_code = models.CharField(max_length = 10)
-    day_schedule = models.CharField(max_length = 20)
-    time_schedule = models.CharField(max_length = 20)
+    day_schedule = models.CharField(max_length = 20, choices = day_choices)
+    time_schedule = models.CharField(max_length = 20, choices = timeslots)
+
+    # to keep track of the order of the classes for that day 
+    # (ie. this section is the nth class/period for the day)
+    period = models.PositiveIntegerField(default = 1) 
     
     def __str__(self):
-        return '{}: {} at {}'.format(self.section_code, self.day_schedule, self.time_schedule)
+        return '{}'.format(self.section_code)
+    
 
-# COURSE (Course_Code, Course_Title)
+# Get a default value for course department foreign key 
+def get_department():
+    query = Department.objects.all()
+    return query[0].pk
+
+
+# COURSE (Course_Code, Course_Title, Department_ID)
 class Course (models.Model):
     course_code = models.CharField(max_length = 20, unique = True)
     course_title = models.CharField(max_length = 255)
+    department = models.ForeignKey(Department, related_name = "department_classes",
+                                on_delete = models.CASCADE, default=get_department)
 
     def __str__(self):
-        return '{}: {}'.format(self.course_code, self.course_title)
+        return '{}'.format(self.course_code)
 
-# COURSE_SECTION (Course_Code, Section, Professor_ID, Department_ID, Slots, Venue)
+# COURSE_SECTION (Course_Code, Section, Professor_ID, Slots, Venue)
 class CourseSection (models.Model):
     course = models.ForeignKey(Course, related_name = "course_sections",
                                 on_delete = models.CASCADE)
@@ -46,10 +82,8 @@ class CourseSection (models.Model):
                                 on_delete = models.CASCADE)
     professor = models.ForeignKey(Professor, related_name = "professor_classes",
                                 on_delete = models.CASCADE)
-    department = models.ForeignKey(Department, related_name = "department_classes",
-                                on_delete = models.CASCADE)
-    slots = models.PositiveIntegerField()
-    venue = models.CharField(max_length = 255)
+    slots = models.PositiveIntegerField(default = 30)
+    venue = models.CharField(max_length = 255, default = "TBA")
 
     class Meta:
         constraints = [

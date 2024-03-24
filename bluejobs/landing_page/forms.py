@@ -6,6 +6,10 @@ class StudentSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Student
         fields = ('email','student_ID', 'student_name', 'degree_program')
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['student_ID'].initial = ''
 
 class DepartmentSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
