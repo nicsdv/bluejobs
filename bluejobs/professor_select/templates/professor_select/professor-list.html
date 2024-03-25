@@ -16,8 +16,15 @@
     
     hello, {{ user.student_name }}! <br><br>
 
-    {% for professor in professors%}
-        <a href = "{% url 'professor_select:professor_details' course_selected.pk professor.pk %}">{{ professor }} </a><br>
+    {% for professor in professors %}
+        <a href = "{% url 'professor_select:professor_details' course_selected.pk professor.pk %}">{{ professor }} </a>
+
+        {% if professor in selected %} 
+            <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}"> Remove {{ professor }} from Favorites </a><br>
+        {% else %}
+            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add {{ professor }} to Favorites </a><br>
+        {% endif %}
+
     {% endfor %}
 
     {% endblock %}

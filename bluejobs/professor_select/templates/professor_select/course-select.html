@@ -13,17 +13,22 @@
 
     <a href="{% url 'landing_page:home' %}">Sign Out</a>
 
+    
+    hello, {{ user.student_name }}! <br><br>
 
     <h1>Professor Select </h1>
     <p>Choose a course to select a professor for </p>
     
     <div class="dropdown">
-        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add an Item
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Add an Item (NICS DID NOT USE THIS BUTTON CAN DELETE)
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
             {% for course in added_courses %}
 
-          <li>{{course}} <a href = "{% url 'professor_select:professor_list' course.pk %} ">Add Professor</a></li>
+          <li> {{course}} 
+            <a href = "{% url 'professor_select:professor_list' course.pk %} ">Add Professor</a>
+            <a href = "{% url 'professor_select:course_remove' course.pk %} ">Remove {{course}}</a>
+          </li>
             {% endfor %}
         </ul>
       </div>
