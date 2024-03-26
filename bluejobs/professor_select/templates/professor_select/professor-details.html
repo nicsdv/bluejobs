@@ -10,17 +10,70 @@
         <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
         <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
         <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
-        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+        <li><a class="contrast-signout2" href="{% url 'landing_page:login' %}">Sign Out</a></li>
     </ul> 
 
-    <div class="gradient-tile"></div>
-    <img src="{% static 'profselect_icon.png' %}" class="landing-icon">
+    <div class="prof-details">
+        <div class="title-box">
+            <h1 class="homepage-title">{{ professor }}</h1>
+            <br>
+            <table>
+                <tr>
+                    <td>
+                        <p>Subject Matter Expertise</p>
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar-expertise"></div>
+                            <div class="progress-value" id="progress-value-expertise"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <p>Approachability</p>
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar-approachability"></div>
+                            <div class="progress-value" id="progress-value-approachability"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>Workload Management</p>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar-workload"></div>
+                        <div class="progress-value" id="progress-value-workload"></div>
+                    </div>
+                    </td>
+                    <td>
+                    <p>Friendliness</p>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar-friendliness"></div>
+                        <div class="progress-value" id="progress-value-friendliness"></div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>Grading Leniency</p>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar-grading"></div>
+                        <div class="progress-value" id="progress-value-grading"></div>
+                    </div>
+                    </td>
+                </tr>
+              </table>
+              <br><br>
+            <p>Top Review:</p>
+            <div class = "comment-box">
+                <!-- <p>{{ comment }}</p> -->
+            </div>
+        </div>
+        <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+        <h3>Teaching Score:</h3>
+        <h2>9.57<small>/10</small></h2>
+    </div>
 
-    
-    hello, {{ user.student_name }}! <br><br>
+    <div class="white-tile"></div>
 
-    {{ professor }} <br>
-    {{ expertise }} <br>
+    <!-- {{ expertise }} <br>
     {{ workload }} <br>
     {{ grading }} <br>
     {{ approachability }} <br>
@@ -36,10 +89,39 @@
     {% endif %}
 
     <br>
-    <a href="{% url 'landing_page:home' %}">Sign Out</a>
+    <a href="{% url 'landing_page:home' %}">Sign Out</a> -->
+
+    <a href="{% url 'professor_select:professor_list' course_selected.pk %}" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
 
     
+    <script>
+        var expertisescore = parseInt("{{ expertise }}");
+        var expertisepercentage = (expertisescore / 10) * 100;
+        document.getElementById("progress-bar-expertise").style.width = expertisepercentage + "%";
+        document.getElementById("progress-value-expertise").innerText = "{{ expertise }} / 10";
 
+        var approachabilityscore = parseInt("{{ approachability }}");
+        var approachabilitypercentage = (approachabilityscore / 10) * 100;
+        document.getElementById("progress-bar-approachability").style.width = approachabilitypercentage + "%";
+        document.getElementById("progress-value-approachability").innerText = "{{ approachability }} / 10";
+
+        var workloadscore = parseInt("{{ workload }}");
+        var workloadpercentage = (workloadscore / 10) * 100;
+        document.getElementById("progress-bar-workload").style.width = workloadpercentage + "%";
+        document.getElementById("progress-value-workload").innerText = "{{ workload }} / 10";
+
+        var friendlinessscore = parseInt("{{ friendliness }}");
+        var friendlinesspercentage = (friendlinessscore / 10) * 100;
+        document.getElementById("progress-bar-friendliness").style.width = friendlinesspercentage + "%";
+        document.getElementById("progress-value-friendliness").innerText = "{{ friendliness }} / 10";
+
+        var gradingscore = parseInt("{{ grading }}");
+        var gradingpercentage = (gradingscore / 10) * 100;
+        document.getElementById("progress-bar-grading").style.width = gradingpercentage + "%";
+        document.getElementById("progress-value-grading").innerText = "{{ grading }} / 10";
+    </script>
 
         
 {% endblock %}

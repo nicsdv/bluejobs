@@ -8,6 +8,7 @@ body {
 	animation: gradient 15s ease infinite;
 	height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 
@@ -32,8 +33,22 @@ body {
   z-index: 9999;
 }
 
+.back-arrow-dark {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    width: 10px;
+    height: 10px;
+    font-size: 30px;
+    color: #02408B;
+    cursor: pointer;
+    z-index: 9999;
+  }
+
 
 /* ================= Professor Select Page ================= */
+
+
 
 .landing-icon {
   position: absolute;
@@ -833,16 +848,19 @@ body {
     top: 15px; /* Adjust the top position as needed */
     left: 205px; /* Adjust the left position as needed */
     text-align: center;
+    color: #D9D9D9;
+  }
+
+  .star-container-fave {
+    position: absolute;
+    top: 15px; /* Adjust the top position as needed */
+    left: 205px; /* Adjust the left position as needed */
+    text-align: center;
+    color: #FCB45A;
   }
   
   .fa-star {
     font-size: 24px;
-    color: #D9D9D9; /* Default color */
-    cursor: pointer;
-  }
-  
-  .fa-star.clicked {
-    color: #FCB45A; /* Color when clicked */
   }
   
   .prof-list h3 {
@@ -867,6 +885,126 @@ body {
   .prof-list .infos p {
     font-family: "Noto Sans Khojki", sans-serif;
     color: #07599D;
+  }
+
+/* ================= Professor Details ================= */
+
+.white-tile {
+    position: absolute;
+    background-color: white;
+
+    border-radius: 60px;
+    width: 900px;
+    height: 100vh;
+    top: 0px;
+    left: 900px;
+    z-index: -1;
+}
+
+.prof-details .title-box {
+    position: absolute;
+    left: 130px;
+    top: 110px !important;
+}
+
+.prof-details .homepage-title {
+    max-width: 800px;
+    font-size: 60px !important;
+    line-height: 1.2;
+}
+
+.prof-details table p {
+    margin-bottom: 10px;
+}
+
+.prof-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+.prof-details th, td {
+    border: none; /* Removes borders */
+    padding: 10px;
+    text-align: left;
+}
+
+.prof-details td {
+    width: 300px;
+    height: 100px;
+    color: white;
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+}
+
+.prof-details table tr {
+    margin-top: 30px;
+}
+
+.prof-details p {
+    color: white;
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+}
+
+.prof-details small {
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+}
+
+.prof-details h3 {
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+    color: #07599D;
+    margin-top: 20px;
+    margin-left: 1140px;
+}
+
+.prof-details h2 {
+    font-family: "Bowlby One SC", sans-serif;
+    font-size: 90px;
+    letter-spacing: 1px;
+    color: #07599D;
+    margin-left: 1100px;
+  }
+
+.progress {
+    width: 300px;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 0px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-value {
+    font-size: 15px;
+}
+
+.prof-details .comment-box {
+    width: 50px;
+}
+
+.prof-details img{
+    margin-top: 0px;
+    margin-left: 1050px;
+    width: 340px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+.contrast-signout2 {
+    color: #02408B !important;
   }
 
 /* ================= Navbar ================= */

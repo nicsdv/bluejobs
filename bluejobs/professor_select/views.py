@@ -171,7 +171,7 @@ def remove_professor(request, course, **kwarg):
         query.delete()
 
         # redirect to professor list after removing professor as favorite
-        return redirect('professor_select:professor_list', course.pk)
+        return redirect('professor_select:professor_details', course.pk, professor.pk)
     
     else:
         return redirect('landing_page:home')

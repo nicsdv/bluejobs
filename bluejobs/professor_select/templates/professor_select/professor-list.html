@@ -36,9 +36,15 @@
                                 <p>Teaching Score:</p>
                                 <h2>9.57<small>/10</small></h2>
                                 </div>
-                                <div class="star-container">
-                                <i class="fas fa-star"></i>
+                                {% if professor in selected %} 
+                                <div class="star-container-fave">
+                                    <i class="fas fa-star"></i>
                                 </div>
+                                {% else %}
+                                <div class="star-container">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                {% endif %}
                             </article>
                         {% endfor %}
                     </div>
@@ -48,16 +54,9 @@
         </div>
     </div>
 
-    {% for professor in professors %}
-        <a href = "{% url 'professor_select:professor_details' course_selected.pk professor.pk %}">{{ professor }} </a>
-
-        {% if professor in selected %} 
-            <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}"> Remove {{ professor }} from Favorites </a><br>
-        {% else %}
-            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add {{ professor }} to Favorites </a><br>
-        {% endif %}
-
-    {% endfor %}
+    <a href="{% url 'professor_select:course_select' %}" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
 
     {% endblock %}
 
