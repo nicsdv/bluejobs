@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Sign up for a free account</h2>
-  <p class="lead">Select below the type of account you want to create</p>
-  <a href="{% url 'landing_page:signup-student' %}" class="btn btn-student btn-lg" role="button">Student</a>
-  <a href="{% url 'landing_page:signup-department' %}" class="btn btn-teacher btn-lg" role="button">Department</a>
-  <a href="{% url 'landing_page:home' %}"><button> &#8592; </button></a>
 
-  {% endblock %}
+<ul>
+  <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+  <li><a href="{% url 'landing_page:about' %}">About </a></li>
+  <li><a href="{% url 'landing_page:help' %}">Help </a></li>
+  <li><a href="{% url 'landing_page:developers' %}">Developers </a></li>
+</ul> 
+
+<div class = "signup-choose">
+  <h2>Sign up for free</h2>
+  <p class="lead">Select the type of account you want to create</p>
+  <a href = "{% url 'landing_page:signup-student' %}">
+    <button class="button">Student</button> &nbsp;&nbsp;&nbsp;&nbsp;
+  </a>
+  <a href="{% url 'landing_page:signup-department' %}">
+      <button class="button">Department</button>
+  </a>
+</div>
+
+<a href="{% url 'landing_page:login' %}" class="back-arrow">
+  <i class="fas fa-arrow-left"></i>
+</a>
+
+{% endblock %}

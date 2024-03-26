@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form method="post">
+  <!-- <form method="post">
     {% csrf_token %}
 
-    <!-- form fields -->
     <div class="fieldWrapper">
       {{ form.email.label_tag }}
       {{ form.email }}
@@ -25,7 +24,6 @@
       {{ form.password2 }}
     </div>
 
-    <!-- error messages -->
     {% for error in form.password1.errors %}
     {{ error }} <br> {% endfor %}
 
@@ -35,8 +33,35 @@
     <br>
     <button type="submit">Sign Up</button>
 
-  </form> 
+  </form>  -->
 
-  <a href="{% url 'landing_page:signup' %}"><button> &#8592; </button></a>
+  <ul>
+    <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+    <li><a href="{% url 'landing_page:about' %}">About </a></li>
+    <li><a href="{% url 'landing_page:help' %}">Help </a></li>
+    <li><a href="{% url 'landing_page:developers' %}">Developers </a></li>
+  </ul> 
+
+  <form class="signup" method="post">
+    {% csrf_token %}
+    {{ form.student_name.as_hidden }}
+    {{ form.email.as_hidden }}
+    {{ form.student_ID.as_hidden }}
+    {{ form.degree_program.as_hidden }}
+    {{ form.password1.as_hidden }}
+    {{ form.password2.as_hidden }}
+
+    <h2>Create a Department Account</h2>
+
+    <input type="text" placeholder="Student Name" name="email"/>
+    <input type="text" placeholder="Department Name" name="department_name"/>
+    <input type="password" placeholder="Password" name="password1"/>
+    <input type="password" placeholder="Confirm Password" name="password2"/>
+    <input type="submit" value="Sign Up"/>
+  </form>
+
+  <a href="{% url 'landing_page:signup' %}" class="back-arrow">
+    <i class="fas fa-arrow-left"></i>
+  </a>
 
 {% endblock %}

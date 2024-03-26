@@ -1,0 +1,953 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khojki&display=swap');
+
+body {
+	background: linear-gradient(120deg, #023E8A, #023E8A, #5ABDDC, #0D9CCA);
+  background-size: 300% 300%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+.white-bg {
+  position: relative;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: hidden; overflow-x: hidden;
+  z-index: 1;
+}
+
+.back-arrow {
+  position: fixed;
+  bottom: 50px;
+  left: 30px;
+  width: 10px;
+  height: 10px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+
+/* ================= Professor Select Page ================= */
+
+.landing-icon {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: 190px;
+  left: 1100px;
+  
+  transform: translateY(0);
+  animation: bob2 2s ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+
+  z-index: 3;
+}
+
+.gradient-tile {
+  position: absolute;
+  background-image: linear-gradient(230deg, #023E8A, #5ABDDC, #0D9CCA);
+  
+  border-radius: 40px;
+  width: 600px;
+  height: 100vh;
+  top: 0px;
+  left: 1200px;
+  z-index: 2;
+}
+
+.white-bg .title-box{
+  position: absolute;
+  left: 130px;
+  top: 180px;
+}
+
+.white-bg .homepage-title {
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 70px;
+  font-style: normal;
+  color: #02408B;
+  
+  padding-bottom: -40px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 110px;
+}
+
+.white-bg .homepage-subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #02408B;
+  font-size: 30px;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 35px;
+}
+
+/* ================= Log In Page ================= */
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  max-width: 320px;
+  border-radius: 20px;
+  background: transparent;
+}
+
+.login input {
+  border-radius: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 2px;
+  background-color: white;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-style: normal;
+}
+
+.login input[type=text],
+.login input[type=password] {
+  border: 2px solid white;
+  border-radius: 10px;
+  transition: .2s;
+  color: #02408B;
+}
+
+.login input[type=submit] {
+  border: none;
+  border: 2px solid white;
+  border-radius: 20px;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;  
+  transition: 0.4s;
+  margin: 20px 0px;
+}
+
+.login input[type=submit]:hover {
+  background: white;
+  color: #02408B;
+}
+
+.login h2 {
+  margin: 20px 0 0; 
+  color: white;
+  font-size: 28px;
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.login p {
+  margin-bottom: 40px;
+}
+
+.login h2,
+.login p,
+.login a {
+  text-align: center;    
+}
+
+.login a {
+  text-decoration: none;  
+  font-size: .8em;
+}
+
+.login a:visited {
+  color: inherit;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+
+.links {
+  display: table;
+  width: 100%;  
+  box-sizing: border-box;
+  border-top: 1px solid #c0c0c0;
+  border-color: white;
+  margin-bottom: 10px;
+}
+
+.links a {
+  display: table-cell;
+  padding-top: 15px;
+}
+
+.links a:first-child {
+  text-align: center;
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 15px;
+}
+
+/* ================= Sign Up Choose Page ================= */
+
+.signup-choose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  background: transparent;
+}
+
+.signup-choose h2 {
+  margin: 20px; 
+  margin-bottom: -15px;
+  color: white;
+  font-size: 28px;
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+}
+
+.signup-choose p {
+  margin-bottom: 40px;
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+}
+
+.signup-choose h2,
+.signup-choose p,
+.signup-choose a {
+  text-align: center;    
+}
+
+.signup-choose a {
+  text-decoration: none;  
+  font-size: .8em;
+}
+
+/* ================= Sign Up Pages ================= */
+
+.signup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  padding: 50px 50px;
+  max-width: 600px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.signup input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 2px; 
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.signup input[type=text],
+.signup input[type=password] {
+  border-radius: 10px;
+  border: 1px solid #c0c0c0;
+  transition: .2s;
+}
+
+.signup input[type=text]:hover,
+.signup input[type=password]:hover {
+  border: 1px solid #02408B;
+  outline: none;
+  transition: all .2s ease-in-out;
+} 
+
+.signup input[type=submit] {
+  border: none;
+  border-radius: 20px;
+  background: #02408B;
+  color: white;
+  font-weight: bold;
+  transition: 0.4s;
+  margin: 20px 0px;
+  margin-bottom: -20px;
+  background: linear-gradient(120deg, #023E8A, #5ABDDC, #0D9CCA);
+  background-size: 400%;
+}
+
+.signup input[type=submit]:hover {
+  background-size: 100%;
+}
+
+.signup h2 {
+  margin: 20px 0 0;
+  margin-top: -20px;
+  color: #07599D;
+  font-size: 28px;
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.signup p {
+  margin-bottom: 40px;
+}
+
+.signup h2,
+.signup p,
+.signup a {
+  text-align: center;    
+}
+
+.signup a {
+  text-decoration: none;  
+  font-size: .8em;
+}
+
+.signup a:visited {
+  color: inherit;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+.signup .row {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid: auto / auto auto;
+  grid-template-columns: repeat(auto-fit,minmax(40%, 1fr));
+  grid-gap: 90px;
+}
+
+.signup .row .col1{
+  position: relative;
+  width: 130%;
+  transition: 0.5s;
+}
+
+.signup .row .col2{
+  position: relative;
+  width: 100%;
+  transition: 0.5s;
+  margin-left: 30px;
+}
+
+.title-box{
+  position: absolute;
+  left: 180px;
+  top: 250px;
+}
+
+/* ================= Home Page ================= */
+
+.homepage-title {
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 100px;
+  font-style: normal;
+  color: white;
+  padding-bottom: -40px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 120px;
+}
+
+.title-box a {
+  text-decoration: none;
+}
+
+.homepage-subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: white;
+  font-size: 25px;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 35px;
+}
+
+.moving-tiles {
+  position: absolute;
+  border-radius: 20px;
+  background: white;
+  padding: 15px;
+  width: 130px;
+  height: 195px;
+  opacity: 0.3;
+  transform: translateY(0);
+  animation: bob 2s ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.tile1 {
+  left: 830px; 
+  top: 200px;
+  opacity: 0.3;
+}
+
+.tile2 {
+  left: 830px;
+  top: 450px;
+  opacity: 0.6;
+}
+
+.tile3 {
+  left: 830px;
+  top: -50px;
+  opacity: 0.2;
+}
+
+.tile4 {
+  left: 1015px; 
+  top: 90px;
+  animation: bob2 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.tile5 {
+  left: 1015px;
+  top: 340px;
+  opacity: 0.2;
+  animation: bob2 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.tile6 {
+  left: 1015px;
+  top: -160px;
+  opacity: 0.6;
+  animation: bob2 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.tile7 {
+  left: 1015px;
+  top: 590px;
+  animation: bob2 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.tile8 {
+  left: 1200px; 
+  top: 200px;
+  opacity: 0.6;
+  animation-delay: 1s;
+}
+
+.tile9 {
+  left: 1200px;
+  top: 450px;
+  opacity: 0.2;
+  animation-delay: 1s;
+}
+
+.tile10 {
+  left: 1200px;
+  top: -50px;
+  opacity: 0.2;
+  animation-delay: 1s;
+}
+
+.tile11 {
+  left: 830px;
+  top: 700px;
+  opacity: 0.8;
+}
+
+.tile12 {
+  left: 1200px;
+  top: 700px;
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+
+.button {
+  width: auto; height: auto;
+  border-radius: 20px;
+  border: 2px solid white;
+  background-color: transparent;
+  cursor: pointer;
+  min-width: 200px;
+  transition: 0.3s;
+  padding-bottom: 8px;
+  
+  color: white;
+  line-height: 40px;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.button:hover{
+  color: #02408B;
+  background-color: white;
+}
+
+/* ================= Homepages ================= */
+
+.homepage .homepage-title {
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 70px;
+  font-style: normal;
+  color: #02408B;
+  padding-bottom: -40px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 90px;
+}
+
+.homepage .homepage-subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #02408B;
+  font-size: 25px;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 35px;
+}
+
+.container .box {
+  margin-top: 10px;
+  margin-left: -50px;
+  display: table;
+  border-spacing: 50px;
+}
+
+.container .box .box-row {
+  display: table-row;
+  height: 220px;
+  overflow: hidden;
+}
+
+.container .box .box-cell {
+  display: table-cell;
+  width: 250px;
+  padding: 10px;
+  border: 3px solid #02408B;
+  text-align: center;
+  vertical-align: bottom;
+  transition: transform 0.5s linear;
+  background-image: white;
+  border-radius: 20px;
+  
+  color: #07599D;
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 15px;
+}
+
+.container .box .box-cell img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      transform: translateY(0px);
+      transition: transform 0.5s ease; /* Add smooth transition effect for the image */
+    }
+
+.container .box .box-cell:hover img {
+  transform: scale(1.15) translateY(-10%);
+  animation: bob2 1.5s ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.container .box .box-cell:hover {
+  transform: scale(1.1);
+  border: none;
+  color: white;
+  font-size: 18px;
+  background-image: linear-gradient(230deg, #023E8A, #5ABDDC, #0D9CCA);
+  box-shadow: 10px 10px 8px 1px #F2F3F5;
+}
+
+.container .box .box-cell-extra {
+  display: table-cell;
+  width: 240px;
+  padding: 10px;
+  background-color: #07599D;
+  opacity: 0.2;
+  border-radius: 20px;
+  
+  color: #07599D;
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 15px;
+}
+
+/* ================= Professor Select ================= */
+
+.prof-select .title-box{
+    position: absolute;
+    left: 130px;
+    top: 120px !important;
+  }
+
+.contrast-signout {
+  color: white !important;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 30px;
+  margin-left: -30px;
+}
+
+/* CSS for cell styling */
+.table td {
+    position: relative;
+    text-align: center;
+    min-width: 160px;
+    max-width: 160px; /* Set the width of each cell to 30px */
+    padding: 10px;
+    border-radius: 15px;
+
+    color: #02408B;
+    font-family: "Noto Sans Khojki", sans-serif;
+
+    background-color: white;
+    outline: 2px solid #02408B;
+    cursor: pointer;
+    
+    transition: 0.5s ease;
+}
+
+.table td:hover {
+    background-color: #0E92C4; /* Change background color to #0E92C4 */
+    color: white; /* Change text color to white */
+    outline: 2px solid white;
+}
+
+.table td h2 {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* CSS for remove icon container */
+.remove-icon-container {
+    background-color: #D9D9D9;
+    width: 30px; /* Set the width of the container */
+    height: 30px; 
+    border-radius: 50%;
+    position: absolute;
+    top: -15px; /* Adjust as needed to position the icon */
+    right: -15px; /* Adjust as needed to position the icon */
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  /* CSS for remove icon */
+  .remove-icon {
+    font-size: 10px;
+    text-decoration: none;
+  }
+
+ /* Style the select dropdown */
+.course-form select {
+    width: 160px; /* Adjust as needed */
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  /* Style the options within the dropdown */
+  .course-form select option {
+    padding: 10px;
+  }
+  
+  /* Adjust the position of the button and the select */
+  .course-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-course-btn {
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    border-radius: 10px;;
+    background-color: #e8e8e8; /* Change to your desired background color */
+    color: #07599D; /* Change to your desired text color */
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .add-course-btn i {
+    font-size: 0.75em; /* Adjust the font size to make strokes thinner */
+  }
+  
+  .add-course-btn:hover {
+    background-color: #dedede; /* Change to your desired hover color */
+  }
+  
+  .add-course-btn:focus {
+    outline: none;
+  }
+
+/* ================= Professor List ================= */
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.prof-list .title-box {
+    position: absolute;
+    left: 130px;
+    top: 110px !important;
+}
+
+#cCarousel {
+    position: relative;
+    width: 1270px;
+    max-width: 1540px;
+    margin: 0px;
+  }
+  
+  #cCarousel .arrow {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 26px;
+    color: white;
+    background: #00000072;
+    cursor: pointer;
+  }
+  
+  #cCarousel #prev {
+    left: 0px;
+  }
+  
+  #cCarousel #next {
+    right: 0px;
+  }
+  
+  #carousel-vp {
+    width: 1110px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+  }
+  
+  @media (max-width: 510px) {
+    #carousel-vp {
+      width: 250px;
+    }
+  }
+  
+  #cCarousel #cCarousel-inner {
+    display: flex;
+    position: absolute;
+    transition: 0.3s ease-in-out;
+    gap: 30px;
+    left: 0px;
+  }
+  
+  .cCarousel-item {
+    width: 250px;
+    height: 365px;
+    border: 2px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  .cCarousel-item img {
+    width: 180px; height:180px;
+    object-fit: cover;
+    border-radius:50%;
+    object-fit: cover;
+    color: white;
+    margin: 30px auto;
+    margin-bottom: 0px;
+    display: block;
+  }
+  
+  .cCarousel-item .infos {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: white;
+    color: black;
+    padding: 25px;
+  }
+  
+  .star-container {
+    position: absolute;
+    top: 15px; /* Adjust the top position as needed */
+    left: 205px; /* Adjust the left position as needed */
+    text-align: center;
+  }
+  
+  .fa-star {
+    font-size: 24px;
+    color: #D9D9D9; /* Default color */
+    cursor: pointer;
+  }
+  
+  .fa-star.clicked {
+    color: #FCB45A; /* Color when clicked */
+  }
+  
+  .prof-list h3 {
+    font-family: "Bowlby One SC", sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #07599D;
+  }
+  
+  .prof-list h2 {
+    font-family: "Bowlby One SC", sans-serif;
+    font-size: 40px;
+    letter-spacing: 1px;
+    color: #07599D;
+  }
+  
+  .prof-list small {
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+  }
+
+  .prof-list .infos p {
+    font-family: "Noto Sans Khojki", sans-serif;
+    color: #07599D;
+  }
+
+/* ================= Navbar ================= */
+
+.navbar {
+    position: relative;
+    list-style-type: none;
+    margin: 25px;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 17px;
+    z-index: 9999;
+}
+
+.navbar li:last-child {
+  float: right;
+}
+
+.bluejobsnav{
+  font-family: "Bowlby One SC", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  font-style: normal;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+  border-radius: 10px;
+  transition: 0.3s;
+  float: left;
+}
+
+.white-bg li a {
+  color: #02408B;
+}
+
+/* .signout {
+  color:red !important;
+} */
+
+/* ================= Animations Keyframes ================= */
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes bob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(35px);
+  }
+}
+
+@keyframes bob2 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-35px);
+  }
+}

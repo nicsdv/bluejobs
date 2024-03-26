@@ -1,28 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
 
-        <!-- form fields -->
-        <div class="fieldWrapper">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-          </div>
+  <!-- {% for error in form.password.errors %}
+  {{ error }} <br> {% endfor %} -->
 
-          <div class="fieldWrapper">
-            {{ form.password.label_tag }}
-            {{ form.password }}
-          </div>
+  <ul>
+    <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+    <li><a href="{% url 'landing_page:about' %}">About </a></li>
+    <li><a href="{% url 'landing_page:help' %}">Help </a></li>
+    <li><a href="{% url 'landing_page:developers' %}">Developers </a></li>
+  </ul> 
 
-        <!-- login error  -->
-        {{ error }} <br>
-        
-        <br>
-        <button type="submit">Login</button>
-        
-    </form>
+  <form class="login" method="post">
+    {% csrf_token %}
+    {{ form.email.as_hidden }}
+    {{ form.password.as_hidden }}
 
-    <a href="{% url 'landing_page:home' %}"><button> &#8592; </button></a>
+    <h2>Log in to BlueJobs</h2>
+    {{ error }}
+    <br>
+    <input type="text" placeholder="Email Address" name="email"/>
+    <input type="password" placeholder="Password" name="password"/>
+    <input type="submit" value="Log In" />
+    <div class="links">
+      <a href="{% url 'landing_page:signup' %}">Create an Account</a>
+    </div>
+  </form>
+
+  <a href="{% url 'landing_page:home' %}" class="back-arrow">
+    <i class="fas fa-arrow-left"></i>
+  </a>
 
 {% endblock %}

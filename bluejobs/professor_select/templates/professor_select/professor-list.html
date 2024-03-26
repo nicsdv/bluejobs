@@ -4,17 +4,49 @@
 {% block content %}
 
     {# the links to other html files #}
-    <div class = links>
-        <l> <b>BlueJobs </b> </l>
-        <a href="{% url 'professor_select:course_select' %}">Professor Select </a>
-        <a href="#"> Schedule Maker </a>
-        <a href="#"> Rate a Professor </a>
+    <ul class="navbar">
+        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Schedule Maker </a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Rate a Professor </a></li>
+        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+    </ul> 
+
+    <div class="prof-list">
+        <div class="title-box">
+            <h1 class="homepage-title">{{ course_selected }}</h1>
+            <p class="homepage-subtitle">Here are the suggested professors for {{ course_selected }}: {{ course_selected.course_title }}</p>
+            <br>
+            <section>
+                <div id="cCarousel">
+                  <div class="arrow" id="prev"><i class="fas fa-chevron-left"></i></div>
+                  <div class="arrow" id="next"><i class="fas fa-chevron-right"></i></div>
+              
+                  <div id="carousel-vp">
+                    <div id="cCarousel-inner">
+                        {% for professor in professors %}
+                            <article class="cCarousel-item">
+                                <div class="image-ontainer">
+                                <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+                                </div>
+                                <div class="infos">
+                                <a href = "{% url 'professor_select:professor_details' course_selected.pk professor.pk %}">
+                                    <h3>{{professor}}</h3>
+                                </a>
+                                <p>Teaching Score:</p>
+                                <h2>9.57<small>/10</small></h2>
+                                </div>
+                                <div class="star-container">
+                                <i class="fas fa-star"></i>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </section>
+        </div>
     </div>
-
-    <a href="{% url 'landing_page:home'%}">Sign Out</a>
-
-    
-    hello, {{ user.student_name }}! <br><br>
 
     {% for professor in professors %}
         <a href = "{% url 'professor_select:professor_details' course_selected.pk professor.pk %}">{{ professor }} </a>

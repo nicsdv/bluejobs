@@ -1,26 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Landing Page{% endblock %} 
 
 {% block content %}
+    <ul>
+        <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+        <li><a href="{% url 'landing_page:about' %}">About</a></li>
+        <li><a href="{% url 'landing_page:help' %}">Help</a></li>
+        <li><a href="{% url 'landing_page:developers' %}">Developers</a></li>
+    </ul>
 
-    {# the links to other html files #}
-    <div class = links>
-        <l> <b>BlueJobs </b> </l>
-        <a href="{% url 'landing_page:about' %}">About </a>
-        <a href="{% url 'landing_page:help' %}">Help </a>
-        <a href="{% url 'landing_page:developers' %}">Developers </a>
+    <div class="title-box">
+        <h1 class="homepage-title">BlueJobs</h1>
+        <p class="homepage-subtitle">Crafting Your Student Success,<br>
+          One Schedule at a Time!</p>
+        <br><br><br>
+        <a href = "{% url 'landing_page:login' %}">
+            <button class="button">Student</button> &nbsp;&nbsp;&nbsp;&nbsp;
+        </a>
+        <a href="{% url 'landing_page:login' %}">
+            <button class="button">Department</button>
+        </a>
     </div>
     
-    <h1>BlueJobs</h1>
-    <p> Crafting Your Student Success, <br>
-        One Schedule at a Time! </p>
-    
+    <div class="moving-tiles tile1"></div>
+    <div class="moving-tiles tile2"></div>
+    <div class="moving-tiles tile3"></div>
+    <div class="moving-tiles tile4"></div>
+    <div class="moving-tiles tile5"></div>
+    <div class="moving-tiles tile6"></div>
+    <div class="moving-tiles tile7"></div>
+    <div class="moving-tiles tile8"></div>
+    <div class="moving-tiles tile9"></div>
+    <div class="moving-tiles tile10"></div>
+    <div class="moving-tiles tile11"></div>
+    <div class="moving-tiles tile12"></div>
 
-    <h1>Home</h1>
-    <br>
-    <br />
-    <br />
-    <a href = "{% url 'landing_page:login' %}">Log In</a>
-    <a href="{% url 'landing_page:signup' %}">Sign Up</a>
 {% endblock %}

@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} {{ professor }} {% endblock %} 
 {% block content %}
 
     {# the links to other html files #}
-    <div class = links>
-        <l> <b>BlueJobs </b> </l>
-        <a href="{% url 'professor_select:course_select' %}">Professor Select </a>
-        <a href="#"> Schedule Maker </a>
-        <a href="#"> Rate a Professor </a>
-    </div>
+    <ul class="navbar">
+        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+    </ul> 
+
+    <div class="gradient-tile"></div>
+    <img src="{% static 'profselect_icon.png' %}" class="landing-icon">
 
     
     hello, {{ user.student_name }}! <br><br>
