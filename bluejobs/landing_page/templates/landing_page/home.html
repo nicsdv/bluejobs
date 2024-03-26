@@ -4,11 +4,12 @@
 {% block title %}Landing Page{% endblock %} 
 
 {% block content %}
-    <ul>
+    <ul class="navbar">
         <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
         <li><a href="{% url 'landing_page:about' %}">About</a></li>
         <li><a href="{% url 'landing_page:help' %}">Help</a></li>
         <li><a href="{% url 'landing_page:developers' %}">Developers</a></li>
+        <li><a href="#"></a></li>
     </ul>
 
     <div class="title-box">

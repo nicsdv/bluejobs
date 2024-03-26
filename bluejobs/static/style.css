@@ -732,7 +732,7 @@ body {
 
 /* ================= Professor List ================= */
 
-*,
+.prof-list *,
 ::before,
 ::after {
   margin: 0;
@@ -960,11 +960,18 @@ body {
     margin-left: 1140px;
 }
 
+.prof-details a {
+    font-family: "Noto Sans Khojki", sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
 .prof-details h2 {
     font-family: "Bowlby One SC", sans-serif;
     font-size: 90px;
     letter-spacing: 1px;
     color: #07599D;
+    margin-top: -30px;
     margin-left: 1100px;
   }
 

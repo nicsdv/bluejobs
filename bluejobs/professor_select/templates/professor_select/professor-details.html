@@ -16,7 +16,11 @@
     <div class="prof-details">
         <div class="title-box">
             <h1 class="homepage-title">{{ professor }}</h1>
-            <br>
+            {% if is_added %} 
+            <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}"> Remove {{ professor }} from Favorites </a><br>
+        {% else %}
+            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add to Favorites </a><br>
+        {% endif %}
             <table>
                 <tr>
                     <td>
@@ -82,11 +86,6 @@
     
     <br>
     
-    {% if is_added %} 
-    <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}"> Remove {{ professor }} from Favorites </a><br>
-    {% else %}
-        <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add to Favorites </a><br>
-    {% endif %}
 
     <br>
     <a href="{% url 'landing_page:home' %}">Sign Out</a> -->
