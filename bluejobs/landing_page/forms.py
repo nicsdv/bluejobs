@@ -2,6 +2,14 @@ from django import forms
 from .models import Student, Department
 from django.contrib.auth.forms import UserCreationForm
 
+'''
+The following code declares the different Landing Page forms. These forms are to be used for
+user signup and login. Departments and students have their dedicated signup forms, while the login
+form will be used for any user type.
+
+Code written by: Nics and Eldon
+'''
+
 class StudentSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Student

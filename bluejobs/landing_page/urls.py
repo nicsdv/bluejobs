@@ -2,6 +2,13 @@ from django.urls import path
 from .views import (StudentHomepage, DepartmentHomepage, student_signup, department_signup, user_login,
 home, about, help, developers, signup)
 
+'''
+The following code connects the app views to their corresponding url paths. These urls will be accessed
+across different templates in the project. 
+
+Code written by: Nics and Eldon
+'''
+
 urlpatterns = [
     path('', home, name = 'home'),
     path('about/', about, name = 'about'),

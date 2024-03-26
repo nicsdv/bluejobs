@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from landing_page.models import Student, Department
 
@@ -10,7 +9,7 @@ development, libraries may be imported and/or removed as needed.
 
 (Note: django automatically designates primary keys as 'pk' so it need not be explicitly declared)
 
-Code written by: Nics
+Code written by: Nics and Lex
 '''
 
 # PROFESSOR (Professor_ID, Name, Email)
@@ -20,9 +19,6 @@ class Professor (models.Model):
 
     def __str__(self):
         return '{}'.format(self.professor_name)
-    
-    def get_absolute_url(self):
-        return reverse("professor-select:professor-details",kwargs={'pk':self.pk})
 
 # SECTION_SCHEDULE (Section, Day_Schedule, Time_Schedule)
 class SectionSchedule (models.Model):
@@ -57,7 +53,6 @@ class SectionSchedule (models.Model):
     def __str__(self):
         return '{}'.format(self.section_code)
     
-
 # Get a default value for course department foreign key 
 def get_department():
     query = Department.objects.all()
@@ -68,7 +63,7 @@ class Course (models.Model):
     course_code = models.CharField(max_length = 20, unique = True)
     course_title = models.CharField(max_length = 255)
     department = models.ForeignKey(Department, related_name = "department_classes",
-                                on_delete = models.CASCADE, default=get_department)
+                                on_delete = models.CASCADE, default = get_department)
 
     def __str__(self):
         return '{}'.format(self.course_code)
@@ -141,6 +136,7 @@ class ProfessorRating (models.Model):
         average = (self.subject_matter_expertise + self.workload_management + self.grading_leniency + self.approachability + self.friendliness)/4
         return average
 
+# PROFESSOR_FAVORITE (Professor_ID, Course_Code, Student_ID)
 class ProfessorFavorite(models.Model):
     professor = models.ForeignKey (Professor, on_delete = models.CASCADE)
     course = models.ForeignKey (Course, on_delete = models.CASCADE)

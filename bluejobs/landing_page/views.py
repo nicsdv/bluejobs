@@ -5,30 +5,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.urls import reverse_lazy
 from .models import Student, Department
 
-class StudentHomepage(View):
-    def get(self, request):
-        if request.user.is_authenticated and request.user.is_student:
-            student = Student.objects.get(pk = request.user.pk)
-            return render(request, 'landing_page/homepage-student.html', { 'user' : student})
-        else:
-            return redirect('landing_page:home')
-    
-class DepartmentHomepage(View):
-    def get(self, request):
-        if request.user.is_authenticated and request.user.is_department:
-            department = Department.objects.get(pk = request.user.pk)
-            return render(request, 'landing_page/homepage-department.html', { 'user' : department})
-        else:
-            return redirect('landing_page:home')
-    
-def about(request):
-    return render(request, 'landing_page/about.html')
+'''
+The following code declares the different Landing Page views. Views are subject to change 
+throughout the course of the implementation.
 
-def help(request):
-    return render(request, 'landing_page/help.html')
-
-def developers(request):
-    return render(request, 'landing_page/developers.html')
+Code written by: Nics and Eldon
+'''
 
 def home(request):
     logout(request)
@@ -77,6 +59,40 @@ def user_login(request):
                     return redirect('landing_page:homepage-department')
                 else:
                     return redirect('landing_page:home')
+            else:
+                args = {
+                    'form':LoginForm(),
+                    'error': "Invalid Login credentials. Please try again."  
+                }
+                return render(request, 'landing_page/login.html', args)
+
     else:
         form = LoginForm()
-    return render(request, 'landing_page/login.html', {'form': form})
+        return render(request, 'landing_page/login.html', {'form': form})
+
+class StudentHomepage(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.is_student:
+            student = Student.objects.get(pk = request.user.pk)
+            return render(request, 'landing_page/homepage-student.html', { 'user' : student})
+        else:
+            return redirect('landing_page:home')
+    
+class DepartmentHomepage(View):
+    def get(self, request):
+        if request.user.is_authenticated and request.user.is_department:
+            department = Department.objects.get(pk = request.user.pk)
+            return render(request, 'landing_page/homepage-department.html', { 'user' : department})
+        else:
+            return redirect('landing_page:home')
+
+# The following views are currently in progress. They will be developed in the future iterations.
+
+def about(request):
+    return render(request, 'landing_page/about.html')
+
+def help(request):
+    return render(request, 'landing_page/help.html')
+
+def developers(request):
+    return render(request, 'landing_page/developers.html')

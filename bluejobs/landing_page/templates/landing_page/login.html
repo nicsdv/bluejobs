@@ -15,9 +15,8 @@
             {{ form.password }}
           </div>
 
-        <!-- error messages -->
-        {% for error in form.password.errors %}
-            {{ error }} <br> {% endfor %}
+        <!-- login error  -->
+        {{ error }} <br>
         
         <br>
         <button type="submit">Login</button>

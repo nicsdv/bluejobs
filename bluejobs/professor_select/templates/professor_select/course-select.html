@@ -36,7 +36,7 @@
     <form method="POST">
       {% csrf_token %}
       <select name = "course_list_select">
-        {% for course in course_selection%}
+        {% for course in course_selection %}
           <option value ="{{course}}"> {{course.course_code}} </option>
         {% endfor %}
       </select> 
