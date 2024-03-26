@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.core.validators import MinValueValidator, MaxValueValidator
 from landing_page.models import Student, Department
 
@@ -19,6 +20,15 @@ class Professor (models.Model):
 
     def __str__(self):
         return '{}'.format(self.professor_name)
+
+    @property
+    def score(self):
+        ratings = ProfessorRating.objects.filter(professor = self)
+        score = ratings.aggregate(Avg('subject_matter_expertise'), 
+                    Avg('workload_management'), Avg('grading_leniency'),
+                    Avg('approachability'), Avg('friendliness'))
+        score = sum(list(score.values()))/5
+        return score
 
 # SECTION_SCHEDULE (Section, Day_Schedule, Time_Schedule)
 class SectionSchedule (models.Model):

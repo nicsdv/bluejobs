@@ -103,8 +103,6 @@ def professor_detail_view(request, course, **kwarg) :
             'course_selected': course
         }
 
-
-
         if len(professor.professor_ratings.all()) > 0:
             comment = professor.professor_ratings.all()[0].comment
             scores = professor.professor_ratings.aggregate(Avg('subject_matter_expertise'), 
@@ -171,7 +169,7 @@ def remove_professor(request, course, **kwarg):
         query.delete()
 
         # redirect to professor list after removing professor as favorite
-        return redirect('professor_select:professor_list', course.pk)
+        return redirect('professor_select:professor_details', course.pk, professor.pk)
     
     else:
         return redirect('landing_page:home')
