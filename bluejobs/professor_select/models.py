@@ -28,7 +28,7 @@ class Professor (models.Model):
                     Avg('workload_management'), Avg('grading_leniency'),
                     Avg('approachability'), Avg('friendliness'))
         score = sum(list(score.values()))/5
-        return score
+        return round(score, 2)
 
 # SECTION_SCHEDULE (Section, Day_Schedule, Time_Schedule)
 class SectionSchedule (models.Model):
