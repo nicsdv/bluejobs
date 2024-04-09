@@ -24,7 +24,7 @@ body {
 .back-arrow {
   position: fixed;
   bottom: 50px;
-  left: 30px;
+  left: 40px;
   width: 10px;
   height: 10px;
   font-size: 30px;
@@ -36,7 +36,7 @@ body {
 .back-arrow-dark {
     position: fixed;
     bottom: 50px;
-    left: 30px;
+    left: 40px;
     width: 10px;
     height: 10px;
     font-size: 30px;
@@ -281,13 +281,13 @@ body {
   border-radius: 10px;
   border: 1px solid #c0c0c0;
   transition: .2s;
+  transition: all .2s ease-in-out;
 }
 
 .signup input[type=text]:hover,
 .signup input[type=password]:hover {
   border: 1px solid #02408B;
   outline: none;
-  transition: all .2s ease-in-out;
 } 
 
 .signup input[type=submit] {
@@ -812,6 +812,15 @@ body {
     background-color: white;
     justify-content: center;
     position: relative;
+    cursor: pointer;
+    box-shadow: 0;
+    transform: translateY(0);
+    transition: all .5s ease-in-out
+  }
+
+  .cCarousel-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 5px 5px 4px 5px rgba(0, 0, 0, 0.2);
   }
   
   .image-container {
@@ -892,19 +901,20 @@ body {
 .white-tile {
     position: absolute;
     background-color: white;
-
-    border-radius: 60px;
-    width: 900px;
+    text-align: center;
+    border-radius: 60px 0 0 60px;
+    width: 595px;
     height: 100vh;
     top: 0px;
-    left: 900px;
-    z-index: -1;
+    left: 940px;
+    z-index: 500;
 }
 
 .prof-details .title-box {
     position: absolute;
     left: 130px;
     top: 110px !important;
+    max-width: 750px;
 }
 
 .prof-details .homepage-title {
@@ -920,12 +930,12 @@ body {
 .prof-details table {
     width: 100%;
     border-collapse: collapse;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .prof-details th, td {
     border: none; /* Removes borders */
-    padding: 10px;
+    padding-right: 20px;
     text-align: left;
 }
 
@@ -938,7 +948,7 @@ body {
 }
 
 .prof-details table tr {
-    margin-top: 30px;
+    margin-top: 80px;
 }
 
 .prof-details p {
@@ -957,13 +967,13 @@ body {
     font-size: 20px;
     color: #07599D;
     margin-top: 20px;
-    margin-left: 1140px;
+    margin-left: 0px;
 }
 
 .prof-details a {
     font-family: "Noto Sans Khojki", sans-serif;
     font-size: 20px;
-    color: white;
+    color: #07599D;
 }
 
 .prof-details h2 {
@@ -972,14 +982,15 @@ body {
     letter-spacing: 1px;
     color: #07599D;
     margin-top: -30px;
-    margin-left: 1100px;
+    margin-bottom: 0px;
+    margin-left: 0px;;
   }
 
 .progress {
     width: 300px;
     height: 30px;
     background-color: transparent;
-    border: 2px solid #ccc;
+    border: 2px solid white;
     border-radius: 10px;
     margin: 0px;
     position: relative;
@@ -993,16 +1004,24 @@ body {
 }
 
 .progress-value {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .prof-details .comment-box {
-    width: 50px;
+  border: 2px solid white;
+  border-radius: 15px;
+  margin-top: -10px;
+  padding-left: 20px;
+  
+}
+
+.prof-details .comment-box p {
+    font-size: 15px;
 }
 
 .prof-details img{
     margin-top: 0px;
-    margin-left: 1050px;
+    margin-left: 0px;
     width: 340px;
     height: 340px;
     object-fit: cover;
@@ -1011,8 +1030,49 @@ body {
 }
 
 .contrast-signout2 {
-    color: #02408B !important;
-  }
+  color: #02408B !important;
+}
+
+.prof-details .star-container {
+  position: absolute;
+  top: 60px; /* Adjust the top position as needed */
+  left: 60px; /* Adjust the left position as needed */
+  transform: scale(1.7);
+  text-align: center;
+  color: #D9D9D9;
+}
+
+.prof-details .star-container-fave {
+  position: absolute;
+  top: 60px; /* Adjust the top position as needed */
+  left: 60px; /* Adjust the left position as needed */
+  text-align: center;
+  transform: scale(1.7);
+  color: #FCB45A;
+}
+
+.prof-details a {
+  border: none;
+  border-radius: 20px;
+  background: #02408B;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.4s;
+  margin: 20px 0px;
+  margin-bottom: -20px;
+  background: linear-gradient(120deg, #023E8A, #5ABDDC, #0D9CCA);
+  background-size: 400%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.prof-details a:hover {
+  background-size: 100%;
+}
 
 /* ================= Navbar ================= */
 

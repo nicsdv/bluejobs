@@ -16,11 +16,6 @@
     <div class="prof-details">
         <div class="title-box">
             <h1 class="homepage-title">{{ professor }}</h1>
-            {% if is_added %} 
-            <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}"> Remove {{ professor }} from Favorites </a><br>
-        {% else %}
-            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}">Add to Favorites </a><br>
-        {% endif %}
             <table>
                 <tr>
                     <td>
@@ -64,18 +59,32 @@
                     </td>
                 </tr>
               </table>
-              <br><br>
+              <br>
             <p>Top Review:</p>
             <div class = "comment-box">
-                <!-- <p>{{ comment }}</p> -->
+                <p>{{ comment }}</p>
             </div>
         </div>
-        <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
-        <h3>Teaching Score:</h3>
-        <h2>{{ professor.score }}<small>/10</small></h2>
+        <div class="white-tile">
+            <br><br><br><br>
+            <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+            <br><br>
+            <h3>Teaching Score:</h3>
+            <h2>{{ professor.score }}<small>/10</small></h2>
+            <br><br>
+            {% if is_added %}
+            <div class="star-container-fave">
+                <i class="fas fa-star"></i>
+            </div>
+            <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}" class="fave-buttton">Remove {{ professor }} from Favorites </a><br>
+            {% else %}
+            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}" class="fave-buttton">Add to Favorites </a><br>
+            <div class="star-container">
+                <i class="fas fa-star"></i>
+            </div>
+            {% endif %}
+        </div>
     </div>
-
-    <div class="white-tile"></div>
 
     <!-- {{ expertise }} <br>
     {{ workload }} <br>
@@ -93,7 +102,6 @@
     <a href="{% url 'professor_select:professor_list' course_selected.pk %}" class="back-arrow">
         <i class="fas fa-arrow-left"></i>
     </a>
-
     
     <script>
         var expertisescore = parseInt("{{ expertise }}");

@@ -25,7 +25,7 @@
                   <div id="carousel-vp">
                     <div id="cCarousel-inner">
                         {% for professor in professors %}
-                            <article class="cCarousel-item">
+                            <article class="cCarousel-item" onclick="redirectToURL('{% url 'professor_select:professor_details' course_selected.pk professor.pk %}')">
                                 <div class="image-ontainer">
                                 <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
                                 </div>
@@ -57,6 +57,12 @@
     <a href="{% url 'professor_select:course_select' %}" class="back-arrow">
         <i class="fas fa-arrow-left"></i>
     </a>
+
+    <script>
+        function redirectToURL(url) {
+            window.location.href = url;
+        }
+    </script>
 
     {% endblock %}
 
