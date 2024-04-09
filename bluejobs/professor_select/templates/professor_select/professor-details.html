@@ -78,7 +78,7 @@
             </div>
             <a href = "{% url 'professor_select:remove_professor' course_selected.pk professor.pk %}" class="fave-buttton">Remove {{ professor }} from Favorites </a><br>
             {% else %}
-            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}" class="fave-buttton">Add to Favorites </a><br>
+            <a href = "{% url 'professor_select:add_professor' course_selected.pk professor.pk %}" class="fave-buttton">Add {{ professor }} to Favorites </a><br>
             <div class="star-container">
                 <i class="fas fa-star"></i>
             </div>
