@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('bluejobs/', include('landing_page.urls', namespace="landing_page")),
     path('professor_select/', include('professor_select.urls', namespace="professor_select")),
+    path('schedule_maker/', include('schedule_maker.urls', namespace="schedule_maker")),
+    path('rate_professor/', include('rate_a_professor.urls', namespace="rate_a_professor")),
 ]

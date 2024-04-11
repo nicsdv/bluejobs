@@ -3,9 +3,8 @@ from django import forms
 from .models import CourseStudent, ProfessorFavorite
 
 '''
-The following code initializes the admin panel for the user credentials in the system. 
-This will help keep track of the existing instances of the entities and 
-modify them when necessary.
+The following code initializes the forms for selecting a course and setting a professor
+as favorite.
 
 Code written by: Nics and Lex
 '''

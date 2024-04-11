@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'professor_select',
     'landing_page',
+    'professor_select',
+    'schedule_maker',
+    'rate_a_professor',
+
 ]
 
 MIDDLEWARE = [

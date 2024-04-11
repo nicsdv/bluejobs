@@ -2,4 +2,4 @@ from django.urls import path
 
 urlpatterns = []
 
-app_name = "professor_select"
+app_name = "rate_a_professor"
