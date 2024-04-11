@@ -58,6 +58,15 @@
     <input type="text" placeholder="Department Name" name="department_name"/>
     <input type="password" placeholder="Password" name="password1"/>
     <input type="password" placeholder="Confirm Password" name="password2"/>
+
+    {% for error in form.password1.errors %}
+    <p>⚠︎ {{ error }}</p> 
+    {% endfor %}
+
+    {% for error in form.password2.errors %}
+    <p>⚠︎ {{ error }}</p> 
+    {% endfor %}
+
     <input type="submit" value="Sign Up"/>
   </form>
 

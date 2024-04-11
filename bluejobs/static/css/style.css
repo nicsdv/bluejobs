@@ -265,7 +265,7 @@ body {
   transform: translate(-50%, -50%);
   width: 550px;
   padding: 50px 50px;
-  max-width: 600px;
+  max-width: 500px;
   border-radius: 20px;
   background: #fff;
 }
@@ -322,7 +322,10 @@ body {
 }
 
 .signup p {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+  color: black;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 15px;
 }
 
 .signup h2,
@@ -350,7 +353,7 @@ body {
   display: grid;
   grid: auto / auto auto;
   grid-template-columns: repeat(auto-fit,minmax(40%, 1fr));
-  grid-gap: 90px;
+  grid-gap: 65px;
 }
 
 .signup .row .col1{
@@ -361,7 +364,7 @@ body {
 
 .signup .row .col2{
   position: relative;
-  width: 100%;
+  width: 87%;
   transition: 0.5s;
   margin-left: 30px;
 }
