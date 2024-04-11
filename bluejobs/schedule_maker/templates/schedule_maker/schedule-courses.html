@@ -41,10 +41,10 @@
               {% if forloop.counter0|divisibleby:4 %}
               <tr>
               {% endif %}
-                <td data-url="{% url 'professor_select:professor_list' course.pk %}">
+                <td data-url="">
                   <h2>{{ course }}</h2>
                   <div class="remove-icon-container">
-                    <a href="{% url 'professor_select:course_remove' course.pk %}" class="remove-icon"><i class="fas fa-minus"></i></a>
+                    <a href="{% url 'schedule_maker:course_remove' course.pk %}" class="remove-icon"><i class="fas fa-minus"></i></a>
                   </div>
                 </td>
               {% if forloop.last or forloop.counter0|add:1|divisibleby:4 %}

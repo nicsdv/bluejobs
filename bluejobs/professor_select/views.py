@@ -61,10 +61,15 @@ def remove_course(request, **kwarg):
         course_delete = student.courses.get(course=course)
         course_delete.delete()
 
-        # also delete list of professor favorites for the course
+        # delete list of professor favorites for the course
         for favorite in student.favorites.filter(course = course):
             favorite.delete()
         
+        # also course as in required courses
+        required = student.required_courses.filter(course = course)
+        required.delete()
+
+
         return redirect('professor_select:course_select')
     else:
         return redirect('landing_page:home')

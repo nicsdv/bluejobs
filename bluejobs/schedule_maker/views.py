@@ -41,13 +41,34 @@ def course_select_view(request):
 
         # filters the selected courses for the course select form options
         course_selection = []
+        
+        print(added_courses)
         for course in student.courses.all():
-            if course not in added_courses:
+            print(course.course)
+            if course.course not in added_courses:
                 course_selection.append(course.course)
         
         args['course_selection'] = course_selection
 
         return render(request, 'schedule_maker/schedule-courses.html', args)
     
+    else:
+        return redirect('landing_page:home')
+    
+def remove_course(request, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        
+        course = Course.objects.get(pk=kwarg['pk'])
+        
+        # remove course from list of courses for the schedule
+        course_delete = student.required_courses.get(course=course)
+        course_delete.delete()
+
+        for favorite in student.favorites.filter(course = course):
+            favorite.delete()
+        
+        return redirect('schedule_maker:course_select')
     else:
         return redirect('landing_page:home')
