@@ -1,3 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Professor List{% endblock %} 
+{% block content %}
+
+    {# the links to other html files #}
+    <ul class="navbar">
+        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Schedule Maker </a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Rate a Professor </a></li>
+        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+    </ul> 
+
+    <div class="prof-list">
+        <div class="title-box">
+            <h1 class="homepage-title">Rate a Professor</h1>
+            <p class="homepage-subtitle">Select a professor to Rate</p>
+            <br>
+            <section>
+                <div id="cCarousel">
+                  <div class="arrow" id="prev"><i class="fas fa-chevron-left"></i></div>
+                  <div class="arrow" id="next"><i class="fas fa-chevron-right"></i></div>
+              
+                  <div id="carousel-vp">
+                    <div id="cCarousel-inner">
+                        {% for professor in professors %}
+                            <article class="cCarousel-item">
+                                <div class="image-ontainer">
+                                <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+                                </div>
+                                <div class="infos">
+                                    <h3>{{professor}}</h3>
+                                </div>
+                                <div class="rate">
+                                    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">
+                                            <button>Rate</button>
+                                    </a>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <a href="{% url 'landing_page:homepage-student' %}" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <script>
+        function redirectToURL(url) {
+            window.location.href = url;
+        }
+    </script>
+
+    {% endblock %}
+
+<!--
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,4 +73,5 @@
         {% endfor %}
     </ul>
 </body>
-</html>
+</html> -->
+        
