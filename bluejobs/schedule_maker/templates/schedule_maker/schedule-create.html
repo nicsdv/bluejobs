@@ -23,7 +23,7 @@
       <form method="POST">
         {% csrf_token %}
         <select name="course_list_select">
-          {% for class in required.course.classes.all %}
+          {% for class in required.course.preferred_classes %}
             <option value="{{ class }}">[{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}</option>
           {% endfor %}
         </select>

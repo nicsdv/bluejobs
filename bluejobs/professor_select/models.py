@@ -77,6 +77,13 @@ class Course (models.Model):
 
     def __str__(self):
         return '{}'.format(self.course_code)
+    
+    @property
+    def preferred_classes(self):
+        favorites = ProfessorFavorite.objects.filter(course=self)
+        favorites = [favorite.professor for favorite in favorites]
+        return list(self.classes.filter(professor__in=favorites))
+
 
 # COURSE_SECTION (Course_Code, Section, Professor_ID, Slots, Venue)
 class CourseSection (models.Model):
@@ -99,7 +106,7 @@ class CourseSection (models.Model):
     
     def get_professor(self):
         return self.professor
-
+    
 # COURSE_STUDENT (Course_Code, Student_ID)
 class CourseStudent (models.Model):
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
@@ -153,7 +160,7 @@ class ProfessorRating (models.Model):
 # PROFESSOR_FAVORITE (Professor_ID, Course_Code, Student_ID)
 class ProfessorFavorite(models.Model):
     professor = models.ForeignKey (Professor, on_delete = models.CASCADE)
-    course = models.ForeignKey (Course, on_delete = models.CASCADE)
+    course = models.ForeignKey (Course, on_delete = models.CASCADE, related_name="favorites")
     student = models.ForeignKey (Student, related_name = "favorites",
                                  on_delete = models.CASCADE)
     

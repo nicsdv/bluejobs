@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from landing_page.models import Student
+from landing_page.models import *
 from django.db.models import Avg
-from professor_select.models import Course, Professor
-from .models import StudentSchedule
-from .forms import CourseSelectForm
+from professor_select.models import *
+from .models import *
+from .forms import *
 
 # Create your views here.
 
@@ -43,9 +43,7 @@ def course_select_view(request):
         # filters the selected courses for the course select form options
         course_selection = []
         
-        print(added_courses)
         for course in student.courses.all():
-            print(course.course)
             if course.course not in added_courses:
                 course_selection.append(course.course)
         
@@ -92,8 +90,6 @@ def create_schedule(request):
             course_selected.course = Course.objects.get(course_code=course)
             course_selected.student = student
             course_selected.save()
-
-
 
         return render(request, 'schedule_maker/schedule-create.html', args)
     
