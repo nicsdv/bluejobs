@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ProfessorRatingForm, ProfessorUpvoteForm
 from professor_select.models import Professor, ProfessorRating
 from landing_page.models import Student
-from rate_a_professor import Upvotes
+from rate_a_professor.models import Upvotes
 
 # Create your views here.
 
