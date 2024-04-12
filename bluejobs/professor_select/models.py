@@ -145,6 +145,10 @@ class ProfessorRating (models.Model):
     def get_average(self):
         average = (self.subject_matter_expertise + self.workload_management + self.grading_leniency + self.approachability + self.friendliness)/4
         return average
+    
+    @property
+    def get_upvotes(self):
+        return len(self.upvotes.all())
 
 # PROFESSOR_FAVORITE (Professor_ID, Course_Code, Student_ID)
 class ProfessorFavorite(models.Model):

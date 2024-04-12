@@ -4,8 +4,8 @@ from professor_select.models import ProfessorRating
 
 # Create your models here.
 class Upvotes(models.Model):
-    rating = models.ForeignKey (ProfessorRating, on_delete = models.CASCADE)
-    student = models.ForeignKey (Student, related_name = "upvotes", on_delete = models.CASCADE)
+    rating = models.ForeignKey (ProfessorRating, related_name = "upvotes", on_delete = models.CASCADE)
+    student = models.ForeignKey (Student, on_delete = models.CASCADE)
 
     class Meta:
         constraints = [
