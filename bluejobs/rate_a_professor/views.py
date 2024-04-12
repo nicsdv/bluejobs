@@ -1,22 +1,37 @@
 from django.shortcuts import render, redirect
 from .forms import ProfessorRatingForm
 from professor_select.models import Professor
+from landing_page.models import Student
 
 # Create your views here.
 
 def professor_list(request):
-    professors = Professor.objects.all()
-    return render(request, 'rate_a_professor/professor_list.html', {'professors': professors})
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
 
-def rate_professor(request, **kwarg):
-    professor = Professor.objects.get(pk=kwarg['pk'])
-    if request.method == 'POST':
-        form = ProfessorRatingForm(request.POST)
-        if form.is_valid():
-            rating = form.save(commit=False)
-            rating.professor = professor
-            rating.save()
-            return redirect('professor_list')
+        professors = Professor.objects.all()
+        return render(request, 'rate_a_professor/professor_list.html', {'professors': professors})
+
     else:
-        form = ProfessorRatingForm()
-    return render(request, 'rate_a_professor/rating_form.html', {'professor': professor, 'form': form})
+        return redirect('landing_page:home')
+    
+def rate_professor(request, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+
+        professor = Professor.objects.get(pk=kwarg['pk'])
+        if request.method == 'POST':
+            form = ProfessorRatingForm(request.POST)
+            if form.is_valid():
+                rating = form.save(commit=False)
+                rating.professor = professor
+                rating.student = student
+                rating.save()
+                return redirect('rate_a_professor:professor_list')
+        else:
+            form = ProfessorRatingForm()
+        return render(request, 'rate_a_professor/rating_form.html', {'professor': professor, 'form': form})
+    
+    else:
+        return redirect('landing_page:home')
