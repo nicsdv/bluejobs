@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import ProfessorRatingForm, ProfessorUpvoteForm
 from professor_select.models import Professor, ProfessorRating
 from landing_page.models import Student
-from rate_a_professor import Upvotes
 
 # Create your views here.
 
@@ -42,14 +41,29 @@ def add_rating(request, rating, **kwarg):
         current_user = request.user
         student = Student.objects.get(pk = current_user.pk)
 
-        rating = ProfessorRating.objects.all()
+        rating = ProfessorRating.objects.all().order_by(Professor.get_upvotes())
  
         upvote = ProfessorUpvoteForm().save(False)
         upvote.student = student
         upvote.rating = rating
         upvote.save()
         
-        return redirect('rate_a_professor:professor_details')
+        return render(request, 'rate_a_professor/professor_list.html')
 
+    else:
+        return redirect('landing_page:home')
+    
+def remove_rating(request, rating, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+
+        rating = ProfessorRating.objects.all().order_by(Professor.get_upvotes())
+
+        query = student.favorites.get(rating = rating)
+        query.delete()
+
+        return render(request, 'rate_a_professor/professor_list.html')
+    
     else:
         return redirect('landing_page:home')
