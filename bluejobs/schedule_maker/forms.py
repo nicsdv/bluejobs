@@ -1,5 +1,5 @@
 from django import forms
-from .models import RequiredCourse
+from .models import RequiredCourse, StudentSchedule
 
 '''
 The following code initializes the form to add courses, professors, and creating schedules
@@ -11,3 +11,8 @@ class CourseSelectForm(forms.ModelForm):
     class Meta:
         model = RequiredCourse
         fields = ['course']
+
+class SectionSelectForm(forms.ModelForm):
+    class Meta:
+        model = StudentSchedule
+        fields = ['course_section']
