@@ -95,7 +95,7 @@ class CourseSection (models.Model):
         ]
 
     def __str__(self):
-        return '{} {}: {} '.format(self.course, self.section.section_code, self.professor)
+        return '{} {}: {}  '.format(self.course, self.section.section_code, self.professor)
     
     def get_professor(self):
         return self.professor
@@ -121,9 +121,9 @@ PROFESSOR_RATING(Student_ID, Professor_ID, Subject_Matter_Expertise,
     for their input fields
 '''
 class ProfessorRating (models.Model):
-    student = models.ForeignKey (Student, related_name = "student_reviews",
+    student = models.ForeignKey (Student, related_name = "professor_reviews",
                                  on_delete = models.CASCADE)
-    professor = models.ForeignKey (Professor, related_name = "professor_ratings",
+    professor = models.ForeignKey (Professor, related_name = "ratings",
                                  on_delete = models.CASCADE)
     course = models.ForeignKey (Course, related_name = "student_reviews",
                                  on_delete = models.CASCADE)

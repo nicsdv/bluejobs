@@ -21,6 +21,11 @@
       <div class="title-box">
         <h1 class="homepage-title">Schedule Maker</h1>
         <p class="homepage-subtitle">Input the courses you need to make a schedule for</p>
+        <br>
+        
+        <a href="{% url 'schedule_maker:create-schedule' %}">
+          Create My Schedule
+        </a>
         <br><br><br>
 
         <form method="POST" class="course-form">
@@ -31,7 +36,7 @@
             {% endfor %}
           </select>
           &nbsp; &nbsp;
-          <button type="submit" class="add-course-btn"><i class="fas fa-plus"></i></button>
+          <button type="submit" class="add-course-btn" {% if disabled %} disabled {% endif %}><i class="fas fa-plus"></i></button>
         </form>
 
         <div class="dropdown">
@@ -54,7 +59,10 @@
             </tbody>
           </table>
         </div>
-      </div>
+        
+        
+      </div>    
+
     </div>
 
     <a href="{% url 'landing_page:homepage-student' %}" class="back-arrow-dark">

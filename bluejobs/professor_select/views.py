@@ -108,9 +108,9 @@ def professor_detail_view(request, course, **kwarg) :
             'course_selected': course
         }
 
-        if len(professor.professor_ratings.all()) > 0:
-            comment = professor.professor_ratings.all()[0].comment
-            scores = professor.professor_ratings.aggregate(Avg('subject_matter_expertise'), 
+        if len(professor.ratings.all()) > 0:
+            comment = professor.ratings.all()[0].comment
+            scores = professor.ratings.aggregate(Avg('subject_matter_expertise'), 
                     Avg('workload_management'), Avg('grading_leniency'),
                     Avg('approachability'), Avg('friendliness'))
             

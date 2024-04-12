@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from landing_page.models import Student
-from professor_select.models import Course
+from django.db.models import Avg
+from professor_select.models import Course, Professor
 from .models import StudentSchedule
 from .forms import CourseSelectForm
 
@@ -50,6 +51,9 @@ def course_select_view(request):
         
         args['course_selection'] = course_selection
 
+        if course_selection == []:
+            args['disabled'] = True
+
         return render(request, 'schedule_maker/schedule-courses.html', args)
     
     else:
@@ -72,3 +76,14 @@ def remove_course(request, **kwarg):
         return redirect('schedule_maker:course_select')
     else:
         return redirect('landing_page:home')
+    
+def create_schedule(request):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        args = {'student':student}
+        return render(request, 'schedule_maker/schedule-create.html', args)
+    
+    else:
+        return redirect('landing_page:home')
+    
