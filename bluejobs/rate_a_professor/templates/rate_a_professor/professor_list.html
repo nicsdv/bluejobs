@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professor List</title>
+</head>
+<body>
+    <h1>Professor List</h1>
+    <ul>
+        {% for professor in professors %}
+            <li><a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">{{ professor.professor_name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
