@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ProfessorRatingForm, ProfessorUpvoteForm
 from professor_select.models import Professor, ProfessorRating
 from landing_page.models import Student
+from .models import *
 
 # Create your views here.
 
@@ -49,8 +50,9 @@ def rating_list(request, **kwarg):
             'ratings': rating
         }
 
-        upvoted_ratings = [upvote.rating for upvote in student.student_upvotes.filter(professor = professor)] 
+        upvoted_ratings = upvotes_by_professor(student, professor)
         args['upvoted_ratings'] = upvoted_ratings
+        print(upvoted_ratings)
 
         return render(request, 'rate_a_professor/rating_list.html', args)
     
@@ -83,10 +85,10 @@ def remove_rating(request, professor, **kwarg):
         professor = Professor.objects.get(pk=professor)
         rating = professor.ratings.get(pk=kwarg['pk'])
 
-        query = rating.upvotes.get(professor = professor, rating = rating)
+        query = Upvotes.objects.get(rating = rating)
         query.delete()
 
-        return redirect('professor_select:rating_list', professor.pk)
+        return redirect('rate_a_professor:rating_list', professor.pk)
     
     else:
         return redirect('landing_page:home')

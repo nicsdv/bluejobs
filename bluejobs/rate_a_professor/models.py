@@ -11,3 +11,12 @@ class Upvotes(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['student', 'rating'], name='student_upvote')
         ]
+    
+def upvotes_by_professor (student, professor):
+    query = Upvotes.objects.filter(student = student)
+    arg = []
+    for upvote in query:
+        if upvote.rating.professor == professor:
+            arg.append(upvote.rating)
+    
+    return arg

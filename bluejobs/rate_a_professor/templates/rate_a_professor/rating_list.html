@@ -11,7 +11,7 @@
     <ul>
         {% for rating in ratings %}
             <li>{{ rating.comment }}{{ rating.get_average }}{{ rating.get_upvotes }}</li>
-            {% if rating in upvoted_ratings %}
+            {% if rating not in upvoted_ratings %}
             <a href="{% url 'rate_a_professor:add_rating' professor.pk rating.pk %}">
                 <button>Upvote</button>
             </a>
