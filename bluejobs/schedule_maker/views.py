@@ -79,17 +79,24 @@ def create_schedule(request):
     if request.user.is_authenticated and request.user.is_student:
         current_user = request.user
         student = Student.objects.get(pk = current_user.pk)
-        args = { 'student':student }
+        args = { 'student': student }
 
         if request.method  == "POST":
-            course = request.POST['class_select']
+            class_section = request.POST['class_select']
             
-            course_form = CourseSelectForm()
+            course_form = SectionSelectForm()
             
-            course_selected = course_form.save(False)
-            course_selected.course = Course.objects.get(course_code=course)
-            course_selected.student = student
-            course_selected.save()
+            class_selected = course_form.save(False)
+            class_selected.student = student
+            class_selected.course_section = CourseSection.objects.get(pk=class_section)
+            class_selected.save()
+        
+        added_classes = [classes for classes in student.classes.all()]
+        print(added_classes)
+
+        args['added_classes'] = added_classes
+
+        print(added_classes)
 
         return render(request, 'schedule_maker/schedule-create.html', args)
     
