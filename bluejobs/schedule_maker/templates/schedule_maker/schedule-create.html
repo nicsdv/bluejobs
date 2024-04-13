@@ -18,15 +18,17 @@
       <div class="gradient-tile"></div>
       <img src="{% static 'profselect_icon.png' %}" class="landing-icon">
 
-      <b>ADDED CLASSES </b><br>
+      <b>ADDED CLASSES </b><br> <br>
+      <a href="{% url 'schedule_maker:reset-schedule' %}">
+        Reset Schedule
+      </a>
+      <br>
 
       {% for class in added_classes %}
-        {{ class }} <br>
-        {{ class.course_section }} ({{class.course_section.section.day_schedule}} {{class.course_section.section.time_schedule}}) <br>
-        <br><br>
+        {{ class }} ({{class.section.day_schedule}} {{class.section.time_schedule}}) <br>
       {% endfor %}  
 
-      <br><br>
+      <br>
 
       {% for required in student.required_courses.all %}
       {{ required.course }}
@@ -34,19 +36,17 @@
         {% csrf_token %}
         <select name="class_select">
           {% for class in required.course.preferred_classes %}
-            {% if class not in added_classes %}
-              <option value="{{ class.pk }}">[{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}</option>
-            {% endif %}
+              <option value="{{ class.pk }}" {% if class in added_classes %}disabled{% endif %}>[{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}</option>
           {% endfor %}
         </select>
         &nbsp; &nbsp;
         <button type="submit">Add Class</button>
       </form>
       <br>
-      <br>
       {% endfor %}
-    </div>
 
+      
+    </div>
 
     <a href="{% url 'schedule_maker:course_select' %}" class="back-arrow-dark">
       <i class="fas fa-arrow-left"></i>

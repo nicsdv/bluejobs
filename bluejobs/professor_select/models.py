@@ -102,7 +102,7 @@ class CourseSection (models.Model):
         ]
 
     def __str__(self):
-        return '{} {}: {}  '.format(self.course, self.section.section_code, self.professor)
+        return '{} {}: {}'.format(self.course, self.section.section_code, self.professor)
     
     def get_professor(self):
         return self.professor

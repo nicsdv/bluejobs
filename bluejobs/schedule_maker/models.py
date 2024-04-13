@@ -38,3 +38,4 @@ class StudentSchedule (models.Model):
     
     def __str__(self):
         return '{} Selected: {} '.format(self.student, self.course_section)
+    
