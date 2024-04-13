@@ -82,7 +82,8 @@ def professor_list_view(request, **kwarg):
 
         course_selected = Course.objects.get(pk=kwarg['pk'])
         professors = list(dict.fromkeys([course.professor for course in course_selected.classes.all()]))
-    
+        professors.sort(key=lambda x: (not student.favorites.filter(professor=x, course=course_selected).exists(), -x.score))
+        
         args = {
             'course_selected': course_selected,
             'professors': professors,
