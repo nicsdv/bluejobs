@@ -10,7 +10,9 @@
     <h1>Rating List</h1>
     <ul>
         {% for rating in ratings %}
-            <li>{{ rating.comment }}{{ rating.get_average }}{{ rating.get_upvotes }}</li>
+            <li>{{ rating.get_average }}/10</li>
+            <li>{{ rating.comment }}</li>
+            <li>Number of Upvotes: {{ rating.get_upvotes }}</li>
             {% if rating not in upvoted_ratings %}
             <a href="{% url 'rate_a_professor:add_rating' professor.pk rating.pk %}">
                 <button>Upvote</button>
@@ -23,7 +25,7 @@
         {% endfor %}
     </ul>
     <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">
-        <button>Rate</button>
+        <button>Submit Rating</button>
     </a>
 </body>
 </html>
