@@ -7,6 +7,7 @@
     <h1>Rating List</h1>
     <ul>
         {% for rating in ratings %}
+            <li>{{ rating.course }}</li>
             <li>{{ rating.get_average }}/10</li>
             <li>{{ rating.comment }}</li>
             <li>Number of Upvotes: {{ rating.get_upvotes }}</li>
