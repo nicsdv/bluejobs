@@ -143,7 +143,7 @@ class ProfessorRating (models.Model):
         return 'Rating for {} in {} '.format(self.professor, self.course)
     
     def get_average(self):
-        average = (self.subject_matter_expertise + self.workload_management + self.grading_leniency + self.approachability + self.friendliness)/4
+        average = (self.subject_matter_expertise + self.workload_management + self.grading_leniency + self.approachability + self.friendliness)/5
         return average
     
     @property

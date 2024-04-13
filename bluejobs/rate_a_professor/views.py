@@ -36,19 +36,57 @@ def rate_professor(request, **kwarg):
     else:
         return redirect('landing_page:home')
     
-def add_rating(request, rating, **kwarg):
+def rating_list(request, **kwarg):
     if request.user.is_authenticated and request.user.is_student:
         current_user = request.user
         student = Student.objects.get(pk = current_user.pk)
 
-        rating = ProfessorRating.objects.all()
+        professor = Professor.objects.get(pk=kwarg['pk'])
+        rating = professor.ratings.all()
+    
+        args = {
+            'professor': professor,
+            'ratings': rating
+        }
+
+        upvoted_ratings = [upvote.rating for upvote in student.student_upvotes.filter(professor = professor)] 
+        args['upvoted_ratings'] = upvoted_ratings
+
+        return render(request, 'rate_a_professor/rating_list.html', args)
+    
+    else:
+        return redirect('landing_page:home')
+    
+def add_rating(request, professor, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
  
+        professor = Professor.objects.get(pk=professor)
+        rating = professor.ratings.get(pk=kwarg['pk'])
+
         upvote = ProfessorUpvoteForm().save(False)
         upvote.student = student
         upvote.rating = rating
         upvote.save()
         
-        return redirect('rate_a_professor:professor_details')
+        return redirect('rate_a_professor:rating_list', professor.pk)
 
+    else:
+        return redirect('landing_page:home')
+    
+def remove_rating(request, professor, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+
+        professor = Professor.objects.get(pk=professor)
+        rating = professor.ratings.get(pk=kwarg['pk'])
+
+        query = rating.upvotes.get(professor = professor, rating = rating)
+        query.delete()
+
+        return redirect('professor_select:rating_list', professor.pk)
+    
     else:
         return redirect('landing_page:home')

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rating List</title>
+</head>
+<body>
+    {% for rating in upvoted_ratings %}
+        {{ rating.comment }}<br>
+    {% endfor %}
+    <h1>Rating List</h1>
+    <ul>
+        {% for rating in ratings %}
+            <li>{{ rating.comment }}{{ rating.get_average }}{{ rating.get_upvotes }}</li>
+            {% if rating in upvoted_ratings %}
+            <a href="{% url 'rate_a_professor:add_rating' professor.pk rating.pk %}">
+                <button>Upvote</button>
+            </a>
+            {% else %}
+            <a href="{% url 'rate_a_professor:remove_rating' professor.pk rating.pk %}">
+                <button>Remove Upvote</button>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">
+        <button>Rate</button>
+    </a>
+</body>
+</html>
