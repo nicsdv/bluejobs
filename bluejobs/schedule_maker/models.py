@@ -35,3 +35,6 @@ class StudentSchedule (models.Model):
         constraints = [
             models.UniqueConstraint(fields=['course_section', 'student'], name='student_schedule')
         ]
+    
+    def __str__(self):
+        return '{} Selected: {} '.format(self.student, self.course_section)
