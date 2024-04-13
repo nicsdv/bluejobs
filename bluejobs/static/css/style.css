@@ -584,12 +584,12 @@ body {
 }
 
 .container .box .box-cell img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      transform: translateY(0px);
-      transition: transform 0.5s ease; /* Add smooth transition effect for the image */
-    }
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  transform: translateY(0px);
+  transition: transform 0.5s ease; /* Add smooth transition effect for the image */
+}
 
 .container .box .box-cell:hover img {
   transform: scale(1.15) translateY(-10%);
@@ -1079,6 +1079,187 @@ body {
 
 .prof-details a:hover {
   background-size: 100%;
+}
+
+/* ================= Schedule Maker  ================= */
+
+.sched-maker .title-box{
+  position: absolute;
+  left: 130px;
+  top: 120px !important;
+}
+
+.blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+.blue-button:hover {
+  background-color: #064d87; /* Darker blue on hover */
+}
+
+/* ================= Rate a Prof ================= */
+
+.rate-a-prof .title-box{
+  position: absolute;
+  left: 130px;
+  top: 120px !important;
+}
+
+.rate-a-prof *,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.rate-a-prof .cCarousel-item {
+  border: none;
+  border-radius: 30px;
+}
+
+.rate-a-prof .cCarousel-item:hover {
+  transform: translateY(0);
+  box-shadow: 5px 5px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rate-a-prof .cCarousel-item,
+.rate-a-prof .infos {
+  background-color: #07599D;
+}
+
+.rate-a-prof h3 {
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: white;
+  font-weight: bolder;
+  margin-top: -15px;
+}
+
+.white-button {
+  background-color: white; /* Blue color */
+  border: none;
+  color: #02408B;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: bolder;
+  border-radius: 15px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+  transition: all .5s ease-in-out
+}
+.white-button:hover {
+  background-color: rgb(229, 229, 229); /* Darker blue on hover */
+  box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ================= Rate a Prof ================= */
+
+.rating-form .title-box {
+  top: 120px !important;
+  min-width: 1200px;;
+}
+
+.rating-form .homepage-title {
+  font-size: 90px;
+  margin-top: -30px;
+}
+
+.rating-containter {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+}
+
+.rating-form img {
+  margin-top: 0px;
+  margin-right: 20px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+.rating-form table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: 70px;
+}
+
+.rating-form td {
+  border: none;
+  padding-right: 50px;
+  padding-bottom: 15px;
+}
+
+.rating-form input[type=text] {
+  border-radius: 15px !important; 
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 2px;
+  background-color: white;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-style: normal;
+}
+
+.review {
+  height: 200px;
+  vertical-align: top;
+}
+
+.wider {
+  vertical-align: top;
+  width: 500px;
+  text-align: right;
+}
+
+.rating-form input[type=submit] {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.rating-form .mini-blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 30px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.centered-div {
+  text-align: center;
 }
 
 /* ================= Navbar ================= */

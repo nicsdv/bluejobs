@@ -1,14 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Submit Feedback</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}{{ professor }}{% endblock %} 
+{% block content %}
+
+<div class="white-bg rating-form">
+
+    <ul class="navbar">
+        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
+        <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+        <li><a href="{% url 'landing_page:login' %}">Sign Out</a></li>
+    </ul> 
+
+
+    <div class="title-box">
+        <div class="rating-containter">
+            <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+            <div>
+                <h1 class="homepage-title">{{professor}}</h1>
+                <p class="homepage-subtitle">Input your ratings for {{professor}}s in the criteria below:</p>
+            </div>
+        </div>
+        <br><br>
+        <form method="post">
+            {% csrf_token %}
+            {{form.subject_matter_expertise.as_hidden}}
+            {{form.workload_management.as_hidden}}
+            {{form.grading_leniency.as_hidden}}
+            {{form.approachability.as_hidden}}
+            {{form.friendliness.as_hidden}}
+            {{form.rating.as_hidden}}
+            
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Subject Matter Expertise" name="subject_matter_expertise"/>
+                    </td>
+                    <td rowspan="1">
+                        <input type="text" placeholder="Workload Management" name="workload_management"/>
+                    </td>
+                    <td rowspan="3" class="wider">
+                        <input type="text" class="review" placeholder="Review" name="rating"/>
+                        <br>
+                        <a href="#Somewhere" class="mini-blue-button">Visit Professor Forum</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Approachability" name="grading_leniency"/>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Friendliness" name="approachability"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Grading Leniency" name="friendliness"/>
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+            <div class="centered-div">
+                <input type="submit" value="Submit Rating"/>
+            </div>
+        </form>
+        
+    </div>
+
+    <a href="{% url 'rate_a_professor:professor_list' %}" class="back-arrow-dark">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+</div>
+    
     <h1>Submit Feedback</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit Feedback</button>
     </form>
-</body>
-</html>
+
+{% endblock %}
