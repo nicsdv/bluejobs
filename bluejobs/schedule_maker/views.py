@@ -119,3 +119,6 @@ def reset_schedule(request):
     
     else:
         return redirect('landing_page:home')
+
+def display_schedule(request):
+        return render(request, 'schedule_maker/schedule-display.html')

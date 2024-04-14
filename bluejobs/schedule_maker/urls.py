@@ -13,6 +13,8 @@ urlpatterns = [
     path('course/<int:pk>/remove', remove_course, name = 'course_remove'),
     path('schedule/create', create_schedule, name = 'create-schedule'),
     path('schedule/reset', reset_schedule, name = 'reset-schedule'),
+    path('schedule/display', display_schedule, name = 'display-schedule'),
+
 ]
 
 app_name = "schedule_maker"
