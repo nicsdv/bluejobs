@@ -32,16 +32,26 @@
 
       {% for required in student.required_courses.all %}
       {{ required.course }}
+      
+      {% if required.preferred_classes %}
       <form method="POST">
         {% csrf_token %}
-        <select name="class_select">
-          {% for class in required.preferred_classes %}
-              <option value="{{ class.pk }}" {% if class in added_classes %}disabled{% endif %}>[{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}</option>
-          {% endfor %}
-        </select>
+          <select name="class_select">
+            {% for class in required.preferred_classes %}
+                <option value="{{ class.pk }}" {% if class in added_classes %}disabled{% endif %}>
+                  [{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}
+                </option>
+            {% endfor %}
+          </select>
         &nbsp; &nbsp;
         <button type="submit">Add Class</button>
       </form>
+
+      {% else %}
+          <br>You have not selected a professor for {{ required.course }}. 
+          
+          <a href="{% url 'professor_select:professor_list' required.course.pk %}">Select {{ required.course }} Professors </a>
+        {% endif %}
       <br>
       {% endfor %}
 
