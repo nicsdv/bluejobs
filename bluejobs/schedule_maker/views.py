@@ -119,6 +119,19 @@ def reset_schedule(request):
     
     else:
         return redirect('landing_page:home')
+    
+def reset_class(request, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        course = Course.objects.get(pk=kwarg['pk'])
+
+        [classes.delete() for classes in student.classes.all() if classes.course_section.course == course] 
+        
+        return redirect('schedule_maker:create-schedule')
+    
+    else:
+        return redirect('landing_page:home')
 
 def display_schedule(request):
         return render(request, 'schedule_maker/schedule-display.html')

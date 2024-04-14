@@ -32,13 +32,14 @@
 
       {% for required in student.required_courses.all %}
       {{ required.course }}
+      <a href="{% url 'schedule_maker:reset-class' required.course.pk %}"> Reset Course Selection</a>
       
       {% if required.preferred_classes %}
       <form method="POST">
         {% csrf_token %}
           <select name="class_select">
             {% for class in required.preferred_classes %}
-                <option value="{{ class.pk }}" {% if class in added_classes %}disabled{% endif %}>
+                <option value="{{ class.pk }}" {% if class in added_classes %} disabled {% endif %}>
                   [{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}
                 </option>
             {% endfor %}

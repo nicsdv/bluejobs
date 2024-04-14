@@ -29,7 +29,6 @@ class RequiredCourse (models.Model):
     def preferred_classes(self):
         favorites = ProfessorFavorite.objects.filter(student=self.student, course=self.course)
         favorites = [favorite.professor for favorite in favorites]
-        print(favorites)
         return list(self.course.classes.filter(professor__in=favorites))
 
 

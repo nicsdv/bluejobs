@@ -12,6 +12,7 @@ urlpatterns = [
     path('course/<int:pk>/remove', remove_course, name = 'course_remove'),
     path('schedule/create', create_schedule, name = 'create-schedule'),
     path('schedule/reset', reset_schedule, name = 'reset-schedule'),
+    path('schedule/course/<int:pk>/reset', reset_class, name = 'reset-class'),
     path('schedule/display', display_schedule, name = 'display-schedule'),
 
 ]
