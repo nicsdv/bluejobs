@@ -68,8 +68,9 @@ def remove_course(request, **kwarg):
         course_delete = student.required_courses.get(course=course)
         course_delete.delete()
 
-        for favorite in student.favorites.filter(course = course):
-            favorite.delete()
+        # delete the course in the student's schedule
+        [classes.delete() for classes in student.classes.all() if 
+            classes.course_section.course == course]
         
         return redirect('schedule_maker:course_select')
     else:
