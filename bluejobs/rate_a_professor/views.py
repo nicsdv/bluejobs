@@ -85,7 +85,7 @@ def remove_rating(request, professor, **kwarg):
         professor = Professor.objects.get(pk=professor)
         rating = professor.ratings.get(pk=kwarg['pk'])
 
-        query = Upvotes.objects.get(rating = rating)
+        query = Upvotes.objects.get(rating = rating, student = student)
         query.delete()
 
         return redirect('rate_a_professor:rating_list', professor.pk)
