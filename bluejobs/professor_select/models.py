@@ -78,11 +78,6 @@ class Course (models.Model):
     def __str__(self):
         return '{}'.format(self.course_code)
     
-    @property
-    def preferred_classes(self):
-        favorites = ProfessorFavorite.objects.filter(course=self)
-        favorites = [favorite.professor for favorite in favorites]
-        return list(self.classes.filter(professor__in=favorites))
 
 
 # COURSE_SECTION (Course_Code, Section, Professor_ID, Slots, Venue)
