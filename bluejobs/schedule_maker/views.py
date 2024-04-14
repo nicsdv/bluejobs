@@ -91,14 +91,13 @@ def create_schedule(request):
             class_selected.student = student
             class_selected.course_section = course_section
             
-            class_selected.save()
-
-            # remove selected section with the same course as newly-submitted section to avoid duplicates
+            # remove previously-selected course section to avoid duplicate classes for one course
             existing_classes = [classes for classes in student.classes.all() 
                                 if classes.course_section.course == course_section.course]
             
             [section.delete() for section in existing_classes if section != class_selected]
 
+            class_selected.save()
         
         added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
         sections = [classes.section.section_letter for classes in added_classes]
@@ -146,6 +145,5 @@ def display_schedule(request):
         
         return render(request, 'schedule_maker/schedule-display.html', args)
 
-    
     else:
         return redirect('landing_page:home')

@@ -42,8 +42,8 @@
             {% for class in required.preferred_classes %}
                 <option value="{{ class.pk }}" 
                   {% if class == required.get_selected_class %}
-                    selected disabled
-                  {% elif class.section.section_letter in sections %} 
+                    selected
+                  {% elif class.section.section_letter in sections and required.get_selected_class.section.section_letter != class.section.section_letter %} 
                       disabled
                   {% endif %}>
                   [{{ class.section }}]{{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}
