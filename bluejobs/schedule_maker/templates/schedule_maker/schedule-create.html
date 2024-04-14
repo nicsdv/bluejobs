@@ -18,119 +18,62 @@
       <div class="gradient-tile"></div>
       <img src="{% static 'profselect_icon.png' %}" class="landing-icon">
 
-      <b>ADDED CLASSES </b><br>
+      <b>ADDED CLASSES </b><br> <br>
+      <a href="{% url 'schedule_maker:reset-schedule' %}">
+        Reset Schedule
+      </a>
+      <br>
 
       {% for class in added_classes %}
-        {{ class }} <br>
-        {{ class.course_section }} ({{class.course_section.section.day_schedule}} {{class.course_section.section.time_schedule}}) <br>
-        <br><br>
+        {{ class }} ({{class.section.day_schedule}} {{class.section.time_schedule}}) <br>
       {% endfor %}  
 
-      <br><br>
+      <br>
 
       {% for required in student.required_courses.all %}
       {{ required.course }}
+      {{ required.get_selected_class.section.section_letter }}
+      <a href="{% url 'schedule_maker:reset-class' required.course.pk %}"> Reset Course Selection</a>
+      
+      {% if required.preferred_classes %}
       <form method="POST">
         {% csrf_token %}
-        <select name="class_select">
-          {% for class in required.course.preferred_classes %}
-            {% if class not in added_classes %}
-              <option value="{{ class.pk }}">[{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
+          <select name="class_select">
+            {% for class in required.preferred_classes %}
+                <option value="{{ class.pk }}" 
+                  {% if class == required.get_selected_class %}
+                    selected disabled
+                  {% elif class.section.section_letter in sections %} 
+                      disabled
+                  {% endif %}>
+                  [{{ class.section }}]{{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}
+                  {% if class.section.section_letter in sections and required.get_selected_class.section.section_letter != class.section.section_letter %}
+                    (SCHEDULE CONFLICT)
+                  {% elif class == required.get_selected_class %}
+                    (SELECTED)
+                  {% endif %}
+                </option>
+            {% endfor %}
+          </select>
         &nbsp; &nbsp;
         <button type="submit">Add Class</button>
       </form>
-      <br>
+
+      {% else %}
+          <br>You have not selected a professor for {{ required.course }} . 
+          
+          <a href="{% url 'professor_select:professor_list' required.course.pk %}">Select {{ required.course }} Professors </a>
+        {% endif %}
       <br>
       {% endfor %}
-    </div>
 
+      <a href="{% url 'schedule_maker:display-schedule' %}">
+        Display Schedule
+      </a>
+      
+    </div>
 
     <a href="{% url 'schedule_maker:course_select' %}" class="back-arrow-dark">
       <i class="fas fa-arrow-left"></i>
     </a>
-
-    <!-- <div class="title-box">
-      <h1 class="homepage-title">Professor Select</h1>
-      <p class="homepage-subtitle">Choose a course to select a professor for</p>
-      <br>
-      <div class="dropdown">
-        <table class="table">
-          <tbody>
-            {% if added_courses %}
-              {% for course in added_courses %}
-                {% if forloop.counter0|divisibleby:4 %}
-                  <tr>
-                {% endif %}
-                    <td>
-                      <strong>{{ course }}</strong><br>
-                      <div class="remove-icon-container">
-                        <a href="{% url 'professor_select:course_remove' course.pk %}" class="remove-icon"><i class="fas fa-minus"></i></a>
-                      </div>
-                    </td>
-                {% if forloop.counter|divisibleby:4 or forloop.last %}
-                  {% if forloop.last %}
-                      </tr><tr>
-                      <td>
-                        <form method="POST">
-                          {% csrf_token %}
-                          <select name="course_list_select">
-                            {% for item in course_selection %}
-                              <option value="{{ item }}">{{ item.course_code }}</option>
-                            {% endfor %}
-                          </select> 
-                          <button type="submit">Add Course</button>
-                        </form> 
-                      </td>
-                  {% else %}
-                    </tr><tr>
-                    {% if forloop.counter|add:1|divisibleby:4 %}
-                      <td>
-                        <form method="POST">
-                          {% csrf_token %}
-                          <select name="course_list_select">
-                            {% for item in course_selection %}
-                              <option value="{{ item }}">{{ item.course_code }}</option>
-                            {% endfor %}
-                          </select> 
-                          <button type="submit">Add Course</button>
-                        </form> 
-                      </td>
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-            {% else %}
-              <tr>
-                <td>
-                  <form method="POST">
-                    {% csrf_token %}
-                    <select name="course_list_select">
-                      {% for item in course_selection %}
-                        <option value="{{ item }}">{{ item.course_code }}</option>
-                      {% endfor %}
-                    </select> 
-                    <button type="submit">Add Course</button>
-                  </form> 
-                </td>
-              </tr>
-            {% endif %}
-          </tbody>
-        </table>
-      </div>
-    
-    <form method="POST">
-      {% csrf_token %}
-      <select name = "course_list_select">
-        {% for course in course_selection %}
-          <option value ="{{course}}"> {{course.course_code}} </option>
-        {% endfor %}
-      </select> 
-      <button type="submit">Add Course</button>
-    </form> 
-    <a href="#"><button> &#8592; </button></a>
-
-    </div> -->
 {% endblock %}

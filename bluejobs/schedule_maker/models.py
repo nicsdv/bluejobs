@@ -1,6 +1,6 @@
 from django.db import models
 from landing_page.models import Student
-from professor_select.models import CourseSection, Course
+from professor_select.models import *
 
 '''
 The following code initializes the django models for the schedule maker. It declares the entities as 
@@ -24,6 +24,20 @@ class RequiredCourse (models.Model):
 
     def __str__(self):
         return '{} Selected: {} '.format(self.student, self.course)
+    
+    @property
+    def preferred_classes(self):
+        favorites = ProfessorFavorite.objects.filter(student=self.student, course=self.course)
+        favorites = [favorite.professor for favorite in favorites]
+        return list(self.course.classes.filter(professor__in=favorites))
+    
+    @property
+    def get_selected_class(self):
+        query = self.student.classes.all()
+        for classes in query:
+            if classes.course_section.course == self.course:
+                return classes.course_section
+        return ""
 
 
 # STUDENT_SCHEDULE (Course_Section,  Student_ID)
@@ -38,3 +52,6 @@ class StudentSchedule (models.Model):
     
     def __str__(self):
         return '{} Selected: {} '.format(self.student, self.course_section)
+    
+    def get_added_courses(self):
+        return self.objects.filter(student=self.student)

@@ -85,21 +85,67 @@ def create_schedule(request):
             class_section = request.POST['class_select']
             
             course_form = SectionSelectForm()
+            course_section = CourseSection.objects.get(pk=class_section)
             
             class_selected = course_form.save(False)
             class_selected.student = student
-            class_selected.course_section = CourseSection.objects.get(pk=class_section)
+            class_selected.course_section = course_section
+            
             class_selected.save()
+
+            # remove selected section with the same course as newly-submitted section to avoid duplicates
+            existing_classes = [classes for classes in student.classes.all() 
+                                if classes.course_section.course == course_section.course]
+            
+            [section.delete() for section in existing_classes if section != class_selected]
+
         
-        added_classes = [classes for classes in student.classes.all()]
-        print(added_classes)
+        added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
+        sections = [classes.section.section_letter for classes in added_classes]
 
         args['added_classes'] = added_classes
-
-        print(added_classes)
-
+        args['sections'] = sections
         return render(request, 'schedule_maker/schedule-create.html', args)
     
     else:
         return redirect('landing_page:home')
+
+def reset_schedule(request):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        
+        [section.delete() for section in student.classes.all()]
+        return redirect('schedule_maker:create-schedule')
     
+    else:
+        return redirect('landing_page:home')
+    
+def reset_class(request, **kwarg):
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        course = Course.objects.get(pk=kwarg['pk'])
+
+        [classes.delete() for classes in student.classes.all() if classes.course_section.course == course] 
+        
+        return redirect('schedule_maker:create-schedule')
+    
+    else:
+        return redirect('landing_page:home')
+
+def display_schedule(request):    
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        args = {}
+
+        for classes in student.classes.all():
+            index = classes.course_section.section.section_letter
+            args[index] = classes.course_section
+        
+        return render(request, 'schedule_maker/schedule-display.html', args)
+
+    
+    else:
+        return redirect('landing_page:home')
