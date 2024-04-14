@@ -101,9 +101,10 @@ def create_schedule(request):
 
         
         added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
+        sections = [classes.section.section_letter for classes in added_classes]
 
         args['added_classes'] = added_classes
-
+        args['sections'] = sections
         return render(request, 'schedule_maker/schedule-create.html', args)
     
     else:
@@ -133,5 +134,18 @@ def reset_class(request, **kwarg):
     else:
         return redirect('landing_page:home')
 
-def display_schedule(request):
-        return render(request, 'schedule_maker/schedule-display.html')
+def display_schedule(request):    
+    if request.user.is_authenticated and request.user.is_student:
+        current_user = request.user
+        student = Student.objects.get(pk = current_user.pk)
+        args = {}
+
+        for classes in student.classes.all():
+            index = classes.course_section.section.section_letter
+            args[index] = classes.course_section
+        
+        return render(request, 'schedule_maker/schedule-display.html', args)
+
+    
+    else:
+        return redirect('landing_page:home')

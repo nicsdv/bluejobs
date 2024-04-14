@@ -1,4 +1,3 @@
-{% extends 'base.html' %}
 
 {% block title %}Display Schedule{% endblock %} 
 {% block content %}
@@ -13,7 +12,9 @@
     </ul> 
 
     <h2>Your Schedule</h2>
-
+    <a href="{% url 'schedule_maker:create-schedule' %}">
+      Edit My Schedule
+    </a>
     <table border="1">
         <thead>
           <tr>
@@ -28,11 +29,11 @@
         <tbody>
     <tr>
         <td>08:00 - 8:30</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{A.course}} {{A.section }}<br> {{A.professor}}</td>
+        <td rowspan="3">{{J.course}} {{J.section }}<br> {{J.professor}}</td>
         <td rowspan="2"> </td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{A}}</td>
+        <td rowspan="3">{{A.course}} {{A.section }}<br> {{A.professor}}</td>
+        <td rowspan="3">{{J.course}} {{J.section }}<br> {{J.professor}}</td>
         <td rowspan="2"> </td>
     </tr>
     <tr>
@@ -40,15 +41,15 @@
     </tr>
     <tr>
         <td>09:00 - 9:30</td>
-        <td rowspan="6">{{C}}</td>
-        <td rowspan="6">{{D}}</td>
+        <td rowspan="6">{{ WA.course }} {{ WA.section }}<br> {{WA.professor }}</td>
+        <td rowspan="6">{{ SA.course}} {{ SA.section }}<br> {{ SA.professor }}</td>
     </tr>
     <tr>
         <td>09:30 - 10:00</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ B.course }} {{ B.section }}<br> {{ B.professor }}</td>
+        <td rowspan="3">{{ K.course }} {{ K.section }}<br> {{ K.professor }}</td>
+        <td rowspan="3">{{ B.course }} {{ B.section }}<br> {{ B.professor }}</td>
+        <td rowspan="3">{{ K.course }} {{ K.section }}<br> {{ K.professor }}</td>
     </tr>
     <tr>
         <td>10:00 - 10:30</td>
@@ -58,25 +59,25 @@
     </tr>
     <tr>
         <td>11:00 - 11:30</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ C.course }} {{ C.section }} <br> {{ C.professor }}</td>
+        <td rowspan="3">{{ L.course }} {{ L.section }}<br> {{ L.professor }}</td>
+        <td rowspan="3">{{ C.course }} {{ C.section }} <br> {{ C.professor }}</td>
+        <td rowspan="3">{{ L.course }} {{ L.section }}<br> {{ L.professor }}</td>
     </tr>
     <tr>
         <td>11:30 - 12:00</td>
     </tr>
     <tr>
         <td>12:00 - 12:30</td>
-        <td rowspan="6">{{C}}</td>
-        <td rowspan="6">{{D}}</td>
+        <td rowspan="6">{{ WB.course }} {{ WB.section }}<br> {{ WB.professor }}</td>
+        <td rowspan="6">{{ SB.course }} {{ SB.section }}<br> {{ SB.professor }}</td>
     </tr>
     <tr>
         <td>12:30 - 13:00</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ D.course }} {{ D.section }} <br> {{ D.professor }}</td>
+        <td rowspan="3">{{ M.course }} {{ M.section }}<br> {{ M.professor }}</td>
+        <td rowspan="3">{{ D.course }} {{ D.section }} <br> {{ D.professor }}</td>
+        <td rowspan="3">{{ M.course }} {{ M.section }}<br> {{ M.professor }}</td>
     </tr>
     <tr>
         <td>13:00 - 13:30</td>
@@ -86,25 +87,25 @@
     </tr>
     <tr>
         <td>14:00 - 14:30</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
+        <td rowspan="3">{{ N.course }} {{ N.section }}<br> {{ N.professor }}</td>
+        <td rowspan="3">{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
+        <td rowspan="3">{{ N.course }} {{ N.section }}<br> {{ N.professor }}</td>
     </tr>
     <tr>
         <td>14:30 - 15:00</td>
     </tr>
     <tr>
         <td>15:00 - 15:30</td>
-        <td rowspan="6">{{C}}</td>
-        <td rowspan="6">{{D}}</td>
+        <td rowspan="6">{{ WC.course }} {{ WC.section }}<br> {{ WC.professor }}</td>
+        <td rowspan="6">{{ SC.course }} {{ SC.section }}<br> {{ SC.professor }}</td>
     </tr>
     <tr>
         <td>15:30 - 16:00</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
+        <td rowspan="3">{{ O.course }} {{ O.section }}<br> {{ O.professor }}</td>
+        <td rowspan="3">{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
+        <td rowspan="3">{{ O.course }} {{ O.section }}<br> {{ O.professor }}</td>
     </tr>
     <tr>
         <td>16:00 - 16:30</td>
@@ -114,25 +115,25 @@
     </tr>
     <tr>
         <td>17:00 - 17:30</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
+        <td rowspan="3"></td>
+        <td rowspan="3">{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
+        <td rowspan="3"></td>
     </tr>
     <tr>
         <td>17:30 - 18:00</td>
     </tr>
     <tr>
         <td>18:00 - 18:30</td>
-        <td rowspan="6">{{C}}</td>
-        <td rowspan="6">{{D}}</td>
+        <td rowspan="6">{{ WD.course }} {{ WD.section }}<br> {{ WD.professor }}</td>
+        <td rowspan="6">{{ SD.course }} {{ SD.section }}<br> {{ SD.professor }}</td>
     </tr>
     <tr>
         <td>18:30 - 19:00</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
-        <td rowspan="3">{{A}}</td>
-        <td rowspan="3">{{B}}</td>
+        <td rowspan="3">{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
+        <td rowspan="3">{{ Q.course }} {{ Q.section }}<br> {{ Q.professor }}</td>
+        <td rowspan="3">{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
+        <td rowspan="3">{{ Q.course }} {{ Q.section }}<br> {{ Q.professor }}</td>
     </tr>
     <tr>
         <td>19:00 - 19:30</td>

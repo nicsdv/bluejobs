@@ -63,6 +63,12 @@ class SectionSchedule (models.Model):
     def __str__(self):
         return '{}'.format(self.section_code)
     
+    @property
+    def section_letter(self):
+        if self.section_code[0] == "W" or self.section_code[0] == "S":
+            return self.section_code[:2]
+        return self.section_code[0]
+    
 # Get a default value for course department foreign key 
 def get_department():
     query = Department.objects.all()
@@ -76,8 +82,7 @@ class Course (models.Model):
                                 on_delete = models.CASCADE, default = get_department)
 
     def __str__(self):
-        return '{}'.format(self.course_code)
-    
+        return '{}'.format(self.course_code)   
 
 
 # COURSE_SECTION (Course_Code, Section, Professor_ID, Slots, Venue)
@@ -99,8 +104,7 @@ class CourseSection (models.Model):
     def __str__(self):
         return '{} {}: {}'.format(self.course, self.section.section_code, self.professor)
     
-    def get_professor(self):
-        return self.professor
+    
     
 # COURSE_STUDENT (Course_Code, Student_ID)
 class CourseStudent (models.Model):

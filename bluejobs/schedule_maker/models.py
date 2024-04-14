@@ -30,6 +30,14 @@ class RequiredCourse (models.Model):
         favorites = ProfessorFavorite.objects.filter(student=self.student, course=self.course)
         favorites = [favorite.professor for favorite in favorites]
         return list(self.course.classes.filter(professor__in=favorites))
+    
+    @property
+    def get_selected_class(self):
+        query = self.student.classes.all()
+        for classes in query:
+            if classes.course_section.course == self.course:
+                return classes.course_section
+        return ""
 
 
 # STUDENT_SCHEDULE (Course_Section,  Student_ID)
@@ -45,3 +53,5 @@ class StudentSchedule (models.Model):
     def __str__(self):
         return '{} Selected: {} '.format(self.student, self.course_section)
     
+    def get_added_courses(self):
+        return self.objects.filter(student=self.student)
