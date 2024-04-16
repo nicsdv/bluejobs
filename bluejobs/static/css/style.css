@@ -21,6 +21,10 @@ body {
   z-index: 1;
 }
 
+.scrollable{
+  overflow-y: visible !important;
+}
+
 .back-arrow {
   position: fixed;
   bottom: 50px;
@@ -822,7 +826,7 @@ body {
     cursor: pointer;
     box-shadow: 0;
     transform: translateY(0);
-    transition: all .5s ease-in-out
+    transition: all .5s ease-in-out;
   }
 
   .cCarousel-item:hover {
@@ -1150,7 +1154,7 @@ body {
   background-color: white; /* Blue color */
   border: none;
   color: #02408B;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 30px; /* Adjust padding as needed */
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -1159,7 +1163,7 @@ body {
   border-radius: 15px; /* Rounded corners */
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
-  transition: all .5s ease-in-out
+  transition: all .5s ease-in-out;
 }
 .white-button:hover {
   background-color: rgb(229, 229, 229); /* Darker blue on hover */
@@ -1260,6 +1264,152 @@ body {
 
 .centered-div {
   text-align: center;
+}
+
+/* ================= Professor Forum ================= */
+
+.prof-forum .title-box {
+  top: 120px !important;
+  min-width: 1200px;
+}
+
+.prof-forum .homepage-title {
+  font-size: 90px;
+  margin-top: -30px;
+}
+
+.prof-forum img {
+  margin-top: 0px;
+  margin-right: 20px;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+.forum-box {
+  margin-left: 450px;
+  width: calc(100%-450px);
+}
+
+.forum-entry {
+  position: relative;
+  background-color: #EDEDED;
+  border-radius: 25px;
+  display: flex; /* Use flexbox for layout */
+  align-items: flex-start; /* Align items vertically */
+  width: 800px;
+  padding: 20px 20px;
+  margin-bottom: 40px;
+  transition: all 0.5s ease-in-out;
+}
+
+.forum-entry:hover {
+  transform: translateY(-10px);
+  box-shadow: 4px 4px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.prof-forum .forum-entry img {
+  margin-top: 0px;
+  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+.forum-entry h4 {
+  font-family: "Bowlby One SC", sans-serif;
+  letter-spacing: 1px;
+  color: #02408B;
+  margin-block-start: 0px; margin-block-end: 0px;
+  font-size: 18px;
+}
+
+.forum-entry .date {
+  font-family: "Noto Sans Khojki", sans-serif;
+  margin-block-start: -4px; margin-block-end: 0px;
+  color: #8D8D8D;
+  font-size: 14px;
+}
+
+.forum-entry .rate-score {
+  font-family: "Bowlby One SC", sans-serif;
+  color: #07599D;
+  font-size: 14px;
+  margin-block-start: 8px; margin-block-end: 0px;
+}
+
+.forum-entry .rate-comment {
+  font-family: "Noto Sans Khojki", sans-serif;
+  margin-block-start: 4px; margin-block-end: 0px;
+  line-height: 1.5;
+  color: #02408B;
+}
+
+.upvote-container {
+  position: absolute;
+  top: -15px; /* Adjust the top position as needed */
+  right: -15px; /* Adjust the left position as needed */
+  text-align: center;
+  color: #8D8D8D;
+
+  background-color: #D9D9D9;
+  padding: 10px 10px;
+  border-radius: 50%;
+}
+
+.upvote-container-fave {
+  position: absolute;
+  top: -15px; /* Adjust the top position as needed */
+  right: -15px; /* Adjust the left position as needed */
+  text-align: center;
+  color: white;
+
+  background-color: #02408B;
+  padding: 10px 10px;
+  border-radius: 50%;
+}
+
+.fa-arrow-up {
+  font-size: 24px;
+}
+
+.upvote-count {
+  position: absolute;
+  top: 23px; /* Adjust the top position as needed */
+  right: 50px; /* Adjust the left position as needed */
+  text-align: center;
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 13px;
+  background-color: #02408B;
+  padding: 5px 30px;
+  border-radius: 20px;
+}
+
+.prof-forum .mini-blue-button {
+  border: 2px solid #07599D;
+  background-color: none; /* Blue color */
+  color: #07599D;
+  padding: 5px 30px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+  margin-top: 20px;
+  transition: 0.2s ease-in-out;
+}
+
+.prof-forum .mini-blue-button:hover {
+  background-color: #07599D; /* Blue color */
+  border: 2px solid white;
+  color: white;
 }
 
 /* ================= Navbar ================= */

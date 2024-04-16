@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rating List</title>
-</head>
-<body>
-    <h1>Rating List</h1>
+{% extends 'base.html' %}
+
+{% block title %}{{ professor }}{% endblock %} 
+{% block content %}
+
+    <div class="white-bg scrollable prof-forum">
+
+        <ul class="navbar">
+            <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+            <li><a href="{% url 'landing_page:login' %}">Sign Out</a></li>
+        </ul> 
+
+
+        <div class="title-box">
+            <div class="rating-containter">
+                <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+                <div>
+                    <h1 class="homepage-title">{{professor}}</h1>
+                    <p class="homepage-subtitle">Professor Forum</p>
+                    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}" class="mini-blue-button">Creat Entry</a>
+                </div>
+            </div>
+            <br><br>
+            <div class="forum-box">
+
+                {% for rating in ratings %}
+                <div class="forum-entry">
+                    <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
+                    <div>
+                        <h4>{{ rating.student }}</h4>
+                        <p class="date">February 14, 2024</p>
+                        <p class="rate-score">{{ rating.course }} | Rating: {{ rating.get_average }}/10</p>
+                        <p class="rate-comment">{{ rating.comment }}</p>
+                    </div>
+                    {% if rating not in upvoted_ratings %}
+                    <a href="{% url 'rate_a_professor:add_rating' professor.pk rating.pk %}">
+                        <div class="upvote-container">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'rate_a_professor:remove_rating' professor.pk rating.pk %}">
+                        <div class="upvote-container-fave">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </a>
+                    {% endif %}
+                    <div class="upvote-count">
+                        {{ rating.get_upvotes }} Upvotes
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            
+            
+            
+        </div>
+
+        <a href="{% url 'rate_a_professor:professor_list' %}" class="back-arrow-dark">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- <h1>Rating List</h1>
     <ul>
         {% for rating in ratings %}
             <li>{{ rating.course }}</li>
@@ -24,6 +85,14 @@
     </ul>
     <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">
         <button>Submit Rating</button>
-    </a>
-</body>
-</html>
+    </a> -->
+
+{% endblock %}
+
+{% block additional_css %}
+    <style>
+        body {
+            overflow-y: visible !important; /* Override the overflow-y property to visible */
+        }
+    </style>
+{% endblock %}
