@@ -69,6 +69,10 @@ def remove_course(request, **kwarg):
         required = student.required_courses.filter(course = course)
         required.delete()
 
+        # delete the course in the student's schedule
+        [classes.delete() for classes in student.classes.all() if 
+            classes.course_section.course == course]
+
 
         return redirect('professor_select:course_select')
     else:
@@ -174,7 +178,11 @@ def remove_professor(request, course, **kwarg):
         query = student.favorites.get(course = course, professor = professor)
         query.delete()
 
-        # redirect to professor list after removing professor as favorite
+        # delete any class taught by the professor in the selected course from the student's schedule
+        [classes.delete() for classes in student.classes.all() if 
+            classes.course_section.course == course and classes.course_section.professor == professor]
+
+        # reload the professsor details after removing professor as favorite
         return redirect('professor_select:professor_details', course.pk, professor.pk)
     
     else:
