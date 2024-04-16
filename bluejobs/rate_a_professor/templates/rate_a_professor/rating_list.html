@@ -66,6 +66,24 @@
     </div>
 
     <!-- <h1>Rating List</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rating List</title>
+</head>
+<body>
+    <form method="get">
+        <select name="sort_by">
+            <option value="date_oldest">Date (Oldest)</option>
+            <option value="date_newest">Date (Newest)</option>
+            <option value="upvotes_most">Upvotes (Most)</option>
+            <option value="upvotes_least">Upvotes (Least)</option>
+            <option value="rating_highest">Rating (Highest)</option>
+            <option value="rating_lowest">Rating (Lowest)</option>
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+    <h1>Rating List</h1>
     <ul>
         {% for rating in ratings %}
             <li>{{ rating.course }}</li>

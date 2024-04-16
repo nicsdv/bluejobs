@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Avg
 from django.core.validators import MinValueValidator, MaxValueValidator
 from landing_page.models import Student, Department
+from datetime import datetime
 
 '''
 The following code initializes the django models for the professor select. It declares the entities as 
@@ -139,7 +140,7 @@ class ProfessorRating (models.Model):
     approachability = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
     friendliness = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
     comment = models.TextField()
-
+    rating_date_time = models.DateTimeField(default=datetime.now, blank=True)
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['student', 'professor', 'course'], name='student_rating')
