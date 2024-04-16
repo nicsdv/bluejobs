@@ -8,8 +8,8 @@
     <ul class="navbar">
         <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
         <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
-        <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
-        <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+        <li><a href="{% url 'schedule_maker:course_select' %}">Schedule Maker </a></li>
+        <li><a href="{% url 'rate_a_professor:professor_list' %}">Rate a Professor</a></li>
         <li><a href="{% url 'landing_page:login' %}">Sign Out</a></li>
     </ul> 
 
@@ -41,9 +41,7 @@
                         <input type="text" placeholder="Workload Management" name="workload_management"/>
                     </td>
                     <td rowspan="3" class="wider">
-                        <input type="text" class="review" placeholder="Review" name="rating"/>
-                        <br>
-                        <!-- <a href="#Somewhere" class="mini-blue-button">Visit Professor Forum</a> -->
+                        <textarea class="review" placeholder="Review" name="rating"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -73,11 +71,11 @@
     </a>
 </div>
     
-    <h1>Submit Feedback</h1>
+    <!-- <h1>Submit Feedback</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit Feedback</button>
-    </form>
+    </form> -->
 
 {% endblock %}

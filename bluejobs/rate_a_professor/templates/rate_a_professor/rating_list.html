@@ -8,8 +8,8 @@
         <ul class="navbar">
             <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
             <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
-            <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
-            <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+            <li><a href="{% url 'schedule_maker:course_select' %}">Schedule Maker </a></li>
+            <li><a href="{% url 'rate_a_professor:professor_list' %}">Rate a Professor</a></li>
             <li><a href="{% url 'landing_page:login' %}">Sign Out</a></li>
         </ul> 
 
@@ -20,18 +20,58 @@
                 <div>
                     <h1 class="homepage-title">{{professor}}</h1>
                     <p class="homepage-subtitle">Professor Forum</p>
-                    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}" class="mini-blue-button">Creat Entry</a>
+                    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}" class="mini-blue-button">Create Entry</a>
                 </div>
             </div>
             <br><br>
-            <div class="forum-box">
+            <!-- <form method="get">
+                <select name="sort_by">
+                    <option value="date_oldest">Date (Oldest)</option>
+                    <option value="date_newest">Date (Newest)</option>
+                    <option value="upvotes_most">Upvotes (Most)</option>
+                    <option value="upvotes_least">Upvotes (Least)</option>
+                    <option value="rating_highest">Rating (Highest)</option>
+                    <option value="rating_lowest">Rating (Lowest)</option>
+                </select>
+                <button type="submit">Apply</button>
+            </form> -->
+            <div class="filter-box">
+                <h2>Sort By:</h2>
+                <form method="get">
+                    <div class="sort-buttons">
+                        <input type="radio" id="date_oldest" name="sort_by" value="date_oldest">
+                        <label for="date_oldest">Date (Oldest)</label>
+                
+                        <input type="radio" id="date_newest" name="sort_by" value="date_newest">
+                        <label for="date_newest">Date (Newest)</label>
+    
+                        <br>
+                
+                        <input type="radio" id="upvotes_least" name="sort_by" value="upvotes_least">
+                        <label for="upvotes_least">Upvotes (Least)</label>
+                        
+                        <input type="radio" id="upvotes_most" name="sort_by" value="upvotes_most">
+                        <label for="upvotes_most">Upvotes (Most)</label>
+    
+                        <br>
+                        
+                        <input type="radio" id="rating_lowest" name="sort_by" value="rating_lowest">
+                        <label for="rating_lowest">Rating (Lowest)</label>
 
+                        <input type="radio" id="rating_highest" name="sort_by" value="rating_highest">
+                        <label for="rating_highest">Rating (Highest)</label> 
+                    </div>
+                    <br>
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <div class="forum-box">
                 {% for rating in ratings %}
                 <div class="forum-entry">
                     <img src="https://deadline.com/wp-content/uploads/2022/09/220909_TIFF_DAY-3_CAUSEWAY_Jennifer-Lawrence_06383-e1663373129372.jpg?w=1024" alt="Moon">
                     <div>
                         <h4>{{ rating.student }}</h4>
-                        <p class="date">February 14, 2024</p>
+                        <p class="date">{{ rating.rating_date_time}}</p>
                         <p class="rate-score">{{ rating.course }} | Rating: {{ rating.get_average }}/10</p>
                         <p class="rate-comment">{{ rating.comment }}</p>
                     </div>
@@ -72,17 +112,6 @@
     <title>Rating List</title>
 </head>
 <body>
-    <form method="get">
-        <select name="sort_by">
-            <option value="date_oldest">Date (Oldest)</option>
-            <option value="date_newest">Date (Newest)</option>
-            <option value="upvotes_most">Upvotes (Most)</option>
-            <option value="upvotes_least">Upvotes (Least)</option>
-            <option value="rating_highest">Rating (Highest)</option>
-            <option value="rating_lowest">Rating (Lowest)</option>
-        </select>
-        <button type="submit">Apply</button>
-    </form>
     <h1>Rating List</h1>
     <ul>
         {% for rating in ratings %}
