@@ -13,7 +13,7 @@ class ProfessorRatingForm(forms.ModelForm):
             'approachability': forms.Select(choices = rating_choices),
             'friendliness': forms.Select(choices = rating_choices)
         }
-        exclude = ['professor', 'student']
+        exclude = ['professor', 'student', 'rating_date_time']
 
 class ProfessorUpvoteForm(forms.ModelForm):
     class Meta:
