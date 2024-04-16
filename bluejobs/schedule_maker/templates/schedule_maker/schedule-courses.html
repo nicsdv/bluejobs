@@ -5,7 +5,7 @@
 {% block content %}
 
     {# the links to other html files #}
-    <div class="white-bg prof-select">
+    <div class="white-bg sched-maker">
 
       <ul class="navbar">
           <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
@@ -21,11 +21,6 @@
       <div class="title-box">
         <h1 class="homepage-title">Schedule Maker</h1>
         <p class="homepage-subtitle">Input the courses you need to make a schedule for</p>
-        <br>
-        
-        <a href="{% url 'schedule_maker:create-schedule' %}">
-          Create My Schedule
-        </a>
         <br><br><br>
 
         <form method="POST" class="course-form">
@@ -46,7 +41,7 @@
               {% if forloop.counter0|divisibleby:4 %}
               <tr>
               {% endif %}
-                <td data-url="">
+                <td>
                   <h2>{{ course }}</h2>
                   <div class="remove-icon-container">
                     <a href="{% url 'schedule_maker:course_remove' course.pk %}" class="remove-icon"><i class="fas fa-minus"></i></a>
@@ -58,6 +53,10 @@
               {% endfor %}
             </tbody>
           </table>
+          <br><br>
+          <a href="{% url 'schedule_maker:create-schedule' %}" class="blue-button">
+            Create My Schedule
+          </a>
         </div>
         
         

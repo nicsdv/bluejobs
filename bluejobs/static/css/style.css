@@ -944,7 +944,8 @@ body {
     margin-left: 30px;
 }
 
-.prof-details th, td {
+.prof-details th,
+.prof-details td {
     border: none; /* Removes borders */
     padding-right: 20px;
     text-align: left;
@@ -1085,31 +1086,6 @@ body {
   background-size: 100%;
 }
 
-/* ================= Schedule Maker  ================= */
-
-.sched-maker .title-box{
-  position: absolute;
-  left: 130px;
-  top: 120px !important;
-}
-
-.blue-button {
-  background-color: #07599D; /* Blue color */
-  border: none;
-  color: white;
-  padding: 5px 50px; /* Adjust padding as needed */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 17px;
-  border-radius: 25px; /* Rounded corners */
-  cursor: pointer;
-  font-family: "Noto Sans Khojki", sans-serif;
-}
-.blue-button:hover {
-  background-color: #064d87; /* Darker blue on hover */
-}
-
 /* ================= Rate a Prof ================= */
 
 .rate-a-prof .title-box{
@@ -1165,6 +1141,7 @@ body {
   font-family: "Noto Sans Khojki", sans-serif;
   transition: all .5s ease-in-out;
 }
+
 .white-button:hover {
   background-color: rgb(229, 229, 229); /* Darker blue on hover */
   box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.2);
@@ -1412,6 +1389,260 @@ body {
   color: white;
 }
 
+/* ================= Schedule Maker  ================= */
+
+.sched-maker .title-box{
+  position: absolute;
+  left: 130px;
+  top: 110px !important;
+}
+
+.sched-maker .blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.blue-button:hover {
+  background-color: #064d87; /* Darker blue on hover */
+}
+
+.sched-maker .table td {
+  cursor: default !important;
+}
+
+/* ================= Schedule Create Page ================= */
+
+.sched-create .title-box{
+  left: 110px !important;
+  top: 100px !important;
+  /* background-color: lightgrey; */
+  width: 1300px;
+}
+
+.sched-create .table {
+  border-collapse: separate;
+  border-spacing: 30px;
+  margin-left: 15px;
+  width: 100%;
+}
+
+.sched-create .course-title {
+  font-family: "Bowlby One SC", sans-serif;
+  margin-bottom: 15px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+/* CSS for cell styling */
+.sched-create .table .added {
+  
+  position: relative;
+  text-align: center;
+  height: 150px;
+  width: auto;
+  padding: 15px;
+  border-radius: 15px;
+
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+
+  background-color: #02408B;
+  outline: 2px solid #02408B;
+  cursor: default;
+  
+  transition: all 0.5s ease;
+}
+
+.warning {
+  margin-top: -10px;
+}
+
+.sched-create .table .not-added {
+  
+  position: relative;
+  text-align: center;
+  height: 150px;
+  width: auto;
+  padding: 15px;
+  border-radius: 15px;
+
+  color: #02408B;
+  font-family: "Noto Sans Khojki", sans-serif;
+
+  background-color: white;
+  outline: 2px solid #02408B;
+  cursor: default;
+  
+  transition: all 0.5s ease;
+}
+
+.sched-create .table td:hover {
+  transform: translateY(-10px);
+  box-shadow: 4px 4px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sched-create .course-form {
+  display: block !important;
+  align-items: center;
+}
+
+.sched-create .add-button {
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  border-radius: 10px;;
+  background-color: #e8e8e8; /* Change to your desired background color */
+  color: #07599D; /* Change to your desired text color */
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Adjust as needed */
+}
+
+.sched-create .blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+  transition: all .5s ease-in-out;
+}
+
+.blue-button:hover {
+  box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sched-create .white-button {
+  background-color: white; /* Blue color */
+  border: none;
+  color: #07599D;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border: 2px solid #07599D;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.sched-create .mini-blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 30px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.reset-icon-container {
+  background-color: #D9D9D9;
+  width: 40px; /* Set the width of the container */
+  height: 40px; 
+  border-radius: 50%;
+  position: absolute;
+  top: -15px; /* Adjust as needed to position the icon */
+  right: -15px; /* Adjust as needed to position the icon */
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* CSS for remove icon */
+.reset-icon {
+  font-size: 15px;
+  text-decoration: none;
+  color: #07599D;
+}
+
+.reset-icon:visited,
+.reset-icon:hover,
+.reset-icon:active {
+  color: #07599D
+}
+
+/* ================= Schedule Display ================= */
+
+.sched-display .title-box{
+  left: 110px !important;
+  top: 90px !important;
+  /* background-color: lightgrey; */
+  width: 1300px;
+}
+
+.sched-display .homepage-title {
+  font-size: 50px !important;
+  margin-bottom: -10px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-spacing: 15px;
+  color: white;
+  text-align: center;
+  font-family: "Noto Sans Khojki", sans-serif;
+}
+
+.schedule-table td {
+  text-align: center;
+  width: auto;
+}
+
+.schedule-table th {
+  text-align: center;
+  font-size: 18px;
+}
+
+.time-node {
+  font-size: 18px;
+}
+
+.class-node {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.class-node:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: #07599D;
+  transform: scale(1.05);
+  box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.empty-node {
+  background-color: transparent;
+}
+
+.pseudo-white-bg {
+  position: relative;
+  background-color: transparent;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: hidden; overflow-x: hidden;
+  z-index: 1;
+}
+
 /* ================= Navbar ================= */
 
 .navbar {
@@ -1458,10 +1689,6 @@ li a {
 .white-bg li a {
   color: #02408B;
 }
-
-/* .signout {
-  color:red !important;
-} */
 
 /* ================= Animations Keyframes ================= */
 

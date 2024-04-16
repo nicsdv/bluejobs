@@ -1,156 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Display Schedule{% endblock %} 
 {% block content %}
 
     {# the links to other html files #}
-    <ul class="navbar">
-        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
-        <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
-        <li><a href="{% url 'professor_select:course_select' %}">Schedule Maker </a></li>
-        <li><a href="{% url 'professor_select:course_select' %}">Rate a Professor </a></li>
-        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
-    </ul> 
+    
+    <div class="pseudo-white-bg sched-display scrollable">
 
-    <h2>Your Schedule</h2>
-    <a href="{% url 'schedule_maker:create-schedule' %}">
-      Edit My Schedule
+        <ul class="navbar">
+            <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Help </a></li>
+            <li><a href="{% url 'professor_select:course_select' %}">Developers </a></li>
+            <li><a href="{% url 'landing_page:login' %}">Sign Out</a></li>
+        </ul>
+        
+        <div class="title-box">
+            <h1 class="homepage-title">Your Generated Schedule</h1>
+            <table class="schedule-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>MON</th>
+                    <th>TUES</th>
+                    <th>WED</th>
+                    <th>THU</th>
+                    <th>FRI</th>
+                    <th>SAT</th>
+                </tr>
+                <tbody>
+                <tr>
+                    <td class="time-node">08:00 - 8:30</td>
+                    <td rowspan="3" class="empty-node {% if A %} class-node {% endif %}"><strong>{{A.course}} {{A.section }}</strong><br> {{A.professor}}</td>
+                    <td rowspan="3" class="empty-node {% if J %} class-node {% endif %}"><strong>{{J.course}} {{J.section }}</strong><br> {{J.professor}}</td>
+                    <td rowspan="2"> </td>
+                    <td rowspan="3" class="empty-node {% if A %} class-node {% endif %}"><strong>{{A.course}} {{A.section }}</strong><br> {{A.professor}}</td>
+                    <td rowspan="3" class="empty-node {% if J %} class-node {% endif %}"><strong>{{J.course}} {{J.section }}</strong><br> {{J.professor}}</td>
+                    <td rowspan="2"> </td>
+                </tr>
+                <tr>
+                    <td class="time-node">08:30 - 9:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">09:00 - 9:30</td>
+                    <td rowspan="6" class="empty-node {% if WA %} class-node {% endif %}"><strong>{{ WA.course }} {{ WA.section }}</strong><br> {{WA.professor }}</td>
+                    <td rowspan="6" class="empty-node {% if SA %} class-node {% endif %}"><strong>{{ SA.course}} {{ SA.section }}</strong><br> {{ SA.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">09:30 - 10:00</td>
+                    <td rowspan="3" class="empty-node {% if B %} class-node {% endif %}"><strong>{{ B.course }} {{ B.section }}</strong><br> {{ B.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if K %} class-node {% endif %}"><strong>{{ K.course }} {{ K.section }}</strong><br> {{ K.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if B %} class-node {% endif %}"><strong>{{ B.course }} {{ B.section }}</strong><br> {{ B.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if K %} class-node {% endif %}"><strong>{{ K.course }} {{ K.section }}</strong><br> {{ K.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">10:00 - 10:30</td>
+                </tr>
+                <tr>
+                    <td class="time-node">10:30 - 11:00 </td>
+                </tr>
+                <tr>
+                    <td class="time-node">11:00 - 11:30</td>
+                    <td rowspan="3" class="empty-node {% if C %} class-node {% endif %}"><strong>{{ C.course }} {{ C.section }}</strong><br> {{ C.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if L %} class-node {% endif %}"><strong>{{ L.course }} {{ L.section }}</strong><br> {{ L.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if C %} class-node {% endif %}"><strong>{{ C.course }} {{ C.section }}</strong><br> {{ C.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if L %} class-node {% endif %}"><strong>{{ L.course }} {{ L.section }}</strong><br> {{ L.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">11:30 - 12:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">12:00 - 12:30</td>
+                    <td rowspan="6" class="empty-node {% if WB %} class-node {% endif %}"><strong>{{ WB.course }} {{ WB.section }}</strong><br> {{ WB.professor }}</td>
+                    <td rowspan="6" class="empty-node {% if SB %} class-node {% endif %}"><strong>{{ SB.course }} {{ SB.section }}</strong><br> {{ SB.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">12:30 - 13:00</td>
+                    <td rowspan="3" class="empty-node {% if D %} class-node {% endif %}"><strong>{{ D.course }} {{ D.section }}</strong><br> {{ D.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if M %} class-node {% endif %}"><strong>{{ M.course }} {{ M.section }}</strong><br> {{ M.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if D %} class-node {% endif %}"><strong>{{ D.course }} {{ D.section }}</strong><br> {{ D.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if M %} class-node {% endif %}"><strong>{{ M.course }} {{ M.section }}</strong><br> {{ M.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">13:00 - 13:30</td>
+                </tr>
+                <tr>
+                    <td class="time-node">13:30 - 14:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">14:00 - 14:30</td>
+                    <td rowspan="3" class="empty-node {% if E %} class-node {% endif %}"><strong>{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if N %} class-node {% endif %}"><strong>{{ N.course }} {{ N.section }}</strong><br> {{ N.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if E %} class-node {% endif %}"><strong>{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if N %} class-node {% endif %}"><strong>{{ N.course }} {{ N.section }}</strong><br> {{ N.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">14:30 - 15:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">15:00 - 15:30</td>
+                    <td rowspan="6" class="empty-node {% if WC %} class-node {% endif %}"><strong>{{ WC.course }} {{ WC.section }}</strong><br> {{ WC.professor }}</td>
+                    <td rowspan="6" class="empty-node {% if SC %} class-node {% endif %}"><strong>{{ SC.course }} {{ SC.section }}</strong><br> {{ SC.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">15:30 - 16:00</td>
+                    <td rowspan="3" class="empty-node {% if F %} class-node {% endif %}"><strong>{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if O %} class-node {% endif %}"><strong>{{ O.course }} {{ O.section }}</strong><br> {{ O.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if F %} class-node {% endif %}"><strong>{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if O %} class-node {% endif %}"><strong>{{ O.course }} {{ O.section }}</strong><br> {{ O.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">16:00 - 16:30</td>
+                </tr>
+                <tr>
+                    <td class="time-node">16:30 - 17:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">17:00 - 17:30</td>
+                    <td rowspan="3" class="empty-node {% if G %} class-node {% endif %}"><strong>{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
+                    <td rowspan="3"></td>
+                    <td rowspan="3" class="empty-node {% if G %} class-node {% endif %}"><strong>{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
+                    <td rowspan="3"></td>
+                </tr>
+                <tr>
+                    <td class="time-node">17:30 - 18:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">18:00 - 18:30</td>
+                    <td rowspan="6" class="empty-node {% if WD %} class-node {% endif %}"><strong>{{ WD.course }} {{ WD.section }}</strong><br> {{ WD.professor }}</td>
+                    <td rowspan="6" class="empty-node {% if SD %} class-node {% endif %}"><strong>{{ SD.course }} {{ SD.section }}</strong><br> {{ SD.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">18:30 - 19:00</td>
+                    <td rowspan="3" class="empty-node {% if H %} class-node {% endif %}"><strong>{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if Q %} class-node {% endif %}"><strong>{{ Q.course }} {{ Q.section }}</strong><br> {{ Q.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if H %} class-node {% endif %}"><strong>{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
+                    <td rowspan="3" class="empty-node {% if Q %} class-node {% endif %}"><strong>{{ Q.course }} {{ Q.section }}</strong><br> {{ Q.professor }}</td>
+                </tr>
+                <tr>
+                    <td class="time-node">19:00 - 19:30</td>
+                </tr>
+                <tr>
+                    <td class="time-node">19:30 - 20:00</td>
+                </tr>
+                <tr>
+                    <td class="time-node">20:00 - 20:30</td>
+                    <td rowspan="2"> </td>
+                    <td rowspan="2"> </td>
+                    <td rowspan="2"> </td>
+                    <td rowspan="2"> </td>
+                </tr>
+                <tr>
+                    <td class="time-node">20:30 - 21:00</td>
+                </tr>
+            </table>
+            <div class="centered-div">
+                <a href="{% url 'schedule_maker:create-schedule' %}" class="white-button">
+                    Edit My Schedule
+                </a>
+            </div>
+            <br><br><br><br>
+        </div>
+    </div>
+
+    <a href="{% url 'schedule_maker:course_select' %}" class="back-arrow">
+      <i class="fas fa-arrow-left"></i>
     </a>
-    <table border="1">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Mon</th>
-            <th>Tues</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-          </tr>
-        <tbody>
-    <tr>
-        <td>08:00 - 8:30</td>
-        <td rowspan="3">{{A.course}} {{A.section }}<br> {{A.professor}}</td>
-        <td rowspan="3">{{J.course}} {{J.section }}<br> {{J.professor}}</td>
-        <td rowspan="2"> </td>
-        <td rowspan="3">{{A.course}} {{A.section }}<br> {{A.professor}}</td>
-        <td rowspan="3">{{J.course}} {{J.section }}<br> {{J.professor}}</td>
-        <td rowspan="2"> </td>
-    </tr>
-    <tr>
-        <td>08:30 - 9:00</td>
-    </tr>
-    <tr>
-        <td>09:00 - 9:30</td>
-        <td rowspan="6">{{ WA.course }} {{ WA.section }}<br> {{WA.professor }}</td>
-        <td rowspan="6">{{ SA.course}} {{ SA.section }}<br> {{ SA.professor }}</td>
-    </tr>
-    <tr>
-        <td>09:30 - 10:00</td>
-        <td rowspan="3">{{ B.course }} {{ B.section }}<br> {{ B.professor }}</td>
-        <td rowspan="3">{{ K.course }} {{ K.section }}<br> {{ K.professor }}</td>
-        <td rowspan="3">{{ B.course }} {{ B.section }}<br> {{ B.professor }}</td>
-        <td rowspan="3">{{ K.course }} {{ K.section }}<br> {{ K.professor }}</td>
-    </tr>
-    <tr>
-        <td>10:00 - 10:30</td>
-    </tr>
-    <tr>
-        <td>10:30 - 11:00 </td>
-    </tr>
-    <tr>
-        <td>11:00 - 11:30</td>
-        <td rowspan="3">{{ C.course }} {{ C.section }} <br> {{ C.professor }}</td>
-        <td rowspan="3">{{ L.course }} {{ L.section }}<br> {{ L.professor }}</td>
-        <td rowspan="3">{{ C.course }} {{ C.section }} <br> {{ C.professor }}</td>
-        <td rowspan="3">{{ L.course }} {{ L.section }}<br> {{ L.professor }}</td>
-    </tr>
-    <tr>
-        <td>11:30 - 12:00</td>
-    </tr>
-    <tr>
-        <td>12:00 - 12:30</td>
-        <td rowspan="6">{{ WB.course }} {{ WB.section }}<br> {{ WB.professor }}</td>
-        <td rowspan="6">{{ SB.course }} {{ SB.section }}<br> {{ SB.professor }}</td>
-    </tr>
-    <tr>
-        <td>12:30 - 13:00</td>
-        <td rowspan="3">{{ D.course }} {{ D.section }} <br> {{ D.professor }}</td>
-        <td rowspan="3">{{ M.course }} {{ M.section }}<br> {{ M.professor }}</td>
-        <td rowspan="3">{{ D.course }} {{ D.section }} <br> {{ D.professor }}</td>
-        <td rowspan="3">{{ M.course }} {{ M.section }}<br> {{ M.professor }}</td>
-    </tr>
-    <tr>
-        <td>13:00 - 13:30</td>
-    </tr>
-    <tr>
-        <td>13:30 - 14:00</td>
-    </tr>
-    <tr>
-        <td>14:00 - 14:30</td>
-        <td rowspan="3">{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
-        <td rowspan="3">{{ N.course }} {{ N.section }}<br> {{ N.professor }}</td>
-        <td rowspan="3">{{ E.course }} {{ E.section }} <br> {{ E.professor }}</td>
-        <td rowspan="3">{{ N.course }} {{ N.section }}<br> {{ N.professor }}</td>
-    </tr>
-    <tr>
-        <td>14:30 - 15:00</td>
-    </tr>
-    <tr>
-        <td>15:00 - 15:30</td>
-        <td rowspan="6">{{ WC.course }} {{ WC.section }}<br> {{ WC.professor }}</td>
-        <td rowspan="6">{{ SC.course }} {{ SC.section }}<br> {{ SC.professor }}</td>
-    </tr>
-    <tr>
-        <td>15:30 - 16:00</td>
-        <td rowspan="3">{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
-        <td rowspan="3">{{ O.course }} {{ O.section }}<br> {{ O.professor }}</td>
-        <td rowspan="3">{{ F.course }} {{ F.section }} <br> {{ F.professor }}</td>
-        <td rowspan="3">{{ O.course }} {{ O.section }}<br> {{ O.professor }}</td>
-    </tr>
-    <tr>
-        <td>16:00 - 16:30</td>
-    </tr>
-    <tr>
-        <td>16:30 - 17:00</td>
-    </tr>
-    <tr>
-        <td>17:00 - 17:30</td>
-        <td rowspan="3">{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
-        <td rowspan="3"></td>
-        <td rowspan="3">{{ G.course }} {{ G.section }} <br> {{ G.professor }}</td>
-        <td rowspan="3"></td>
-    </tr>
-    <tr>
-        <td>17:30 - 18:00</td>
-    </tr>
-    <tr>
-        <td>18:00 - 18:30</td>
-        <td rowspan="6">{{ WD.course }} {{ WD.section }}<br> {{ WD.professor }}</td>
-        <td rowspan="6">{{ SD.course }} {{ SD.section }}<br> {{ SD.professor }}</td>
-    </tr>
-    <tr>
-        <td>18:30 - 19:00</td>
-        <td rowspan="3">{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
-        <td rowspan="3">{{ Q.course }} {{ Q.section }}<br> {{ Q.professor }}</td>
-        <td rowspan="3">{{ H.course }} {{ H.section }} <br> {{ H.professor }}</td>
-        <td rowspan="3">{{ Q.course }} {{ Q.section }}<br> {{ Q.professor }}</td>
-    </tr>
-    <tr>
-        <td>19:00 - 19:30</td>
-    </tr>
-    <tr>
-        <td>19:30 - 20:00</td>
-    </tr>
-    <tr>
-        <td>20:00 - 20:30</td>
-        <td rowspan="2"> </td>
-        <td rowspan="2"> </td>
-        <td rowspan="2"> </td>
-        <td rowspan="2"> </td>
-    </tr>
-    <tr>
-        <td>20:30 - 21:00</td>
-    </tr>
-            
 
 {% endblock %}
