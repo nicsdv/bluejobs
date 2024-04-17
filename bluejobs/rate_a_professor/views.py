@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Count, Avg
+from django.db.models import Count, Avg, Sum
 from .forms import ProfessorRatingForm, ProfessorUpvoteForm
 from professor_select.models import Professor, ProfessorRating
 from landing_page.models import Student
@@ -47,14 +47,18 @@ def rating_list(request, **kwarg):
         ratings = professor.ratings.all()
 
         sort_by = request.GET.get('sort_by')
-        if sort_by == 'date_oldest':
+        if sort_by == 'date_newest':
             ratings = ratings.order_by('-rating_date_time')
-        elif sort_by == 'date_newest':
+        elif sort_by == 'date_oldest':
             ratings = ratings.order_by('rating_date_time')
         elif sort_by == 'upvotes_most':
             ratings = ratings.annotate(upvote_count=Count('upvotes')).order_by('-upvote_count')
         elif sort_by == 'upvotes_least':
             ratings = ratings.annotate(upvote_count=Count('upvotes')).order_by('upvote_count')
+        elif sort_by == 'rating_highest':
+            ratings = sorted(ratings.all(), key=lambda t: t.get_average)[::-1]
+        elif sort_by == 'rating_lowest':
+            ratings = sorted(ratings.all(), key=lambda t: t.get_average)
     
         args = {
             'professor': professor,
