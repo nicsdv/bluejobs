@@ -30,7 +30,7 @@ def rate_professor(request, **kwarg):
                 rating.professor = professor
                 rating.student = student
                 rating.save()
-                return redirect('rate_a_professor:professor_list')
+                return redirect('rate_a_professor:rating_list', professor.pk)
         else:
             form = ProfessorRatingForm()
         return render(request, 'rate_a_professor/rating_form.html', {'professor': professor, 'form': form})
