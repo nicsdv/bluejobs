@@ -134,11 +134,13 @@ class ProfessorRating (models.Model):
                                  on_delete = models.CASCADE)
     course = models.ForeignKey (Course, related_name = "student_reviews",
                                  on_delete = models.CASCADE)
-    subject_matter_expertise = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
-    workload_management = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
-    grading_leniency = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
-    approachability = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
-    friendliness = models.PositiveIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
+    
+    rating_choices = [(x, x) for x in range (0, 11)]
+    subject_matter_expertise = models.PositiveIntegerField(choices = rating_choices)
+    workload_management = models.PositiveIntegerField(choices = rating_choices)
+    grading_leniency = models.PositiveIntegerField(choices = rating_choices)
+    approachability = models.PositiveIntegerField(choices = rating_choices)
+    friendliness = models.PositiveIntegerField(choices = rating_choices)
     comment = models.TextField()
     rating_date_time = models.DateTimeField(default=datetime.now, blank=True)
     class Meta:
