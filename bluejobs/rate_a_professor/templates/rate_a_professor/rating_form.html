@@ -25,42 +25,45 @@
         <br><br>
         <form method="post">
             {% csrf_token %}
-            {{form.subject_matter_expertise.as_hidden}}
-            {{form.workload_management.as_hidden}}
-            {{form.grading_leniency.as_hidden}}
-            {{form.approachability.as_hidden}}
-            {{form.friendliness.as_hidden}}
-            {{form.rating.as_hidden}}
+            {{form.comment.as_hidden}}
+
+            {{form.course}}
             
             <table>
                 <tr>
                     <td>
-                        <input type="text" placeholder="Subject Matter Expertise" name="subject_matter_expertise"/>
+                        <p>Subject Matter Expertise</p> 
+                        {{form.subject_matter_expertise}}
                     </td>
                     <td rowspan="1">
-                        <input type="text" placeholder="Workload Management" name="workload_management"/>
+                        <p>Workload Management</p> 
+                        {{form.workload_management}}
                     </td>
                     <td rowspan="3" class="wider">
-                        <textarea class="review" placeholder="Review" name="rating"></textarea>
+                        <p class="left">Review</p> 
+                        <textarea class="review" placeholder="" name="comment"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" placeholder="Approachability" name="grading_leniency"/>
+                        <p>Grading Leniency</p> 
+                        {{form.grading_leniency}}
                     </td>
                     <td>
-                        <input type="text" placeholder="Friendliness" name="approachability"/>
+                        <p>Approachability</p> 
+                        {{form.approachability}}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" placeholder="Grading Leniency" name="friendliness"/>
+                        <p>Friendliness</p> 
+                        {{form.friendliness}}
                     </td>
                 </tr>
             </table>
             <br><br>
             <div class="centered-div">
-                <input type="submit" value="Submit Rating"/>
+                <button type="submit">Submit Feedback</button>
             </div>
         </form>
         

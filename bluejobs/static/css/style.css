@@ -1183,10 +1183,11 @@ body {
 .rating-form td {
   border: none;
   padding-right: 50px;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 }
 
-.rating-form input[type=text] {
+.rating-form input[type=text],
+.rating-form .form-score {
   border-radius: 15px !important; 
   width: 100%;
   box-sizing: border-box;
@@ -1199,6 +1200,23 @@ body {
   
   font-family: "Noto Sans Khojki", sans-serif;
   font-style: normal;
+}
+
+.rating-form p {
+  margin-top: 5px;
+  margin-bottom: -5px;
+  font-family: "Noto Sans Khojki", sans-serif;  
+}
+
+.rating-form .left {
+  text-align: left;
+}
+
+.form-score:visited,
+.form-score:hover,
+.form-score:active,
+.form-score:focus-visible {
+  border: 2px solid #07599D !important;
 }
 
 textarea.review {
