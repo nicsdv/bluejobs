@@ -83,28 +83,37 @@ def create_schedule(request):
         args = { 'student': student }
 
         if request.method  == "POST":
-            class_section = request.POST['class_select']
-            
-            course_form = SectionSelectForm()
-            course_section = CourseSection.objects.get(pk=class_section)
-            
-            class_selected = course_form.save(False)
-            class_selected.student = student
-            class_selected.course_section = course_section
-            
-            # remove previously-selected course section to avoid duplicate classes for one course
-            existing_classes = [classes for classes in student.classes.all() 
-                                if classes.course_section.course == course_section.course]
-            
-            [section.delete() for section in existing_classes if section != class_selected]
 
-            class_selected.save()
-        
-        added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
-        sections = [classes.section.section_letter for classes in added_classes]
+            if request.POST.get('class_select', False):
+                class_section = request.POST['class_select']
+                
+                course_form = SectionSelectForm()
+                course_section = CourseSection.objects.get(pk=class_section)
+                
+                class_selected = course_form.save(False)
+                class_selected.student = student
+                class_selected.course_section = course_section
+                
+                # remove previously-selected course section to avoid duplicate classes for one course
+                existing_classes = [classes for classes in student.classes.all() 
+                                    if classes.course_section.course == course_section.course]
+                
+                [section.delete() for section in existing_classes if section != class_selected]
 
-        args['added_classes'] = added_classes
-        args['sections'] = sections
+                class_selected.save()
+
+                added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
+                sections = [classes.section.section_letter for classes in added_classes]
+
+                args['added_classes'] = added_classes
+                args['sections'] = sections
+            
+            else:        
+                added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
+                sections = [classes.section.section_letter for classes in added_classes]
+                args['added_classes'] = added_classes
+                args['sections'] = sections
+                
         return render(request, 'schedule_maker/schedule-create.html', args)
     
     else:
