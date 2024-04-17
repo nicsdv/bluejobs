@@ -509,6 +509,15 @@ body {
   animation-delay: 1s;
 }
 
+.tile13 {
+  left: 1015px;
+  top: 840px;
+  opacity: 0.2;
+  animation: bob2 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
 .button {
   width: auto; height: auto;
   border-radius: 20px;
@@ -1024,6 +1033,7 @@ body {
   border-radius: 15px;
   margin-top: -10px;
   padding-left: 20px;
+  padding-right: 20px;
   
 }
 
@@ -1200,6 +1210,45 @@ body {
   
   font-family: "Noto Sans Khojki", sans-serif;
   font-style: normal;
+}
+
+.course-box {
+  display: flex;
+}
+.rating-form h2 {
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.rating-form .form-course {
+  border-radius: 15px !important; 
+  width: 180px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 2px solid #07599D;
+  border-radius: 2px;
+  background-color: white;
+  
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-style: normal;
+}
+
+.rating-form .blue-button {
+  background-color: #07599D; /* Blue color */
+  border: none;
+  color: white;
+  padding: 5px 50px; /* Adjust padding as needed */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-family: "Noto Sans Khojki", sans-serif;
+  transition: all 0.5s ease-in-out;
 }
 
 .rating-form p {

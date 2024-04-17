@@ -14,6 +14,7 @@ class ProfessorRatingForm(forms.ModelForm):
         self.fields['grading_leniency'].widget.attrs['class'] = 'form-score'
         self.fields['approachability'].widget.attrs['class'] = 'form-score'
         self.fields['friendliness'].widget.attrs['class'] = 'form-score'
+        self.fields['course'].widget.attrs['class'] = 'form-course'
 
 class ProfessorUpvoteForm(forms.ModelForm):
     class Meta:
