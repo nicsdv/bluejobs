@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from landing_page.models import Student
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from .forms import CourseSelectForm, ProfessorFavoriteForm
 from .models import Course, Professor
 
@@ -114,7 +114,8 @@ def professor_detail_view(request, course, **kwarg) :
         }
 
         if len(professor.ratings.all()) > 0:
-            comment = professor.ratings.all()[0].comment
+            comment = professor.ratings.annotate(
+                upvote_count=Count('upvotes')).order_by('-upvote_count')[0].comment
             scores = professor.ratings.aggregate(Avg('subject_matter_expertise'), 
                     Avg('workload_management'), Avg('grading_leniency'),
                     Avg('approachability'), Avg('friendliness'))
