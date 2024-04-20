@@ -23,4 +23,5 @@ urlpatterns = [
     path('professor_select/', include('professor_select.urls', namespace="professor_select")),
     path('schedule_maker/', include('schedule_maker.urls', namespace="schedule_maker")),
     path('rate_a_professor/', include('rate_a_professor.urls', namespace="rate_a_professor")),
+    path('department/', include('department_schedule_upload.urls', namespace="department")),
 ]

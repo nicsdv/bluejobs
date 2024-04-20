@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'professor_select',
     'schedule_maker',
     'rate_a_professor',
+    'department_schedule_upload'
 
 ]
 
