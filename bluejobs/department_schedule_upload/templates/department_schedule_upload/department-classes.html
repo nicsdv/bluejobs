@@ -1,0 +1,28 @@
+
+Welcome, {{ user.department_name }}!
+
+
+<a href="{% url 'landing_page:login' %}">Sign Out</a>
+
+<table>
+    <th>Course</th>
+    <th>Section</th>
+    <th>Professor</th>
+    <th>Max Slots</th>
+    <th>Available Slots</th>
+    <th>Venue</th>
+    
+    {% for course in courses %}
+        {% for class in course.classes.all %}
+        <tr>
+            <td>{{ class.course }}</td>
+            <td>{{ class.section }}</td>
+            <td>{{ class.professor }}</td>
+            <td>{{ class.slots }}</td>
+            <td>{{ class.available_slots }}</td>
+            <td>{{ class.venue }}</td>
+        </tr>
+        {% endfor %}
+
+    {% endfor %}
+</table>

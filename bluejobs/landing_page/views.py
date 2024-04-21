@@ -33,7 +33,6 @@ def student_signup(request):
                 args = {
                     'error': 'User credentials are already used. Please log in or reenter details.'
                 }
-                print("render")
                 return render(request, 'landing_page/signup-student.html', args )
         
       
@@ -63,7 +62,6 @@ def department_signup(request):
                 args = {
                     'error': 'User credentials are already used. Please log in or reenter details.'
                 }
-                print("render")
                 return render(request, 'landing_page/signup-department.html', args )
         
 

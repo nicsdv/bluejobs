@@ -19,7 +19,7 @@ class RequiredCourse (models.Model):
                                 on_delete = models.CASCADE)
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['course', 'student'], name='required_course')
+            models.UniqueConstraint(fields = ['course', 'student'], name = 'required_course')
         ]
 
     def __str__(self):
@@ -27,7 +27,7 @@ class RequiredCourse (models.Model):
     
     @property
     def preferred_classes(self):
-        favorites = ProfessorFavorite.objects.filter(student=self.student, course=self.course)
+        favorites = ProfessorFavorite.objects.filter(student = self.student, course = self.course)
         favorites = [favorite.professor for favorite in favorites]
         return list(self.course.classes.filter(professor__in=favorites))
     
@@ -42,8 +42,8 @@ class RequiredCourse (models.Model):
 
 # STUDENT_SCHEDULE (Course_Section,  Student_ID)
 class StudentSchedule (models.Model):
-    student = models.ForeignKey(Student, on_delete = models.CASCADE, related_name="classes")
-    course_section = models.ForeignKey(CourseSection, on_delete = models.CASCADE)
+    student = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = "classes")
+    course_section = models.ForeignKey(CourseSection, on_delete = models.CASCADE, related_name= "students")
 
     class Meta:
         constraints = [

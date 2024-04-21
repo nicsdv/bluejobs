@@ -105,7 +105,10 @@ class CourseSection (models.Model):
     def __str__(self):
         return '{} {}: {}'.format(self.course, self.section.section_code, self.professor)
     
-    
+    @property
+    def available_slots(self):
+        occupied_slots = len(self.students.all())
+        return self.slots - occupied_slots
     
 # COURSE_STUDENT (Course_Code, Student_ID)
 class CourseStudent (models.Model):
