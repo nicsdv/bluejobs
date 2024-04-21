@@ -13,7 +13,7 @@ Code written by: Nics and Eldon
 '''
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, password = None, **extra_fields):
         # Creates and saves a User with the given email and password.
         if not email:
             raise ValueError('The Email field must be set')
@@ -23,7 +23,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None, **extra_fields):
+    def create_superuser(self, email, password = None, **extra_fields):
         # Creates and saves a Superuser with the given email and password.
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -36,10 +36,10 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    is_student = models.BooleanField(default=False)
-    is_department = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    email = models.EmailField(unique = True)
+    is_student = models.BooleanField(default = False)
+    is_department = models.BooleanField(default = False)
+    is_staff = models.BooleanField(default = False)
 
     objects = UserManager()
 
@@ -51,9 +51,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 # STUDENT (Student_ID, Name, Email, degree_program)
 class Student(User):
-    student_ID = models.IntegerField(default=200000, null=False, unique=True)
-    student_name = models.CharField(max_length=255, null=False)
-    degree_program = models.CharField(max_length=255, null=False)
+    student_ID = models.IntegerField(default = 200000, null = False, unique = True)
+    student_name = models.CharField(max_length = 255, null = False, unique = True)
+    degree_program = models.CharField(max_length = 255, null = False)
 
     def save(self, *args, **kwargs):
         self.is_student = True
@@ -65,7 +65,7 @@ class Student(User):
 
 # DEPARTMENT (Department_ID, Department_Name, Email)
 class Department(User):
-    department_name = models.CharField(max_length=255, null=False, unique=True)
+    department_name = models.CharField(max_length = 255, null = False, unique = True)
 
     def save(self, *args, **kwargs):
         self.is_department = True

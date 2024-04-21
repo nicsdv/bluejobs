@@ -21,7 +21,26 @@ def signup(request):
 
 def student_signup(request):
     if request.method == 'POST':
+
+        # check if the information is already used for an existing account
+        student_ID = request.POST['student_ID']
+        student_name = request.POST['student_name']
+        email = request.POST['email']
+
+        if (student_ID in [student.student_ID for student in Student.objects.all()]) or (
+            student_name in [student.student_name for student in Student.objects.all()]) or (
+            email in [student.email for student in Student.objects.all()]):
+                args = {
+                    'error': 'User credentials are already used. Please log in or reenter details.'
+                }
+                print("render")
+                return render(request, 'landing_page/signup-student.html', args )
+        
+      
+        # will proceed to saving user if there is no existing data with any of the credentials
+
         form = StudentSignUpForm(request.POST)
+
         if form.is_valid():
             user = form.save(commit=False)
             user.is_student = True
@@ -33,6 +52,23 @@ def student_signup(request):
 
 def department_signup(request):
     if request.method == 'POST':
+
+        # check if the information is already used for an existing account
+
+        department_name = request.POST['department_name']
+        email = request.POST['email']
+
+        if (department_name in [department.department_name for department in Department.objects.all()]) or (
+            email in [department.email for department in Department.objects.all()]):
+                args = {
+                    'error': 'User credentials are already used. Please log in or reenter details.'
+                }
+                print("render")
+                return render(request, 'landing_page/signup-department.html', args )
+        
+
+
+        # will proceed to saving user if there is no existing data with any of the credentials
         form = DepartmentSignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)

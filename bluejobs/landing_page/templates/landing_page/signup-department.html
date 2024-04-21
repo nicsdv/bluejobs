@@ -67,6 +67,10 @@
     <p>⚠︎ {{ error }}</p> 
     {% endfor %}
 
+    {% if error %}
+    <p>⚠︎ {{ error }}</p> 
+    {% endif %}
+
     <input type="submit" value="Sign Up"/>
   </form>
 
