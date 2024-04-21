@@ -50,8 +50,6 @@ def upload_classes(request):
             file = request.FILES['file']
             classes = pd.read_csv(file)
 
-            print(classes.head())
-            print(list(classes.columns.values))
             # saving every instance of course and section ['Course', 'Section', 'Professor', 'Slots', 'Venue']
             for index, row in classes.iterrows():
 
@@ -63,11 +61,19 @@ def upload_classes(request):
                     slots = row['Slots']
                     venue = row['Venue']
 
-                    # saving instance given that all needed objects in foreign keys exist
-                    schedule = CourseSection(course = course, section = section, professor = professor,
-                                slots = slots, venue = venue)
+                    # check if the course section already exists. if yes, update details instead
+                    if CourseSection.objects.get(course = course, section = section):
+                        schedule = CourseSection.objects.get(course = course, section = section)
+                        schedule.professor = professor
+                        schedule.slots = slots
+                        schedule.venue = venue
+                        schedule.save()
                     
-                    schedule.save()
+                    else:
+                        # saving instance given that all needed objects in foreign keys exist
+                        schedule = CourseSection(course = course, section = section, professor = professor,
+                                    slots = slots, venue = venue)
+                        schedule.save()
 
                 except Exception as x:
                     print("Instance does not exist.\n",x)
