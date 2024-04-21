@@ -3,3 +3,4 @@ Django==4.1.7
 python-dotenv==1.0.0
 sqlparse==0.4.3
 tzdata==2022.7
+pandas==2.2.2

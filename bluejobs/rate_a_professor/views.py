@@ -5,7 +5,12 @@ from professor_select.models import Professor, ProfessorRating
 from landing_page.models import Student
 from .models import *
 
-# Create your views here.
+'''
+The following code declares the different Rate A Professor views. Views are subject to change 
+throughout the course of the implementation.
+
+Code written by: Nics, Lex, and Eldon
+'''
 
 def professor_list(request):
     if request.user.is_authenticated and request.user.is_student:

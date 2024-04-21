@@ -9,7 +9,8 @@ Code written by: Nics
 
 urlpatterns = [
     path('index', index, name = 'index'),
-    path('courses', department_classes, name="classes")
+    path('courses', department_classes, name="class-list"),
+    path('courses/upload', upload_classes, name="upload-classes")
 ]
 
 app_name = "department_schedule_upload"

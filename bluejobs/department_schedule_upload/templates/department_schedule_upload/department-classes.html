@@ -7,6 +7,8 @@ Welcome, {{ user.department_name }}!
 <table>
     <th>Course</th>
     <th>Section</th>
+    <th>Day</th>
+    <th>Time</th>
     <th>Professor</th>
     <th>Max Slots</th>
     <th>Available Slots</th>
@@ -17,6 +19,8 @@ Welcome, {{ user.department_name }}!
         <tr>
             <td>{{ class.course }}</td>
             <td>{{ class.section }}</td>
+            <td>{{ class.section.day_schedule }}</td>
+            <td>{{ class.section.time_schedule }}</td>
             <td>{{ class.professor }}</td>
             <td>{{ class.slots }}</td>
             <td>{{ class.available_slots }}</td>
@@ -25,4 +29,9 @@ Welcome, {{ user.department_name }}!
         {% endfor %}
 
     {% endfor %}
+    
 </table>
+<br><br>
+
+
+<a href="{% url 'department:upload-classes' %}">Add Classes</a>

@@ -29,7 +29,7 @@ class RequiredCourse (models.Model):
     def preferred_classes(self):
         favorites = ProfessorFavorite.objects.filter(student = self.student, course = self.course)
         favorites = [favorite.professor for favorite in favorites]
-        return list(self.course.classes.filter(professor__in=favorites))
+        return list(self.course.classes.filter(professor__in = favorites))
     
     @property
     def get_selected_class(self):
@@ -43,15 +43,15 @@ class RequiredCourse (models.Model):
 # STUDENT_SCHEDULE (Course_Section,  Student_ID)
 class StudentSchedule (models.Model):
     student = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = "classes")
-    course_section = models.ForeignKey(CourseSection, on_delete = models.CASCADE, related_name= "students")
+    course_section = models.ForeignKey(CourseSection, on_delete = models.CASCADE, related_name = "students")
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['course_section', 'student'], name='student_schedule')
+            models.UniqueConstraint(fields=['course_section', 'student'], name = 'student_schedule')
         ]
     
     def __str__(self):
         return '{} Selected: {} '.format(self.student, self.course_section)
     
     def get_added_courses(self):
-        return self.objects.filter(student=self.student)
+        return self.objects.filter(student = self.student)

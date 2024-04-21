@@ -1,0 +1,14 @@
+Welcome, {{ user.department_name }}!
+
+
+<a href="{% url 'landing_page:login' %}">Sign Out</a>
+<br><br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    Add File for Classes to be Added
+    <br><br>
+    <input type="file" accept=".csv" name="file" required />
+    <br>
+    <br>
+    <button type="submit">Upload Class List</button>
+  </form>

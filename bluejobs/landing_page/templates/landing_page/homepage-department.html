@@ -6,12 +6,15 @@
 
     Welcome, {{ user.department_name }}!
 
-
+    <br>
     <a href="{% url 'landing_page:login' %}">Sign Out</a>
 
     <br>
     <br>
-    <a href="{% url 'department:classes' %}">View List of Classes</a>
+    <a href="{% url 'department:class-list' %}">View List of Classes</a>
+    <br>
+    <br>
+    <a href="{% url 'department:upload-classes' %}">Upload Class Schedule</a>
     
 </div>
 {% comment %}
