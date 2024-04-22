@@ -1,3 +1,5 @@
+/* Entire Code Written by Christianneil Ocampo */
+
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khojki&display=swap');
@@ -600,7 +602,7 @@ body {
   height: 180px;
   object-fit: cover;
   transform: translateY(0px);
-  transition: transform 0.5s ease; /* Add smooth transition effect for the image */
+  transition: transform 0.5s ease;
 }
 
 .container .box .box-cell:hover img {
@@ -658,7 +660,7 @@ body {
   height: 200px;
   object-fit: cover;
   transform: translateY(0px);
-  transition: transform 0.5s ease; /* Add smooth transition effect for the image */
+  transition: transform 0.5s ease;
 }
 
 /* ================= Professor Select ================= */
@@ -679,104 +681,98 @@ body {
   margin-left: -30px;
 }
 
-/* CSS for cell styling */
 .table td {
-    position: relative;
-    text-align: center;
-    min-width: 160px;
-    max-width: 160px; /* Set the width of each cell to 30px */
-    padding: 10px;
-    border-radius: 15px;
+  position: relative;
+  text-align: center;
+  min-width: 160px;
+  max-width: 160px;
+  padding: 10px;
+  border-radius: 15px;
 
-    color: #02408B;
-    font-family: "Noto Sans Khojki", sans-serif;
+  color: #02408B;
+  font-family: "Noto Sans Khojki", sans-serif;
 
-    background-color: white;
-    outline: 2px solid #02408B;
-    cursor: pointer;
-    
-    transition: 0.5s ease;
+  background-color: white;
+  outline: 2px solid #02408B;
+  cursor: pointer;
+  
+  transition: 0.5s ease;
 }
 
 .table td:hover {
-    background-color: #0E92C4; /* Change background color to #0E92C4 */
-    color: white; /* Change text color to white */
-    outline: 2px solid white;
+  background-color: #0E92C4;
+  color: white;
+  outline: 2px solid white;
 }
 
 .table td h2 {
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-/* CSS for remove icon container */
 .remove-icon-container {
-    background-color: #D9D9D9;
-    width: 30px; /* Set the width of the container */
-    height: 30px; 
-    border-radius: 50%;
-    position: absolute;
-    top: -15px; /* Adjust as needed to position the icon */
-    right: -15px; /* Adjust as needed to position the icon */
-    display: flex; /* Use Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-  }
+  background-color: #D9D9D9;
+  width: 30px;
+  height: 30px; 
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   
-  /* CSS for remove icon */
-  .remove-icon {
-    font-size: 10px;
-    text-decoration: none;
-  }
+.remove-icon {
+  font-size: 10px;
+  text-decoration: none;
+}
 
- /* Style the select dropdown */
 .course-form select {
-    width: 160px; /* Adjust as needed */
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  /* Style the options within the dropdown */
-  .course-form select option {
-    padding: 10px;
-  }
-  
-  /* Adjust the position of the button and the select */
-  .course-form {
-    display: flex;
-    align-items: center;
-  }
+  width: 160px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  outline: none;
+}
 
-  .add-course-btn {
-    width: 40px; /* Adjust as needed */
-    height: 40px; /* Adjust as needed */
-    border-radius: 10px;;
-    background-color: #e8e8e8; /* Change to your desired background color */
-    color: #07599D; /* Change to your desired text color */
-    border: none;
-    cursor: pointer;
-    font-size: 20px; /* Adjust as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.course-form select option {
+  padding: 10px;
+}
+  
+.course-form {
+  display: flex;
+  align-items: center;
+}
 
-  .add-course-btn i {
-    font-size: 0.75em; /* Adjust the font size to make strokes thinner */
-  }
-  
-  .add-course-btn:hover {
-    background-color: #dedede; /* Change to your desired hover color */
-  }
-  
-  .add-course-btn:focus {
-    outline: none;
-  }
+.add-course-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;;
+  background-color: #e8e8e8;
+  color: #07599D;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-course-btn i {
+  font-size: 0.75em;
+}
+
+.add-course-btn:hover {
+  background-color: #dedede;
+}
+
+.add-course-btn:focus {
+  outline: none;
+}
 
 /* ================= Professor List ================= */
 
@@ -795,265 +791,265 @@ body {
 }
 
 #cCarousel {
-    position: relative;
-    width: 1270px;
-    max-width: 1540px;
-    margin: 0px;
-  }
-  
-  #cCarousel .arrow {
-    position: absolute;
-    top: 50%;
-    display: flex;
-    width: 45px;
-    height: 45px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    z-index: 1;
-    font-size: 26px;
-    color: white;
-    background: #00000072;
-    cursor: pointer;
-  }
-  
-  #cCarousel #prev {
-    left: 0px;
-  }
-  
-  #cCarousel #next {
-    right: 0px;
-  }
-  
+  position: relative;
+  width: 1270px;
+  max-width: 1540px;
+  margin: 0px;
+}
+
+#cCarousel .arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+  font-size: 26px;
+  color: white;
+  background: #00000072;
+  cursor: pointer;
+}
+
+#cCarousel #prev {
+  left: 0px;
+}
+
+#cCarousel #next {
+  right: 0px;
+}
+
+#carousel-vp {
+  width: 1110px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
+
+@media (max-width: 510px) {
   #carousel-vp {
-    width: 1110px;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin: auto;
-  }
-  
-  @media (max-width: 510px) {
-    #carousel-vp {
-      width: 250px;
-    }
-  }
-  
-  #cCarousel #cCarousel-inner {
-    display: flex;
-    position: absolute;
-    transition: 0.3s ease-in-out;
-    gap: 30px;
-    left: 0px;
-  }
-  
-  .cCarousel-item {
     width: 250px;
-    height: 365px;
-    border: 2px solid white;
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0;
-    transform: translateY(0);
-    transition: all .5s ease-in-out;
   }
+}
 
-  .cCarousel-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 5px 5px 4px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .image-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  .cCarousel-item img {
-    width: 180px; height:180px;
-    object-fit: cover;
-    border-radius:50%;
-    object-fit: cover;
-    color: white;
-    margin: 30px auto;
-    margin-bottom: 0px;
-    display: block;
-  }
-  
-  .cCarousel-item .infos {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background: white;
-    color: black;
-    padding: 25px;
-  }
-  
-  .star-container {
-    position: absolute;
-    top: 15px; /* Adjust the top position as needed */
-    left: 205px; /* Adjust the left position as needed */
-    text-align: center;
-    color: #D9D9D9;
-  }
+#cCarousel #cCarousel-inner {
+  display: flex;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+  gap: 30px;
+  left: 0px;
+}
 
-  .star-container-fave {
-    position: absolute;
-    top: 15px; /* Adjust the top position as needed */
-    left: 205px; /* Adjust the left position as needed */
-    text-align: center;
-    color: #FCB45A;
-  }
-  
-  .fa-star {
-    font-size: 24px;
-  }
-  
-  .prof-list h3 {
-    font-family: "Bowlby One SC", sans-serif;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #07599D;
-  }
-  
-  .prof-list h2 {
-    font-family: "Bowlby One SC", sans-serif;
-    font-size: 40px;
-    letter-spacing: 1px;
-    color: #07599D;
-  }
-  
-  .prof-list small {
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
-  }
+.cCarousel-item {
+  width: 250px;
+  height: 365px;
+  border: 2px solid white;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0;
+  transform: translateY(0);
+  transition: all .5s ease-in-out;
+}
 
-  .prof-list .infos p {
-    font-family: "Noto Sans Khojki", sans-serif;
-    color: #07599D;
-  }
+.cCarousel-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 5px 5px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.cCarousel-item img {
+  width: 180px; height:180px;
+  object-fit: cover;
+  border-radius:50%;
+  object-fit: cover;
+  color: white;
+  margin: 30px auto;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.cCarousel-item .infos {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: white;
+  color: black;
+  padding: 25px;
+}
+
+.star-container {
+  position: absolute;
+  top: 15px;
+  left: 205px;
+  text-align: center;
+  color: #D9D9D9;
+}
+
+.star-container-fave {
+  position: absolute;
+  top: 15px;
+  left: 205px;
+  text-align: center;
+  color: #FCB45A;
+}
+
+.fa-star {
+  font-size: 24px;
+}
+
+.prof-list h3 {
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #07599D;
+}
+
+.prof-list h2 {
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 40px;
+  letter-spacing: 1px;
+  color: #07599D;
+}
+
+.prof-list small {
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+}
+
+.prof-list .infos p {
+  font-family: "Noto Sans Khojki", sans-serif;
+  color: #07599D;
+}
 
 /* ================= Professor Details ================= */
 
 .white-tile {
-    position: absolute;
-    background-color: white;
-    text-align: center;
-    border-radius: 60px 0 0 60px;
-    width: 595px;
-    height: 100vh;
-    top: 0px;
-    left: 940px;
-    z-index: 500;
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  border-radius: 60px 0 0 60px;
+  width: 595px;
+  height: 100vh;
+  top: 0px;
+  left: 940px;
+  z-index: 500;
 }
 
 .prof-details .title-box {
-    position: absolute;
-    left: 130px;
-    top: 110px !important;
-    max-width: 750px;
+  position: absolute;
+  left: 130px;
+  top: 110px !important;
+  max-width: 750px;
 }
 
 .prof-details .homepage-title {
-    max-width: 800px;
-    font-size: 60px !important;
-    line-height: 1.2;
+  max-width: 800px;
+  font-size: 60px !important;
+  line-height: 1.2;
 }
 
 .prof-details table p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .prof-details table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-left: 30px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 30px;
 }
 
 .prof-details th,
 .prof-details td {
-    border: none; /* Removes borders */
-    padding-right: 20px;
-    text-align: left;
+  border: none;
+  padding-right: 20px;
+  text-align: left;
 }
 
 .prof-details td {
-    width: 300px;
-    height: 100px;
-    color: white;
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
+  width: 300px;
+  height: 100px;
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
 }
 
 .prof-details table tr {
-    margin-top: 80px;
+  margin-top: 80px;
 }
 
 .prof-details p {
-    color: white;
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
+  color: white;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
 }
 
 .prof-details small {
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
 }
 
 .prof-details h3 {
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
-    color: #07599D;
-    margin-top: 20px;
-    margin-left: 0px;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+  color: #07599D;
+  margin-top: 20px;
+  margin-left: 0px;
 }
 
 .prof-details a {
-    font-family: "Noto Sans Khojki", sans-serif;
-    font-size: 20px;
-    color: #07599D;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+  color: #07599D;
 }
 
 .prof-details h2 {
-    font-family: "Bowlby One SC", sans-serif;
-    font-size: 90px;
-    letter-spacing: 1px;
-    color: #07599D;
-    margin-top: -30px;
-    margin-bottom: 0px;
-    margin-left: 0px;;
-  }
+  font-family: "Bowlby One SC", sans-serif;
+  font-size: 90px;
+  letter-spacing: 1px;
+  color: #07599D;
+  margin-top: -30px;
+  margin-bottom: 0px;
+  margin-left: 0px;;
+}
 
 .progress {
-    width: 300px;
-    height: 30px;
-    background-color: transparent;
-    border: 2px solid white;
-    border-radius: 10px;
-    margin: 0px;
-    position: relative;
+  width: 300px;
+  height: 30px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 0px;
+  position: relative;
 }
 
 .progress-bar {
-    height: 100%;
-    background-color: white;
-    border-radius: 5px;
-    transition: width 0.3s ease-in-out;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
 }
 
 .progress-value {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .prof-details .comment-box {
@@ -1062,21 +1058,20 @@ body {
   margin-top: -10px;
   padding-left: 20px;
   padding-right: 20px;
-  
 }
 
 .prof-details .comment-box p {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .prof-details img{
-    margin-top: 0px;
-    margin-left: 0px;
-    width: 340px;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 50%;
-    z-index: 9999;
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 9999;
 }
 
 .contrast-signout2 {
@@ -1085,8 +1080,8 @@ body {
 
 .prof-details .star-container {
   position: absolute;
-  top: 60px; /* Adjust the top position as needed */
-  left: 60px; /* Adjust the left position as needed */
+  top: 60px;
+  left: 60px;
   transform: scale(1.7);
   text-align: center;
   color: #D9D9D9;
@@ -1094,8 +1089,8 @@ body {
 
 .prof-details .star-container-fave {
   position: absolute;
-  top: 60px; /* Adjust the top position as needed */
-  left: 60px; /* Adjust the left position as needed */
+  top: 60px;
+  left: 60px;
   text-align: center;
   transform: scale(1.7);
   color: #FCB45A;
@@ -1165,23 +1160,23 @@ body {
 }
 
 .white-button {
-  background-color: white; /* Blue color */
+  background-color: white;
   border: none;
   color: #02408B;
-  padding: 5px 30px; /* Adjust padding as needed */
+  padding: 5px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
   font-weight: bolder;
-  border-radius: 15px; /* Rounded corners */
+  border-radius: 15px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
   transition: all .5s ease-in-out;
 }
 
 .white-button:hover {
-  background-color: rgb(229, 229, 229); /* Darker blue on hover */
+  background-color: rgb(229, 229, 229);
   box-shadow: 3px 3px 4px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -1198,8 +1193,8 @@ body {
 }
 
 .rating-containter {
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Align items vertically */
+  display: flex;
+  align-items: center;
 }
 
 .rating-form img {
@@ -1265,15 +1260,15 @@ body {
 }
 
 .rating-form .blue-button {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
   transition: all 0.5s ease-in-out;
@@ -1305,8 +1300,8 @@ textarea.review {
   font-size: 16px;
   border-radius: 15px !important;
   background-color: white;
-  border: 2px solid #07599D; /* Adding border */
-  resize: vertical; /* Allowing vertical resizing */
+  border: 2px solid #07599D;
+  resize: vertical;
   font-family: "Noto Sans Khojki", sans-serif;
   font-style: normal;
 }
@@ -1323,29 +1318,29 @@ textarea.review {
 }
 
 .rating-form input[type=submit] {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
 }
 
 .rating-form .mini-blue-button {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 30px; /* Adjust padding as needed */
+  padding: 5px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
 }
@@ -1385,8 +1380,8 @@ textarea.review {
   position: relative;
   background-color: #EDEDED;
   border-radius: 25px;
-  display: flex; /* Use flexbox for layout */
-  align-items: flex-start; /* Align items vertically */
+  display: flex;
+  align-items: flex-start;
   width: 800px;
   padding: 20px 20px;
   margin-bottom: 40px;
@@ -1439,8 +1434,8 @@ textarea.review {
 
 .upvote-container {
   position: absolute;
-  top: -15px; /* Adjust the top position as needed */
-  right: -15px; /* Adjust the left position as needed */
+  top: -15px;
+  right: -15px;
   text-align: center;
   color: #8D8D8D;
 
@@ -1451,8 +1446,8 @@ textarea.review {
 
 .upvote-container-fave {
   position: absolute;
-  top: -15px; /* Adjust the top position as needed */
-  right: -15px; /* Adjust the left position as needed */
+  top: -15px;
+  right: -15px;
   text-align: center;
   color: white;
 
@@ -1467,8 +1462,8 @@ textarea.review {
 
 .upvote-count {
   position: absolute;
-  top: 23px; /* Adjust the top position as needed */
-  right: 50px; /* Adjust the left position as needed */
+  top: 23px;
+  right: 50px;
   text-align: center;
   color: white;
   font-family: "Noto Sans Khojki", sans-serif;
@@ -1480,14 +1475,14 @@ textarea.review {
 
 .prof-forum .mini-blue-button {
   border: 2px solid #07599D;
-  background-color: none; /* Blue color */
+  background-color: none;
   color: #07599D;
-  padding: 5px 30px; /* Adjust padding as needed */
+  padding: 5px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
   margin-top: 20px;
@@ -1495,7 +1490,7 @@ textarea.review {
 }
 
 .prof-forum .mini-blue-button:hover {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: 2px solid white;
   color: white;
 }
@@ -1568,21 +1563,21 @@ textarea.review {
 }
 
 .sched-maker .blue-button {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
 }
 
 .blue-button:hover {
-  background-color: #064d87; /* Darker blue on hover */
+  background-color: #064d87;
 }
 
 .sched-maker .table td {
@@ -1594,7 +1589,6 @@ textarea.review {
 .sched-create .title-box{
   left: 110px !important;
   top: 100px !important;
-  /* background-color: lightgrey; */
   width: 1300px;
 }
 
@@ -1612,23 +1606,18 @@ textarea.review {
   letter-spacing: 1px;
 }
 
-/* CSS for cell styling */
 .sched-create .table .added {
-  
   position: relative;
   text-align: center;
   height: 150px;
   width: auto;
   padding: 15px;
   border-radius: 15px;
-
   color: white;
   font-family: "Noto Sans Khojki", sans-serif;
-
   background-color: #02408B;
   outline: 2px solid #02408B;
   cursor: default;
-  
   transition: all 0.5s ease;
 }
 
@@ -1637,21 +1626,17 @@ textarea.review {
 }
 
 .sched-create .table .not-added {
-  
   position: relative;
   text-align: center;
   height: 150px;
   width: auto;
   padding: 15px;
   border-radius: 15px;
-
   color: #02408B;
   font-family: "Noto Sans Khojki", sans-serif;
-
   background-color: white;
   outline: 2px solid #02408B;
   cursor: default;
-  
   transition: all 0.5s ease;
 }
 
@@ -1666,26 +1651,26 @@ textarea.review {
 }
 
 .sched-create .add-button {
-  width: 40px; /* Adjust as needed */
-  height: 40px; /* Adjust as needed */
+  width: 40px;
+  height: 40px;
   border-radius: 10px;;
-  background-color: #e8e8e8; /* Change to your desired background color */
-  color: #07599D; /* Change to your desired text color */
+  background-color: #e8e8e8;
+  color: #07599D;
   border: none;
   cursor: pointer;
-  font-size: 20px; /* Adjust as needed */
+  font-size: 20px;
 }
 
 .sched-create .blue-button {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
   transition: all .5s ease-in-out;
@@ -1696,48 +1681,46 @@ textarea.review {
 }
 
 .sched-create .white-button {
-  background-color: white; /* Blue color */
-  border: none;
+  background-color: white;
   color: #07599D;
-  padding: 5px 50px; /* Adjust padding as needed */
+  padding: 5px 50px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
   border: 2px solid #07599D;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
 }
 
 .sched-create .mini-blue-button {
-  background-color: #07599D; /* Blue color */
+  background-color: #07599D;
   border: none;
   color: white;
-  padding: 5px 30px; /* Adjust padding as needed */
+  padding: 5px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
-  border-radius: 25px; /* Rounded corners */
+  border-radius: 25px;
   cursor: pointer;
   font-family: "Noto Sans Khojki", sans-serif;
 }
 
 .reset-icon-container {
   background-color: #D9D9D9;
-  width: 40px; /* Set the width of the container */
+  width: 40px;
   height: 40px; 
   border-radius: 50%;
   position: absolute;
-  top: -15px; /* Adjust as needed to position the icon */
-  right: -15px; /* Adjust as needed to position the icon */
-  display: flex; /* Use Flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  top: -15px;
+  right: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* CSS for remove icon */
 .reset-icon {
   font-size: 15px;
   text-decoration: none;
@@ -1755,7 +1738,6 @@ textarea.review {
 .sched-display .title-box{
   left: 110px !important;
   top: 90px !important;
-  /* background-color: lightgrey; */
   width: 1300px;
 }
 
@@ -2051,9 +2033,7 @@ textarea.review {
 }
 
 .remove-image:hover {
-  /* border: 2px solid white; */
   background: #ebebeb;
-  color: white;
   transition: all .2s ease;
   cursor: pointer;
 }

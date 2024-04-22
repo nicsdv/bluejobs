@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- Code Written By Christianneil Ocampo -->
+
 {% block title %} {{ professor }} {% endblock %} 
 {% block content %}
-    
-    {# the links to other html files #}
+
     <ul class="navbar">
         <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-student' %}">BlueJobs</a></li>
         <li><a href="{% url 'professor_select:course_select' %}">Professor Select</a></li>
@@ -86,19 +87,6 @@
         </div>
     </div>
 
-    <!-- {{ expertise }} <br>
-    {{ workload }} <br>
-    {{ grading }} <br>
-    {{ approachability }} <br>
-    {{ friendliness }} <br>
-    {{ comment }} <br>
-    
-    <br>
-    
-
-    <br>
-    <a href="{% url 'landing_page:home' %}">Sign Out</a> -->
-
     <a href="{% url 'professor_select:professor_list' course_selected.pk %}" class="back-arrow">
         <i class="fas fa-arrow-left"></i>
     </a>
@@ -129,6 +117,5 @@
         document.getElementById("progress-bar-grading").style.width = gradingpercentage + "%";
         document.getElementById("progress-value-grading").innerText = "{{ grading }} / 10";
     </script>
-
         
 {% endblock %}

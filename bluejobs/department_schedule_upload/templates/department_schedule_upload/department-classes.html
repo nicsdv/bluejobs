@@ -1,58 +1,53 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Course Select{% endblock %} 
-{% block content %}
+<!-- Code Written By Christianneil Ocampo -->
 
-    {# the links to other html files #}
+{% block title %}View Schedules{% endblock %} 
+{% block content %}
     <div class="white-bg scrollable view-sched">
 
-    <ul class="navbar">
-        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-department' %}">BlueJobs</a></li>
-        <li><a href="{% url 'department_schedule_upload:class-list' %}">View List</a></li>
-        <li><a href="{% url 'department_schedule_upload:upload-classes' %}">Upload Schedule</a></li>
-        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
-    </ul> 
+        <ul class="navbar">
+            <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-department' %}">BlueJobs</a></li>
+            <li><a href="{% url 'department_schedule_upload:class-list' %}">View List</a></li>
+            <li><a href="{% url 'department_schedule_upload:upload-classes' %}">Upload Schedule</a></li>
+            <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+        </ul> 
 
-      <div class="gradient-tile"></div>
-      <img src="{% static 'viewlist_icon.png' %}" class="landing-icon">
+        <div class="gradient-tile"></div>
+        <img src="{% static 'viewlist_icon.png' %}" class="landing-icon">
 
-      <div class="title-box">
-        <h1 class="homepage-title">View Schedules</h1>
-        <p class="homepage-subtitle">Displayed below is the current list of schedules in your department</p>
-        <br><br><br>
-        <table class="sched-table">
-            <th>Course</th>
-            <th>Section</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th>Professor</th>
-            <th>Max Slots</th>
-            <th>Available Slots</th>
-            <th>Venue</th>
-            
-            {% for course in courses %}
-                {% for class in course.classes.all %}
-                <tr>
-                    <td>{{ class.course }}</td>
-                    <td>{{ class.section }}</td>
-                    <td>{{ class.section.day_schedule }}</td>
-                    <td>{{ class.section.time_schedule }}</td>
-                    <td>{{ class.professor }}</td>
-                    <td>{{ class.slots }}</td>
-                    <td>{{ class.available_slots }}</td>
-                    <td>{{ class.venue }}</td>
-                </tr>
+        <div class="title-box">
+            <h1 class="homepage-title">View Schedules</h1>
+            <p class="homepage-subtitle">Displayed below is the current list of schedules in your department</p>
+            <br><br><br>
+            <table class="sched-table">
+                <th>Course</th>
+                <th>Section</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Professor</th>
+                <th>Max Slots</th>
+                <th>Available Slots</th>
+                <th>Venue</th>
+                
+                {% for course in courses %}
+                    {% for class in course.classes.all %}
+                    <tr>
+                        <td>{{ class.course }}</td>
+                        <td>{{ class.section }}</td>
+                        <td>{{ class.section.day_schedule }}</td>
+                        <td>{{ class.section.time_schedule }}</td>
+                        <td>{{ class.professor }}</td>
+                        <td>{{ class.slots }}</td>
+                        <td>{{ class.available_slots }}</td>
+                        <td>{{ class.venue }}</td>
+                    </tr>
+                    {% endfor %}
                 {% endfor %}
-        
-            {% endfor %}
-            
-        </table>
-        <br><br><br><br>
-        
-        
-        <!-- <a href="{% url 'department:upload-classes' %}">Add Classes</a> -->
-      </div>
+            </table>
+            <br><br><br><br>
+        </div>
     </div>
 
     <a href="{% url 'landing_page:homepage-department' %}" class="back-arrow-dark">

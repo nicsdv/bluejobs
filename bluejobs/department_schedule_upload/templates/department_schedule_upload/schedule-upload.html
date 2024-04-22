@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Course Select{% endblock %} 
+<!-- Code Written By Christianneil Ocampo -->
+
+{% block title %}Upload Schedules{% endblock %} 
 {% block content %}
-
-    {# the links to other html files #}
     <div class="white-bg upload-sched">
-
-    <ul class="navbar">
-        <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-department' %}">BlueJobs</a></li>
-        <li><a href="{% url 'department_schedule_upload:class-list' %}">View List</a></li>
-        <li><a href="{% url 'department_schedule_upload:upload-classes' %}">Upload Schedule</a></li>
-        <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
-    </ul> 
+      
+      <ul class="navbar">
+          <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-department' %}">BlueJobs</a></li>
+          <li><a href="{% url 'department_schedule_upload:class-list' %}">View List</a></li>
+          <li><a href="{% url 'department_schedule_upload:upload-classes' %}">Upload Schedule</a></li>
+          <li><a class="contrast-signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+      </ul> 
 
       <div class="gradient-tile"></div>
       <img src="{% static 'uploadsched_icon.png' %}" class="landing-icon">
@@ -20,18 +20,8 @@
       <div class="title-box">
         <h1 class="homepage-title">Upload Schedules</h1>
         <p class="homepage-subtitle">Submit the CSV file for your department's schedules below <br>to update or create new entries</p>
-        <!-- <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <br><br>
-          <input type="file" accept=".csv" name="file" required />
-          <br>
-          <br>
-          <button type="submit">Upload Class List</button>
-        </form> -->
-
         <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <div class="file-upload">
-          
           <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="image-upload-wrap">
@@ -54,21 +44,8 @@
               </div>
             </div>
           </form>
-
-          <!-- <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <br><br>
-          <input type="file" accept=".csv" name="file" required />
-          <br>
-          <br>
-          <button type="submit">Upload Class List</button>
-        </form> -->
-
         </div>
         <br><br>
-        
-        
-        <!-- <a href="{% url 'department:upload-classes' %}">Add Classes</a> -->
       </div>
     </div>
 

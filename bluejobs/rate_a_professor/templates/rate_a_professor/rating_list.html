@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+<!-- Code Written By Christianneil Ocampo -->
+
 {% block title %}{{ professor }}{% endblock %} 
 {% block content %}
 
@@ -24,17 +26,6 @@
                 </div>
             </div>
             <br><br>
-            <!-- <form method="get">
-                <select name="sort_by">
-                    <option value="date_oldest">Date (Oldest)</option>
-                    <option value="date_newest">Date (Newest)</option>
-                    <option value="upvotes_most">Upvotes (Most)</option>
-                    <option value="upvotes_least">Upvotes (Least)</option>
-                    <option value="rating_highest">Rating (Highest)</option>
-                    <option value="rating_lowest">Rating (Lowest)</option>
-                </select>
-                <button type="submit">Apply</button>
-            </form> -->
             <div class="filter-box">
                 <h2>Sort By:</h2>
                 <form method="get">
@@ -104,42 +95,12 @@
             <i class="fas fa-arrow-left"></i>
         </a>
     </div>
-
-    <!-- <h1>Rating List</h1>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rating List</title>
-</head>
-<body>
-    <h1>Rating List</h1>
-    <ul>
-        {% for rating in ratings %}
-            <li>{{ rating.course }}</li>
-            <li>{{ rating.get_average }}/10</li>
-            <li>{{ rating.comment }}</li>
-            <li>Number of Upvotes: {{ rating.get_upvotes }}</li>
-            {% if rating not in upvoted_ratings %}
-            <a href="{% url 'rate_a_professor:add_rating' professor.pk rating.pk %}">
-                <button>Upvote</button>
-            </a>
-            {% else %}
-            <a href="{% url 'rate_a_professor:remove_rating' professor.pk rating.pk %}">
-                <button>Remove Upvote</button>
-            </a>
-            {% endif %}
-        {% endfor %}
-    </ul>
-    <a href="{% url 'rate_a_professor:rate_professor' professor.pk %}">
-        <button>Submit Rating</button>
-    </a> -->
-
 {% endblock %}
 
 {% block additional_css %}
     <style>
         body {
-            overflow-y: visible !important; /* Override the overflow-y property to visible */
+            overflow-y: visible !important;
         }
     </style>
 {% endblock %}

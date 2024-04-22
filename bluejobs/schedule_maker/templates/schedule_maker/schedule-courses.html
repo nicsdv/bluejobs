@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- Code Written By Christianneil Ocampo -->
+
 {% block title %}Course Select{% endblock %} 
 {% block content %}
 
-    {# the links to other html files #}
     <div class="white-bg sched-maker">
 
       <ul class="navbar">
@@ -68,85 +69,4 @@
       <i class="fas fa-arrow-left"></i>
     </a>
 
-    <!-- <div class="title-box">
-      <h1 class="homepage-title">Professor Select</h1>
-      <p class="homepage-subtitle">Choose a course to select a professor for</p>
-      <br>
-      <div class="dropdown">
-        <table class="table">
-          <tbody>
-            {% if added_courses %}
-              {% for course in added_courses %}
-                {% if forloop.counter0|divisibleby:4 %}
-                  <tr>
-                {% endif %}
-                    <td>
-                      <strong>{{ course }}</strong><br>
-                      <div class="remove-icon-container">
-                        <a href="{% url 'professor_select:course_remove' course.pk %}" class="remove-icon"><i class="fas fa-minus"></i></a>
-                      </div>
-                    </td>
-                {% if forloop.counter|divisibleby:4 or forloop.last %}
-                  {% if forloop.last %}
-                      </tr><tr>
-                      <td>
-                        <form method="POST">
-                          {% csrf_token %}
-                          <select name="course_list_select">
-                            {% for item in course_selection %}
-                              <option value="{{ item }}">{{ item.course_code }}</option>
-                            {% endfor %}
-                          </select> 
-                          <button type="submit">Add Course</button>
-                        </form> 
-                      </td>
-                  {% else %}
-                    </tr><tr>
-                    {% if forloop.counter|add:1|divisibleby:4 %}
-                      <td>
-                        <form method="POST">
-                          {% csrf_token %}
-                          <select name="course_list_select">
-                            {% for item in course_selection %}
-                              <option value="{{ item }}">{{ item.course_code }}</option>
-                            {% endfor %}
-                          </select> 
-                          <button type="submit">Add Course</button>
-                        </form> 
-                      </td>
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-            {% else %}
-              <tr>
-                <td>
-                  <form method="POST">
-                    {% csrf_token %}
-                    <select name="course_list_select">
-                      {% for item in course_selection %}
-                        <option value="{{ item }}">{{ item.course_code }}</option>
-                      {% endfor %}
-                    </select> 
-                    <button type="submit">Add Course</button>
-                  </form> 
-                </td>
-              </tr>
-            {% endif %}
-          </tbody>
-        </table>
-      </div>
-    
-    <form method="POST">
-      {% csrf_token %}
-      <select name = "course_list_select">
-        {% for course in course_selection %}
-          <option value ="{{course}}"> {{course.course_code}} </option>
-        {% endfor %}
-      </select> 
-      <button type="submit">Add Course</button>
-    </form> 
-    <a href="#"><button> &#8592; </button></a>
-
-    </div> -->
 {% endblock %}

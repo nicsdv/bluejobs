@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- Code Written By Christianneil Ocampo -->
+
 {% block title %}Course Select{% endblock %} 
 {% block content %}
 
-    {# the links to other html files #}
     <div class="white-bg sched-create scrollable">
 
       <ul class="navbar">
@@ -31,7 +32,6 @@
               <h2 class="course-title">
                 {{ required.course }} {{ required.get_selected_class.section.section_letter }}
               </h2>
-              <!-- <a href="{% url 'schedule_maker:reset-class' required.course.pk %}"> Reset Course Selection</a> -->
               {% if required.preferred_classes %}
                 <form method="POST" class="course-form">
                   {% csrf_token %}
@@ -69,7 +69,6 @@
               <div class="reset-icon-container">
                 <a href="{% url 'schedule_maker:reset-class' required.course.pk %}" class="reset-icon"><i class="fas fa-undo"></i></a>
               </div>
-              <!-- <a href="{% url 'schedule_maker:reset-class' required.course.pk %}"> Reset Course Selection</a> -->
               <p>
                 <strong>
                 {{ required.get_selected_class.section.day_schedule }}</strong> 
@@ -97,64 +96,10 @@
         </div>
         <br><br><br><br>
       </div>
-
-      <!-- <b>ADDED CLASSES </b><br> <br>
-      <a href="{% url 'schedule_maker:reset-schedule' %}">
-        Reset Schedule
-      </a>
-      <br>
-
-      {% for class in added_classes %}
-        {{ class }} ({{class.section.day_schedule}} {{class.section.time_schedule}}) <br>
-      {% endfor %}  
-
-      <br>
-
-      {% for required in student.required_courses.all %}
-      {{ required.course }}
-      {{ required.get_selected_class.section.section_letter }}
-      <a href="{% url 'schedule_maker:reset-class' required.course.pk %}"> Reset Course Selection</a>
-      
-      {% if required.preferred_classes %}
-      <form method="POST">
-        {% csrf_token %}
-          <select name="class_select">
-            {% for class in required.preferred_classes %}
-              <option value="{{ class.pk }}" 
-                {% if class == required.get_selected_class %}
-                  selected
-                {% elif class.section.section_letter in sections and required.get_selected_class.section.section_letter != class.section.section_letter %} 
-                    disabled
-                {% endif %}>
-                [{{ class.section }}] {{ class.section.day_schedule }} {{ class.section.time_schedule }} {{class.professor}}
-                {% if class.section.section_letter in sections and required.get_selected_class.section.section_letter != class.section.section_letter %}
-                  (SCHEDULE CONFLICT)
-                {% elif class == required.get_selected_class %}
-                  (SELECTED)
-                {% endif %}
-              </option>
-            {% endfor %}
-          </select>
-        &nbsp; &nbsp;
-        <button type="submit">Add Class</button>
-      </form>
-
-      {% else %}
-          <br>You have not selected a professor for {{ required.course }} . 
-          
-          <a href="{% url 'professor_select:professor_list' required.course.pk %}">Select {{ required.course }} Professors </a>
-        {% endif %}
-      <br>
-
-      {% if required.get_selected_class != '' %}
-        BADING <br>
-      {% endif %}
-
-      {% endfor %} -->
-      
     </div>
 
     <a href="{% url 'schedule_maker:course_select' %}" class="back-arrow-dark">
       <i class="fas fa-arrow-left"></i>
     </a>
+
 {% endblock %}
