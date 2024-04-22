@@ -63,7 +63,7 @@ def upload_classes(request):
                     venue = row['Venue']
 
                     # check if the course section already exists. if yes, update details instead
-                    if CourseSection.objects.get(course = course, section = section):
+                    if len(CourseSection.objects.filter(course = course, section = section))>0:
                         schedule = CourseSection.objects.get(course = course, section = section)
                         schedule.professor = professor
                         schedule.slots = slots
