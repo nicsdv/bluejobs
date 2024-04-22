@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Department Home{% endblock %} 
 {% block content %}
-<div class ="white-bg">
 
-    Welcome, {{ user.department_name }}!
-
-    <br>
-    <a href="{% url 'landing_page:login' %}">Sign Out</a>
-
-    <br>
-    <br>
-    <a href="{% url 'department:class-list' %}">View List of Classes</a>
-    <br>
-    <br>
-    <a href="{% url 'department:upload-classes' %}">Upload Class Schedule</a>
-    
-</div>
-{% comment %}
-    This page is currently under construction & will not be used until Iteration 3.
-{% endcomment %}
+    <div class="white-bg homepage homepage-dept">
+        <ul class="navbar">
+            <li><a class="bluejobsnav" href="{% url 'landing_page:homepage-department' %}">BlueJobs</a></li>
+            <li><a href="{% url 'department_schedule_upload:class-list' %}">View List</a></li>
+            <li><a href="{% url 'department_schedule_upload:upload-classes' %}">Upload Schedule</a></li>
+            <li><a class="signout" href="{% url 'landing_page:login' %}">Sign Out</a></li>
+        </ul> 
+        <div class="title-box">
+            <h1 class="homepage-title-dept">Welcome, {{ user.department_name }}!</h1>
+            <p class="homepage-subtitle">Select among the BlueJobs services to get started</p>
+            <div class="container">
+            <div class="box">
+              <div class="box-row">
+                <a href="{% url 'department:class-list' %}" class="box-cell box1">
+                  <img src="{% static 'viewlist_icon.png' %}">
+                  <br>
+                  View Schedules
+                </a>
+                <a href="{% url 'department:upload-classes' %}" class="box-cell box2">
+                  <img src="{% static 'uploadsched_icon.png' %}">
+                  <br>
+                  Upload Schedules
+                </a>
+                <div class="box-cell-extra"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
 {% endblock %}
