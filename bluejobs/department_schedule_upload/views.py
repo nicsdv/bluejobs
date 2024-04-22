@@ -55,7 +55,8 @@ def upload_classes(request):
 
                 # try-except block in case an entry does not exist 
                 try:
-                    course = Course.objects.get(course_code = row['Course'])
+                    # ensure that the department only adds classes for courses under them
+                    course = department.department_classes.get(course_code = row['Course']) 
                     section = SectionSchedule.objects.get(section_code = row['Section'])
                     professor = Professor.objects.get(professor_name = row['Professor'])
                     slots = row['Slots']
