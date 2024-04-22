@@ -2051,8 +2051,8 @@ textarea.review {
 }
 
 .remove-image:hover {
-  border: 2px solid white;
-  background: #02408B;
+  /* border: 2px solid white; */
+  background: #ebebeb;
   color: white;
   transition: all .2s ease;
   cursor: pointer;
