@@ -1,10 +1,127 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Developers{% endblock %} 
+<!-- Code Written By Christianneil Ocampo -->
+
+{% block title %}Professor List{% endblock %} 
 {% block content %}
+    <div class="pseudo-white-bg scrollable">
+        <ul class="navbar">
+            <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+            <li><a href="{% url 'landing_page:about' %}">About</a></li>
+            <li><a href="https://drive.google.com/file/d/1RAUbLkpsCealREPztbqB4lCxjV5NHjib/view?usp=drive_link">Help</a></li>
+            <li><a href="{% url 'landing_page:developers' %}">Developers</a></li>
+            <li><a href="#"></a></li>
+        </ul>
 
-{% comment %}
-    This page is currently under construction & will not be used until Iteration 3.
-{% endcomment %}
+        <div class ="developers fade-in-from-bottom">
+            <div class="title-box ">
+                <h1 class="homepage-title">Developers</h1>
+                <br><br>
+                <p class="homepage-subtitle">Contributors:</p>
+                <br><br>
+                <div class = "dev-panel">
+                    <div class="flip-card" tabIndex="0">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{% static 'lex.jpg' %}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Lex Chan</h3>
+                                <h4>Backend Developer</h4>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="flip-card" tabIndex="0">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{% static 'eldon.jpg' %}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Eldon Dagdag</h3>
+                                <h4>Backend Developer</h4>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="flip-card" tabIndex="0">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{% static 'nics.png' %}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Nics De Vega</h3>
+                                <h4>Lead Backend Developer</h4>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="flip-card" tabIndex="0">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{% static 'neil.jpg' %}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Christianneil Ocampo</h3>
+                                <h4>Lead Frontend Developer</h4>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="flip-card" tabIndex="0">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{% static 'tanya.jpg' %}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Tanya Yotoko</h3>
+                                <h4>Frontend Developer</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br><br><br>
+                <p class="homepage-subtitle">Project Overview:</p>
+                <p class="dev-text">
+                    BlueJobs was built using <strong>Python, Django, HTML, CSS, and JavaScript</strong>. The project is hosted on GitHub with the link <a href="https://github.com/nicsdv/bluejobs">https://github.com/nicsdv/bluejobs</a>. All progress and necessary resources are documented in this repository, with instructions on how to run the repository provided in the README.md file.
+
+                    his project was created in fulfillment of the requirements of <strong>CSCI 42: Introduction to Software Engineering</strong>. It serves as a practical application of software engineering concepts and principles learned during the course.
+                </p>
+                <br><br>
+                <p class="homepage-subtitle">Support:</p>
+                <p class="dev-text">
+                    If you have any questions, feedback, or need assistance with BlueJobs, please feel free to reach out to us.
+
+                    Thank you for your interest in BlueJobs!
+                </p>
+                <br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'landing_page:home' %}" class="back-arrow">
+    <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var fadeElements = document.querySelectorAll(".fade-in-from-bottom");
+
+            function fadeInFromBottom() {
+                fadeElements.forEach(function(element) {
+                    var elementTop = element.getBoundingClientRect().top;
+                    var windowHeight = window.innerHeight;
+
+                    if (elementTop < windowHeight) {
+                        element.classList.add("fade-in-active");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", fadeInFromBottom);
+            fadeInFromBottom(); // Call the function initially to check if any elements are already in view
+        });
+    </script>
 
 {% endblock %}

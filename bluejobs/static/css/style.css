@@ -2054,6 +2054,144 @@ textarea.review {
   top: 150px;
 }
 
+/* ================= About ================= */
+
+.about {
+  width: 1200px;
+  margin: auto;
+}
+
+.about .homepage-subtitle {
+  font-size: 20px !important;
+}
+
+h1 span {
+  margin-right: -25px;
+  position: relative;
+  top: 20px;
+  display: inline-block;
+  animation: bounce 1.5s ease infinite alternate;
+  font-size: 100px;
+  color: #FFF;
+  text-shadow: 0 10px 10px rgba(0, 0, 0, .4);
+}
+
+h1 span:nth-child(2) { animation-delay: .1s; }
+h1 span:nth-child(3) { animation-delay: .2s; }
+h1 span:nth-child(4) { animation-delay: .3s; }
+h1 span:nth-child(5) { animation-delay: .4s; }
+h1 span:nth-child(6) { animation-delay: .5s; }
+h1 span:nth-child(7) { animation-delay: .6s; }
+h1 span:nth-child(8) { animation-delay: .7s; }
+
+/* ================= Developers ================= */
+
+.developers .title-box {
+  top: 50px;
+}
+
+.developers .dev-panel {
+  display: flex;
+  margin-left: 30px;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 215px;
+  height: 300px;
+  border-radius: 20px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  border-radius: 20px;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner{
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.flip-card-front {
+  color: black;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: #07599D;
+  transform: rotateY(180deg);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.dev-panel img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  z-index: 9999;
+}
+
+.flip-card-back h3 {
+  font-family: "Bowlby One SC", sans-serif;
+}
+
+.flip-card-back h4 {
+  margin-top: -10px;
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.dev-text {
+  font-family: "Noto Sans Khojki", sans-serif;
+  color: white;
+  font-size: 20px;
+  line-height: 25px;
+  margin-left: 30px;
+  margin-right: 200px;
+}
+
+.developers .homepage-subtitle {
+  font-family: "Bowlby One SC", sans-serif;
+}
+
+.developers a {
+  color: white;
+  text-decoration: underline; 
+}
+
+.fade-in-from-bottom {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInFromBottom 0.5s ease forwards;
+}
+
 /* ================= Navbar ================= */
 
 .navbar {
@@ -2130,5 +2268,28 @@ li a {
   }
   100% {
     transform: translateY(-35px);
+  }
+}
+
+@keyframes fadeInFromBottom {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 50px 25px rgba(0, 0, 0, .2);
   }
 }

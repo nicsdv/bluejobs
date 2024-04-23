@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Help{% endblock %} 
+<!-- Code Written By Christianneil Ocampo -->
+
+{% block title %}Professor List{% endblock %} 
 {% block content %}
 
-{% comment %}
-    This page is currently under construction & will not be used until Iteration 3.
-{% endcomment %}
+    <ul class="navbar">
+        <li><a class="bluejobsnav" href="{% url 'landing_page:home' %}">BlueJobs</a></li>
+        <li><a href="{% url 'landing_page:about' %}">About</a></li>
+        <li><a href="https://drive.google.com/file/d/1RAUbLkpsCealREPztbqB4lCxjV5NHjib/view?usp=drive_link" target="_blank">Help</a></li>
+        <li><a href="{% url 'landing_page:developers' %}">Developers</a></li>
+        <li><a href="#"></a></li>
+    </ul>
+
+    <div class="help">
+        
+    </div>
+
+    <a href="{% url 'landing_page:home' %}" class="back-arrow">
+    <i class="fas fa-arrow-left"></i>
+    </a>
 
 {% endblock %}
