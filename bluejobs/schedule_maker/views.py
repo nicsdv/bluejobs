@@ -82,9 +82,7 @@ def create_schedule(request):
         student = Student.objects.get(pk = current_user.pk)
         args = { 'student': student }
 
-        if request.method  == "POST":
-
-            if request.POST.get('class_select', False):
+        if request.method  == "POST" and request.POST.get('class_select', False):
                 class_section = request.POST['class_select']
                 
                 course_form = SectionSelectForm()
@@ -108,11 +106,11 @@ def create_schedule(request):
                 args['added_classes'] = added_classes
                 args['sections'] = sections
             
-            else:        
-                added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
-                sections = [classes.section.section_letter for classes in added_classes]
-                args['added_classes'] = added_classes
-                args['sections'] = sections
+        else:        
+            added_classes = [classes.course_section for classes in student.classes.all().order_by('course_section')]
+            sections = [classes.section.section_letter for classes in added_classes]
+            args['added_classes'] = added_classes
+            args['sections'] = sections
                 
         return render(request, 'schedule_maker/schedule-create.html', args)
     
